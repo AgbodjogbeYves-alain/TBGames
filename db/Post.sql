@@ -1,20 +1,20 @@
 create table PostType
 (
-  label varchar2(50)
+  label varchar(50)
 );
 
 create table Post
 (
-  title varchar2(50),
+  title varchar(50),
   description text,
   price decimal,
-  status varchar2(50),
+  status varchar(50),
   postDate date
 ) INHERITS (PostType);
 
 create table Demand
 (
-  itemName varchar2(50)
+  itemName varchar(50)
 ) INHERITS (Post);
 
 create table Offer
@@ -24,5 +24,5 @@ create table Offer
 
 create table Trial
 (
-  version varchar2(50)
+  version varchar(50)
 ) INHERITS(Offer);

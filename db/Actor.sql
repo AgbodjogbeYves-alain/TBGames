@@ -1,14 +1,14 @@
 create TABLE Actor
 (
-  username varchar2(50),
-  email varchar2(50),
-  password varchar2(50)
+  username varchar(50),
+  email varchar(50),
+  password varchar(50)
 );
 
-create TABLE User
+create TABLE SimpleUser
 (
-    zipCode varchar2(50),
-    phoneNumber varchar2(20)
+    zipCode varchar(50),
+    phoneNumber varchar(20)
 ) INHERITS (Actor);
 
 create TABLE Administrator
@@ -24,10 +24,10 @@ create TABLE SuperAdmin
 create TABLE Buyer
 (
 
-) INHERITS (User);
+) INHERITS (SimpleUser);
 
 create TABLE Editor
 (
-  representativeName varchar2(50),
+  representativeName varchar(50),
   validation boolean
-) INHERITS (User);
+) INHERITS (SimpleUser);

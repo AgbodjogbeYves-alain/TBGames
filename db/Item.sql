@@ -1,6 +1,6 @@
 create table AbstractItem
 (
-  name varchar2(50),
+  name varchar(50),
   rating integer
 );
 
@@ -16,10 +16,10 @@ create table Console
 
 create table Category
 (
-  nameCategory varchar2(50)
+  nameCategory varchar(50)
 );
 
 create table ConsoleType
 (
-  brand varchar2(50)
+  brand varchar(50)
 );
