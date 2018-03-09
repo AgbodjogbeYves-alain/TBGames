@@ -7,7 +7,16 @@ import java.sql.*;
  * 
  */
 public class PGJDBC {
-
+	
+	private static String dbms = "postgresql" ;
+	private static String dbName = "tbgames" ;
+	private static String host = "localhost" ;
+	private static String port = "5432" ;
+	private static String user = "postgres" ;
+	private static String password = "admin" ;
+	
+	private static Connection dbConnection = null ;
+	
 	private static PGJDBC ThePGJDBC = null;
     /**
      * Constructor
@@ -26,9 +35,16 @@ public class PGJDBC {
     	}
     }
     
-	public Connection CreateConnection() {
-    	Connection db = DriverManager.getConnection("jdbc:postgresql:", user, password); //Must add the db name, user and password to access the DB
-    	return db;
+	public void establishConnection(){
+		if (dbms.equals("postgresql")) {
+			try {
+				dbConnection = DriverManager.getConnection("jdbc:" + dbms +  "://" + host + ":" + port + "/" + dbName, user, password);
+				
+			} catch (SQLException e) {
+				System.out.println("error connecting to the database");
+				e.printStackTrace();
+			} //Must add the db name, user and password to access the DB
+	  	}
+	
     }
-    
 }

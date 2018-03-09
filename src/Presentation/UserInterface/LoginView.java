@@ -1,5 +1,6 @@
 package Presentation.UserInterface;
 
+import Application.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,7 +34,7 @@ public class LoginView extends Application{
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         
-        //Define the differents elements for the grid
+        //Define the different elements for the grid
         Text scenetitle = new Text("Welcome!!");
         Text scenetitle2 = new Text("Please fill the form to sign in");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -65,8 +66,14 @@ public class LoginView extends Application{
         // TODO implement here
         return "";
     }
+    
+    public static void EstablishConnection() {
+    	ApplicationFacade appFacade = new ApplicationFacade() ;
+        appFacade.establishConnection() ;
+    }
 
     public static void main(String[] args) {
+    	EstablishConnection();
         launch(args);
     }
 
