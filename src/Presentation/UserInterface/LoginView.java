@@ -24,29 +24,32 @@ public class LoginView extends Application{
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Hello World!");   
         
+        //Defines the grid layout for the form
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         
-        Text scenetitle = new Text("Welcome");
+        //Define the differents elements for the grid
+        Text scenetitle = new Text("Welcome!!");
+        Text scenetitle2 = new Text("Please fill the form to sign in");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
+        grid.add(scenetitle2, 0, 1);
 
+
+        //UserName
         Label userName = new Label("User Name:");
-        grid.add(userName, 0, 1);
-
+        grid.add(userName, 0, 2);
         TextField userTextField = new TextField();
-        grid.add(userTextField, 1, 1);
+        grid.add(userTextField, 1, 2);
 
+        //PassWord
         Label pw = new Label("Password:");
-        grid.add(pw, 0, 2);
-
+        grid.add(pw, 0, 3);
         PasswordField pwBox = new PasswordField();
-        grid.add(pwBox, 1, 2);
-        
-
+        grid.add(pwBox, 1, 3);
         Scene scene = new Scene(grid, 300, 275);
         primaryStage.setScene(scene);
         
