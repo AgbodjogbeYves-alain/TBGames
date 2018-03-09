@@ -25,6 +25,8 @@ public class LoginView extends Application{
         primaryStage.setTitle("Hello World!");   
         
         //Defines the grid layout for the form
+        StackPane stack = new StackPane();
+        
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -37,7 +39,7 @@ public class LoginView extends Application{
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
         grid.add(scenetitle2, 0, 1);
-
+        grid.setStyle("-fx-background-color: #336699;");
 
         //UserName
         Label userName = new Label("User Name:");
