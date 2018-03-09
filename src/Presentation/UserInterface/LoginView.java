@@ -1,4 +1,4 @@
-package presentationLayer.userInterface;
+package Presentation.UserInterface;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -53,6 +53,14 @@ public class LoginView extends Application{
         primaryStage.show();
     }
     
+    /**
+     * @return
+     */
+    public String login() {
+        // TODO implement here
+        return "";
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
