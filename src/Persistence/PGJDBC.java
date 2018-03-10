@@ -39,7 +39,7 @@ public class PGJDBC {
 		if (dbms.equals("postgresql")) {
 			try {
 				dbConnection = DriverManager.getConnection("jdbc:" + dbms +  "://" + host + ":" + port + "/" + dbName, user, password);
-				
+				System.out.println("success connecting to the database");
 			} catch (SQLException e) {
 				System.out.println("error connecting to the database");
 				e.printStackTrace();
