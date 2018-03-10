@@ -1,6 +1,7 @@
 package Persistence;
 
 import java.util.*;
+import Application.*;
 
 /**
  * 
@@ -16,8 +17,6 @@ public abstract class UserDAO {
     /**
      * @param id
      */
-    public void createById(String id) {
-        // TODO implement here
-    }
+    public abstract User createById(String id);
 
 }
