@@ -47,4 +47,23 @@ public class PGJDBC {
 	  	}
 	
     }
+	
+	public ArrayList<String> getRowById(String table, String id) {
+		PreparedStatement pstmt;
+		ArrayList<String> result = null;
+		try {
+			pstmt = dbConnection.prepareStatement("SELECT * FROM "+table+" WHERE id = "+id);
+			ResultSet pstmtResult = pstmt.executeQuery();
+			int i = 0 ;
+			result = new ArrayList<String>();
+			while(i < pstmtResult.getFetchSize()) {
+				result.set(i, pstmtResult.getString(i)) ;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 }
