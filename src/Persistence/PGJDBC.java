@@ -59,9 +59,6 @@ public class PGJDBC {
 			if (pstmtResult.next()){
 				result = pstmtResult.getString(1) ;
 			}
-			else {
-				System.out.println("No such user with the username '"+username+"' and password '"+pwd+"' in the database");
-			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
