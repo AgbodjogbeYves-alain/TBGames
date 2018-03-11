@@ -1,22 +1,16 @@
 package Persistence;
 
-import java.util.*;
 import Application.*;
 
 /**
  * 
  */
-public abstract class UserDAO {
+public interface UserDAO {
 
-    /**
-     * Default constructor
-     */
-    public UserDAO() {
-    }
-
-    /**
+	public String getUserId(String username, String pwd) ;
+	/**
      * @param id
      */
-    public abstract User createById(String id);
+    public User createById(String id);
 
 }
