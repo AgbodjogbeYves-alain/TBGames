@@ -1,25 +1,25 @@
 package Application;
 
 
-import java.util.*;
-import Persistence.* ;
-
 /**
  * 
  */
 public class ApplicationFacade {
 	
-	private PGJDBC dbConnector ;
+	private static ApplicationFacade AFInstance = null ;
+	private User connectedUser ;
     
 	/**
      * Default constructor
      */
-    public ApplicationFacade() {
+    private ApplicationFacade() {
     }
     
-    public void establishConnection() {
-    	dbConnector = PGJDBC.getPGJDBC() ;
-    	dbConnector.establishConnection();
+    public static ApplicationFacade getInstance(){
+    	if (AFInstance == null) {
+    		AFInstance = new ApplicationFacade() ;
+    	}
+    	return AFInstance ;
     }
 
     /**
@@ -27,9 +27,9 @@ public class ApplicationFacade {
      * @param pwd 
      * @return
      */
-    public User login(String name, String pwd) {
-        // TODO implement here
-        return null;
+    public Boolean login(String username, String pwd) {
+        connectedUser = User.login(username,pwd) ;
+        return connectedUser != null ;
     }
 
 }

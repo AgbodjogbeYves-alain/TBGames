@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -42,20 +43,42 @@ public class LoginView extends Application{
         grid.add(scenetitle2, 0, 1);
         grid.setStyle("-fx-background-color: #336699;");
 
-        //UserName
+        //Username
         Label userName = new Label("User Name:");
+        userName.setTextFill(Color.web("#FFFFFF"));
         grid.add(userName, 0, 2);
         TextField userTextField = new TextField();
         grid.add(userTextField, 1, 2);
 
-        //PassWord
+        //Password
         Label pw = new Label("Password:");
+        pw.setTextFill(Color.web("#FFFFFF"));
         grid.add(pw, 0, 3);
         PasswordField pwBox = new PasswordField();
         grid.add(pwBox, 1, 3);
+ 
+        //login message
+        Label msg = new Label();
+        grid.add(msg, 1, 4);
+        
+        //login button
+        Button loginBtn = new Button("Login");
+        //Quick Assignment of the login action
+        //TODO : Create an event handler class
+        loginBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            	if (ApplicationFacade.getInstance().login(userTextField.getText(),pwBox.getText())) {
+            		msg.setText("Accepted");
+            	}
+            	else {
+            		msg.setText("Refused");
+            	}
+            }
+        });
+        grid.add(loginBtn, 1, 5);
+        
         Scene scene = new Scene(grid, 300, 275);
         primaryStage.setScene(scene);
-        
         primaryStage.show();
     }
     
@@ -66,14 +89,8 @@ public class LoginView extends Application{
         // TODO implement here
         return "";
     }
-    
-    public static void EstablishConnection() {
-    	ApplicationFacade appFacade = new ApplicationFacade() ;
-        appFacade.establishConnection() ;
-    }
 
     public static void main(String[] args) {
-    	EstablishConnection();
         launch(args);
     }
 

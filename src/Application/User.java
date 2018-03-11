@@ -2,6 +2,8 @@ package Application;
 
 import java.util.*;
 
+import Persistence.*;
+
 /**
  * 
  */
@@ -9,6 +11,8 @@ public class User extends Actor {
 	
 	private String zipCode ;
 	private String phoneNumber ;
+	
+	private static UserDAO DAO ;
 
     /**
      * Default constructor
@@ -29,6 +33,17 @@ public class User extends Actor {
     	this.zipCode = queryResult.get(4);
 		this.phoneNumber = queryResult.get(5);
     }
+	
+	public static User login(String username, String pwd) {
+		User result = null;
+		AbstractDAOFactory daoFactory = FactoryProducer.getInstance().getDAOFactory("PG") ;
+		DAO = daoFactory.getUserDAO() ;
+		String id = DAO.getUserId(username,pwd) ;
+		if (id != null){
+			result = DAO.createById(id) ;
+		}
+		return result;
+	}
     
 	public String getZipCode() {
 		return zipCode;
