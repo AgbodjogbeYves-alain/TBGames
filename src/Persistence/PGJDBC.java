@@ -18,24 +18,24 @@ public class PGJDBC {
 	private static Connection dbConnection = null ;
 	
 	private static PGJDBC ThePGJDBC = null;
-    /**
+    
+	/**
      * Constructor
      */
-    private static PGJDBC PGJDBC() {
-		// TODO Auto-generated method stub
-		return null;
+    private PGJDBC() {
 	}
    
      public static PGJDBC getPGJDBC() {
     	if (ThePGJDBC == null) {
     		ThePGJDBC = new PGJDBC();
-    		return ThePGJDBC;
-    	}else {
-    		return ThePGJDBC;
     	}
+    	if (dbConnection == null) {
+    		establishConnection() ;
+    	}
+    	return ThePGJDBC;
     }
     
-	public void establishConnection(){
+	public static void establishConnection(){
 		if (dbms.equals("postgresql")) {
 			try {
 				dbConnection = DriverManager.getConnection("jdbc:" + dbms +  "://" + host + ":" + port + "/" + dbName, user, password);
@@ -48,16 +48,40 @@ public class PGJDBC {
 	
     }
 	
+	public String getUserId(String username, String pwd) {
+		PreparedStatement pstmt;
+		String result = null ;
+		try {
+			//TODO : do this in the DAO
+			pstmt = dbConnection.prepareStatement("SELECT id FROM SIMPLEUSER WHERE username = '"+username+"' AND password = '"+pwd+"';");
+			ResultSet pstmtResult = pstmt.executeQuery();
+			
+			if (pstmtResult.next()){
+				result = pstmtResult.getString(1) ;
+			}
+			else {
+				System.out.println("No such user with the username '"+username+"' and password '"+pwd+"' in the database");
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public ArrayList<String> getRowById(String table, String id) {
 		PreparedStatement pstmt;
 		ArrayList<String> result = null;
 		try {
-			pstmt = dbConnection.prepareStatement("SELECT * FROM "+table+" WHERE id = "+id);
+			pstmt = dbConnection.prepareStatement("SELECT * FROM "+table+" WHERE id = '"+id+"';");
 			ResultSet pstmtResult = pstmt.executeQuery();
+			pstmtResult.next();
 			int i = 0 ;
-			result = new ArrayList<String>();
-			while(i < pstmtResult.getFetchSize()) {
-				result.set(i, pstmtResult.getString(i)) ;
+			int nbColumns = pstmtResult.getMetaData().getColumnCount() ;
+			result = new ArrayList<String>(nbColumns);
+			while(i < nbColumns) {
+				result.add(pstmtResult.getString(i+1)) ;
+				i++;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
