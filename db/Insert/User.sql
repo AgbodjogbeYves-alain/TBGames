@@ -1,0 +1,1 @@
+Insert into SimpleUser values ('1','admin','admin@tbgames.com','admin','34000','0666006600') ;
