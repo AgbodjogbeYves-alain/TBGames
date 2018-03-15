@@ -1,4 +1,4 @@
-package Persistence;
+package persistence;
 
 import java.util.*;
 import java.sql.*;
@@ -25,6 +25,10 @@ public class PGJDBC {
     private PGJDBC() {
 	}
    
+    /**
+     * 
+     * @return
+     */
      public static PGJDBC getPGJDBC() {
     	if (ThePGJDBC == null) {
     		ThePGJDBC = new PGJDBC();
@@ -35,6 +39,9 @@ public class PGJDBC {
     	return ThePGJDBC;
     }
     
+    /**
+     * 
+     */
 	public static void establishConnection(){
 		if (dbms.equals("postgresql")) {
 			try {
@@ -48,6 +55,12 @@ public class PGJDBC {
 	
     }
 	
+	/**
+	 * 
+	 * @param username
+	 * @param pwd
+	 * @return
+	 */
 	public String getUserId(String username, String pwd) {
 		PreparedStatement pstmt;
 		String result = null ;
@@ -66,6 +79,12 @@ public class PGJDBC {
 		return result;
 	}
 	
+	/**
+	 * 
+	 * @param table
+	 * @param id
+	 * @return
+	 */
 	public ArrayList<String> getRowById(String table, String id) {
 		PreparedStatement pstmt;
 		ArrayList<String> result = null;

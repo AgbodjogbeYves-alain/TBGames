@@ -1,4 +1,4 @@
-package Persistence;
+package persistence;
 
 /**
  * 
@@ -11,6 +11,11 @@ public abstract class AbstractDAOFactory {
     public AbstractDAOFactory() {
     }
     
+    
+    /**
+     * 
+     * @return
+     */
     public abstract UserDAO getUserDAO();
 
 }

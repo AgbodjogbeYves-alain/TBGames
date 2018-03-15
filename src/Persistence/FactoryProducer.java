@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Persistence;
+package persistence;
 
 /**
  * @author TB Games Team
@@ -9,19 +9,32 @@ package Persistence;
  */
 public class FactoryProducer {
 	
-	private static FactoryProducer FP = null ;
+	private static FactoryProducer fp = null ;
 	
+	/**
+	 * 
+	 */
 	private FactoryProducer(){
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public static FactoryProducer getInstance() {
-		if (FP == null) {
-			FP = new FactoryProducer() ;
+		if (fp == null) {
+			fp = new FactoryProducer() ;
 		}
-		return FP ;
+		return fp ;
 	}
 	
+	
+	/**
+	 * 
+	 * @param type
+	 * @return
+	 */
 	public AbstractDAOFactory getDAOFactory(String type) {
 		if (type.equalsIgnoreCase("PG")){
 			return new PGDAOFactory() ;

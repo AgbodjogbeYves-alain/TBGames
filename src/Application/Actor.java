@@ -1,12 +1,12 @@
 /**
  * 
  */
-package Application;
+package application;
 
 import java.util.ArrayList;
 
 /**
- * @author Sale quenouille
+ * @author
  *
  */
 public class Actor {

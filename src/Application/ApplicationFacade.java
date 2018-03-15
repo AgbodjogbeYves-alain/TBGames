@@ -1,4 +1,4 @@
-package Application;
+package application;
 
 
 /**
@@ -6,7 +6,7 @@ package Application;
  */
 public class ApplicationFacade {
 	
-	private static ApplicationFacade AFInstance = null ;
+	private static ApplicationFacade afInstance = null ;
 	private User connectedUser ;
     
 	/**
@@ -16,10 +16,10 @@ public class ApplicationFacade {
     }
     
     public static ApplicationFacade getInstance(){
-    	if (AFInstance == null) {
-    		AFInstance = new ApplicationFacade() ;
+    	if (afInstance == null) {
+    		afInstance = new ApplicationFacade() ;
     	}
-    	return AFInstance ;
+    	return afInstance ;
     }
 
     /**

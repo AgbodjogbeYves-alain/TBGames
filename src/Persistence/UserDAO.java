@@ -1,6 +1,6 @@
-package Persistence;
+package persistence;
 
-import Application.*;
+import application.*;
 
 /**
  * 
