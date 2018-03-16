@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,15 +26,12 @@
         </rowConstraints>
          <children>
             <Label prefHeight="54.0" prefWidth="74.0" text="Username : " GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="usernameTF" blendMode="MULTIPLY" text="Useraname" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="usernameTF" blendMode="MULTIPLY" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="3.0" />
                </GridPane.margin></TextField>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="164.0" text="Password : " GridPane.rowIndex="2" />
-            <TextField fx:id="passwordTF" blendMode="MULTIPLY" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets right="3.0" />
-               </GridPane.margin></TextField>
+            <PasswordField prefHeight="25.0" prefWidth="119.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <ImageView fitHeight="94.0" fitWidth="341.0" AnchorPane.bottomAnchor="370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
