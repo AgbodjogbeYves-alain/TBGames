@@ -61,9 +61,11 @@ public class loginViewHandler extends Application {
 	private void handlelogAction(ActionEvent event) {
 		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
     		msg.setText("Accepted");
+    		System.out.println("Accepted");
     	}
     	else {
     		msg.setText("Refused");
+    		System.out.println("Refused");
     	}
 	}
 	

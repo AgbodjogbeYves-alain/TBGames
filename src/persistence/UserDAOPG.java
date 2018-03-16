@@ -18,8 +18,7 @@ public class UserDAOPG implements UserDAO {
      * 
      */
     public User createById(String id) {
-    	PGJDBC connector = PGJDBC.getPGJDBC() ;
-    	ArrayList<String> r = connector.getRowById("SIMPLEUSER",id);
+    	ArrayList<String> r = PGDAOFactory.getConnector().getRowById("SIMPLEUSER",id);
     	User u = null ;
     	if (r != null) {
     		u = new User(r) ;
@@ -32,7 +31,7 @@ public class UserDAOPG implements UserDAO {
 	 * 
 	 */
 	public String getUserId(String username, String pwd) {
-		String id = PGJDBC.getPGJDBC().getUserId(username, pwd) ;
+		String id = PGDAOFactory.getConnector().getUserId(username, pwd) ;
 		return id ;
 	}
 
