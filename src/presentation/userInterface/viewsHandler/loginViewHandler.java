@@ -26,23 +26,26 @@ public class loginViewHandler extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setResizable(false);
-        this.primaryStage.setTitle("Welcome on TBGames app!!");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../../images/iconTB.png")));
+        
+       
         //initRootLayout(null);
         
-        showView();
+        showView(null, null);
 	}
 	
     /**
      * Shows the person overview inside the root layout.
      */
-    public void showView() {
+    public void showView(String msg, String fxml) {
         try {
+        	this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../../images/iconTB.png")));
+            this.primaryStage.setTitle(msg);
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(loginViewHandler.class.getResource("../fxml/loginUserView.fxml"));
-            AnchorPane loginView = (AnchorPane) loader.load();
-            Scene scene = new Scene(loginView);
+            loader.setLocation(loginViewHandler.class.getResource("../fxml/"+fxml));
+            AnchorPane view = (AnchorPane) loader.load();
+            Scene scene = new Scene(view);
+            
             primaryStage.setScene(scene);
           	primaryStage.show();
             // Set person overview into the center of root layout.
@@ -62,6 +65,11 @@ public class loginViewHandler extends Application {
     	else {
     		msg.setText("Refused");
     	}
+	}
+	
+	@FXML
+	private void handlesignupAction(ActionEvent event) {
+		showView("Enregistrez-vous!","signUpHandler");
 	}
 	
 	/**
