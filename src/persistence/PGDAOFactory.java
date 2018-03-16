@@ -18,7 +18,7 @@ public class PGDAOFactory extends AbstractDAOFactory {
 			String password) {
 		if (thePGDAOFactory == null) {
 			thePGDAOFactory = new PGDAOFactory() ;
-			connector = PGJDBC.getPGJDBC(dbms, dbName, host, port, user, password) ;
+			connector = new PGJDBC(dbms, dbName, host, port, user, password) ;
 		}
 		return thePGDAOFactory;
 	}

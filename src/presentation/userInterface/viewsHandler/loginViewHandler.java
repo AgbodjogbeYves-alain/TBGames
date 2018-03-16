@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -19,7 +20,7 @@ public class loginViewHandler extends Application {
 	
 	private Stage primaryStage;
     @FXML private TextField usernameTF;
-    @FXML private TextField passwordTF;
+    @FXML private PasswordField passwordTF;
     public Label msg = new Label();
     
 	@Override
