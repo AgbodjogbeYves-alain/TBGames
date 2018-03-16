@@ -39,10 +39,10 @@ public class loginViewHandler extends Application {
     public void showView(String msg, String fxml) {
         try {
         	this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../../images/iconTB.png")));
-            this.primaryStage.setTitle(msg);
+            this.primaryStage.setTitle("Welcome on TBGames!!");
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(loginViewHandler.class.getResource("../fxml/"+fxml));
+            loader.setLocation(loginViewHandler.class.getResource("../fxml/loginUserView.fxml"));
             AnchorPane view = (AnchorPane) loader.load();
             Scene scene = new Scene(view);
             
