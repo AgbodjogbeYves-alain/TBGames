@@ -36,7 +36,7 @@
                </GridPane.margin></TextField>
          </children>
       </GridPane>
-      <ImageView fitHeight="125.0" fitWidth="341.0" AnchorPane.bottomAnchor="339.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="94.0" fitWidth="341.0" AnchorPane.bottomAnchor="370.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../images/Logo.png" />
          </image>
