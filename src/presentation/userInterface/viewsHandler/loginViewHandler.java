@@ -20,29 +20,33 @@ public class loginViewHandler extends Application {
 	private Stage primaryStage;
     @FXML private TextField usernameTF;
     @FXML private TextField passwordTF;
+    
     public Label msg = new Label();
     
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws ClassNotFoundException {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setResizable(false);
         
        
         //initRootLayout(null);
         
-        showView(null, null);
+        showView("Welcome on TBGames","loginUserView.fxml");
 	}
 	
     /**
      * Shows the person overview inside the root layout.
+     * @throws ClassNotFoundException 
      */
-    public void showView(String msg, String fxml) {
+    public void showView(String msg, String fxml) throws ClassNotFoundException {
         try {
+        	
         	this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../../images/iconTB.png")));
             this.primaryStage.setTitle(msg);
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(loginViewHandler.class.getResource("../fxml/"+fxml));
+            
+            loader.setLocation(getClass().getResource("../fxml/"+fxml));
             AnchorPane view = (AnchorPane) loader.load();
             Scene scene = new Scene(view);
             
@@ -68,17 +72,10 @@ public class loginViewHandler extends Application {
 	}
 	
 	@FXML
-	private void handlesignupAction(ActionEvent event) {
-		showView("Enregistrez-vous!","signUpHandler");
+	private void handlesignupAction(ActionEvent event) throws ClassNotFoundException {
+		
+		showView("Enregistrez-vous!","signUpView.fxml");
 	}
-	
-	/**
-     * @return
-     */
-    public String login() {
-        // TODO implement here
-        return "";
-    }
     
     /**
      * Returns the main stage.
