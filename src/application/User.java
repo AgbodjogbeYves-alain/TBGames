@@ -33,17 +33,6 @@ public class User extends Actor {
     	this.zipCode = queryResult.get(4);
 		this.phoneNumber = queryResult.get(5);
     }
-	
-	public static User login(String username, String pwd) {
-		User result = null;
-		AbstractDAOFactory daoFactory = FactoryProducer.getInstance().getDAOFactory("PG") ;
-		userDAO = daoFactory.getUserDAO() ;
-		String id = userDAO.getUserId(username,pwd) ;
-		if (id != null){
-			result = userDAO.createById(id) ;
-		}
-		return result;
-	}
     
 	public String getZipCode() {
 		return zipCode;
