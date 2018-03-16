@@ -42,7 +42,7 @@ public class loginViewHandler extends Application {
         try {
         	
         	this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../../images/iconTB.png")));
-            this.primaryStage.setTitle(msg);
+            this.primaryStage.setTitle("Welcome on TBGames!!");
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             
