@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="464.0" prefWidth="341.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.loginViewHandler">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="464.0" prefWidth="341.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.LoginViewHandler">
    <children>
       <GridPane layoutY="129.0" prefHeight="229.0" prefWidth="373.0" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="129.0">
         <columnConstraints>
