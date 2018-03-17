@@ -8,21 +8,19 @@ import java.sql.*;
  */
 public class PGJDBC {
 
-	private static String dbms = "postgresql";
-	private static String dbName = "tbgames";
-	private static String host = "localhost";
-	private static String port = "5432";
-	private static String user = "postgres";
-	private static String password = "admin";
+	private String dbms ;
+	private String dbName ;
+	private String host ;
+	private String port ;
+	private String user ;
+	private String password ;
 
-	private static Connection dbConnection = null;
-
-	private static PGJDBC ThePGJDBC = null;
+	private Connection dbConnection = null;
 
 	/**
 	 * Constructor
 	 */
-	private PGJDBC(String newDbms, String newDbName, String newHost, String newPort, String newUser,
+	PGJDBC(String newDbms, String newDbName, String newHost, String newPort, String newUser,
 			String newPassword) {
 		dbms = newDbms;
 		dbName = newDbName; 
@@ -30,27 +28,13 @@ public class PGJDBC {
 		port = newPort;
 		user = newUser; 
 		password = newPassword;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public static PGJDBC getPGJDBC(String dbms, String dbName, String host, String port, String user,
-			String password) {
-		if (ThePGJDBC == null) {
-			ThePGJDBC = new PGJDBC(dbms, dbName, host, port, user, password);
-		}
-		if (dbConnection == null) {
-			establishConnection();
-		}
-		return ThePGJDBC;
+		establishConnection();
 	}
 
 	/**
 	 * 
 	 */
-	public static void establishConnection() {
+	public void establishConnection() {
 		if (dbms.equals("postgresql")) {
 			try {
 				dbConnection = DriverManager.getConnection("jdbc:" + dbms + "://" + host + ":" + port + "/" + dbName,

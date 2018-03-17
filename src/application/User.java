@@ -2,8 +2,6 @@ package application;
 
 import java.util.*;
 
-import persistence.*;
-
 /**
  * 
  */
@@ -11,8 +9,6 @@ public class User extends Actor {
 	
 	private String zipCode ;
 	private String phoneNumber ;
-	
-	private static UserDAO userDAO ;
 
     /**
      * Default constructor
