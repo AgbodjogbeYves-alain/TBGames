@@ -5,14 +5,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="320.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.SignUpViewHandler">
    <children>
       <ImageView fitHeight="95.0" fitWidth="320.0">
          <image>
             <Image url="@../../images/Logo.png" />
          </image>
       </ImageView>
-      <Button layoutX="91.0" layoutY="120.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #2880BA;" text="Editor" />
-      <Button layoutX="91.0" layoutY="174.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #2880BA;" text="User" />
+      <Button fx:id="EditorBTN" layoutX="91.0" layoutY="120.0" mnemonicParsing="false" onAction="#handlesignupeditorAction" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #2880BA;" text="Editor" textFill="WHITE" />
+      <Button fx:id="UserBTN" layoutX="91.0" layoutY="174.0" mnemonicParsing="false" onAction="#handlesignupuserAction" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #2880BA;" text="User" textFill="WHITE" />
    </children>
 </AnchorPane>

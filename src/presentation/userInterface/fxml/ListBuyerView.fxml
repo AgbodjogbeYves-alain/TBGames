@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.ListBuyerViewHandler">
    <children>
       <Label layoutX="84.0" layoutY="60.0" text="Buyer List">
          <font>
@@ -25,6 +24,6 @@
             <TableColumn prefWidth="188.0" text="Action" />
         </columns>
       </TableView>
-      <Button layoutX="598.0" layoutY="60.0" mnemonicParsing="false" style="-fx-background-color: #2880BA;" text="Add Buyer" textFill="WHITE" />
+      <Button fx:id="addBuyerBTN" layoutX="598.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleaddbuyerAction" style="-fx-background-color: #2880BA;" text="Add Buyer" textFill="WHITE" />
    </children>
 </AnchorPane>
