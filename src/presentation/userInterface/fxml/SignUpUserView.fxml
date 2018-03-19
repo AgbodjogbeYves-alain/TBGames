@@ -21,13 +21,13 @@
       <Label layoutX="185.0" layoutY="254.0" text="Phone Number" />
       <Label layoutX="201.0" layoutY="290.0" text="Password" />
       <Label layoutX="177.0" layoutY="328.0" text="Confirm password" />
-      <Button layoutX="133.0" layoutY="413.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="187.0" style="-fx-background-color: #2880BA;" text="Cancel" />
-      <Button layoutX="380.0" layoutY="413.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="187.0" style="-fx-background-color: #2880BA;" text="Confirm" />
-      <TextField layoutX="280.0" layoutY="144.0" prefHeight="25.0" prefWidth="261.0" promptText="Username" />
-      <TextField layoutX="280.0" layoutY="176.0" prefHeight="25.0" prefWidth="261.0" promptText="Email" />
-      <TextField layoutX="280.0" layoutY="216.0" prefHeight="25.0" prefWidth="261.0" promptText="Zipcode" />
-      <TextField layoutX="280.0" layoutY="250.0" prefHeight="25.0" prefWidth="261.0" promptText="Phone number" />
-      <PasswordField layoutX="280.0" layoutY="286.0" prefHeight="25.0" prefWidth="261.0" promptText="Password" />
-      <PasswordField layoutX="280.0" layoutY="324.0" prefHeight="25.0" prefWidth="261.0" promptText="Password" />
+      <Button fx:id="cancelBTN" layoutX="133.0" layoutY="413.0" mnemonicParsing="false" onAction="#handlecancelsignupAction" prefHeight="35.0" prefWidth="187.0" style="-fx-background-color: #2880BA;" text="Cancel" textFill="WHITE" />
+      <Button fx:id="confirmBTN" layoutX="380.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleconfirmsignupAction" prefHeight="35.0" prefWidth="187.0" style="-fx-background-color: #2880BA;" text="Confirm" textFill="WHITE" />
+      <TextField fx:id="usernameTF" layoutX="280.0" layoutY="144.0" prefHeight="25.0" prefWidth="261.0" promptText="Username" />
+      <TextField fx:id="emailTF" layoutX="280.0" layoutY="176.0" prefHeight="25.0" prefWidth="261.0" promptText="Email" />
+      <TextField fx:id="zipcodeTF" layoutX="280.0" layoutY="216.0" prefHeight="25.0" prefWidth="261.0" promptText="Zipcode" />
+      <TextField fx:id="phonenumberTF" layoutX="280.0" layoutY="250.0" prefHeight="25.0" prefWidth="261.0" promptText="Phone number" />
+      <PasswordField fx:id="passwordTF" layoutX="280.0" layoutY="286.0" prefHeight="25.0" prefWidth="261.0" promptText="Password" />
+      <PasswordField fx:id="confirmpasswordTF" layoutX="280.0" layoutY="324.0" prefHeight="25.0" prefWidth="261.0" promptText="Password" />
    </children>
 </AnchorPane>
