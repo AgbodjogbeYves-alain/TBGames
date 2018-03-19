@@ -30,6 +30,10 @@ public class PGDAOFactory extends AbstractDAOFactory {
         return new UserDAOPG();
     }
     
+    public EditorDAO getEditorDAO() {
+    	return new EditorDAOPG();
+    }
+    
     public static PGJDBC getConnector() {
     	return connector;
     }

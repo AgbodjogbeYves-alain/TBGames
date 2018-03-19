@@ -21,14 +21,14 @@ public class LoginViewHandler{
 
 	@FXML
 	private void handlelogAction(ActionEvent event) {
-		//if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
+		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
     		System.out.println("Accepted");
 			MainStage.showView("ManagePostView.fxml","ManagePost");
 			
-    	//}
-    	//else {
+    	}
+    	else {
     		System.out.println("Refused");
-    	//}
+    	}
 		
 		
 	}
