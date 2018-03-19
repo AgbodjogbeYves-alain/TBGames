@@ -3,36 +3,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="List Video Games" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="492.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="375.0" layoutY="66.0" prefHeight="30.0" prefWidth="232.0" spacing="12.0">
          <children>
-            <HBox layoutX="402.0" layoutY="37.0" prefHeight="30.0" prefWidth="147.0" spacing="12.0">
-               <children>
-                  <Button mnemonicParsing="false" text="Add" />
-                  <Button mnemonicParsing="false" text="Filter" />
-                  <Button mnemonicParsing="false" text="Sort" />
-               </children>
-            </HBox>
-            <Text layoutX="33.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Video Games List">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Text>
-            <TableView layoutX="33.0" layoutY="87.0" prefHeight="265.0" prefWidth="516.0">
-              <columns>
-                <TableColumn prefWidth="166.0" text="Game" />
-                <TableColumn prefWidth="60.0" text="Console" />
-                  <TableColumn prefWidth="157.0" text="Category" />
-                  <TableColumn prefWidth="132.0" text="Action" />
-              </columns>
-            </TableView>
-         </children></AnchorPane>
-  </content>
-</TitledPane>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #2880BA;" text="Add" textFill="WHITE" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #2880BA;" text="Filter" textFill="WHITE" />
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #2880BA;" text="Sort" textFill="WHITE" />
+         </children>
+      </HBox>
+      <Text layoutX="27.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Video Games List">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <TableView layoutX="27.0" layoutY="135.0" prefHeight="319.0" prefWidth="580.0">
+         <columns>
+            <TableColumn prefWidth="213.0" text="Game" />
+            <TableColumn prefWidth="115.0" text="Console" />
+            <TableColumn prefWidth="111.0" text="Category" />
+            <TableColumn prefWidth="140.0" text="Action" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
