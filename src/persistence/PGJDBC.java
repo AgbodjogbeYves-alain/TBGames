@@ -104,27 +104,27 @@ public class PGJDBC {
 
 	}
 	
-	public ArrayList<Editor> getAll(String table){
-		
-		PreparedStatement pstmt;
-		ArrayList<Editor> result = null;
-		try {
-			pstmt = dbConnection.prepareStatement("SELECT * FROM " + table +" ;");
-			ResultSet pstmtResult = pstmt.executeQuery();
-			pstmtResult.next();
-			int i = 0;
-			int nbColumns = pstmtResult.getMetaData().getColumnCount();
-			int nbRow = pstmtResult.getRow();
-			result = new ArrayList<Editor>(nbColumns);
-			while (i < nbColumns) {
-				result.add(pstmtResult.get);
-				i++;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-		
-	}
+//	public ArrayList<Editor> getAll(String table){
+//		
+//		PreparedStatement pstmt;
+//		ArrayList<Editor> result = null;
+//		try {
+//			pstmt = dbConnection.prepareStatement("SELECT * FROM " + table +" ;");
+//			ResultSet pstmtResult = pstmt.executeQuery();
+//			pstmtResult.next();
+//			int i = 0;
+//			int nbColumns = pstmtResult.getMetaData().getColumnCount();
+//			int nbRow = pstmtResult.getRow();
+//			result = new ArrayList<Editor>(nbColumns);
+//			while (i < nbColumns) {
+//				result.add(pstmtResult.get);
+//				i++;
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return result;
+//		
+//	}
 }

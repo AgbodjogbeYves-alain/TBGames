@@ -23,7 +23,7 @@ public class LoginViewHandler{
 	private void handlelogAction(ActionEvent event) {
 		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
     		System.out.println("Accepted");
-			MainStage.showView("ManagePostView.fxml","ManagePost");
+			MainStage.showView("EditorConnectedView.fxml","Home page Editor");
 			
     	}
     	else {
@@ -36,6 +36,7 @@ public class LoginViewHandler{
 	@FXML
 	private void handlesignupAction(ActionEvent event) throws ClassNotFoundException {
 		//showView("Enregistrez-vous!","managePostView.fxml");
+		System.out.println("ta mère");
 		MainStage.showView("SignUpView.fxml","Sign Up");
 	}
 }
