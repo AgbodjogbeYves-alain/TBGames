@@ -2,7 +2,7 @@ package persistence;
 
 import java.util.*;
 
-import application.Editor;
+//import application.Editor;
 
 import java.sql.*;
 
@@ -50,60 +50,20 @@ public class PGJDBC {
 		}
 
 	}
-
-	/**
-	 * 
-	 * @param username
-	 * @param pwd
-	 * @return
-	 */
-	public String getUserId(String username, String pwd) {
-		PreparedStatement pstmt;
-		String result = null;
-		try {
-			// TODO : do this in the DAO
-			pstmt = dbConnection.prepareStatement(
-					"SELECT id FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';");
-			ResultSet pstmtResult = pstmt.executeQuery();
-
-			if (pstmtResult.next()) {
-				result = pstmtResult.getString(1);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	/**
-	 * 
-	 * @param table
-	 * @param id
-	 * @return
-	 */
-	public ArrayList<String> getRowById(String table, String id) {
-		PreparedStatement pstmt;
-		ArrayList<String> result = null;
-		try {
-			pstmt = dbConnection.prepareStatement("SELECT * FROM " + table + " WHERE id = '" + id + "';");
-			ResultSet pstmtResult = pstmt.executeQuery();
-			pstmtResult.next();
-			int i = 0;
-			int nbColumns = pstmtResult.getMetaData().getColumnCount();
-			result = new ArrayList<String>(nbColumns);
-			while (i < nbColumns) {
-				result.add(pstmtResult.getString(i + 1));
-				i++;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-
-	}
 	
+	public ResultSet executeQuery(String query) {
+		ResultSet result = null ;
+		PreparedStatement pstmt;
+		try {
+			pstmt = dbConnection.prepareStatement(query);
+			result = pstmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+/*
 	public ArrayList<Editor> getAll(String table){
 		
 		PreparedStatement pstmt;
@@ -127,4 +87,5 @@ public class PGJDBC {
 		return result;
 		
 	}
+*/
 }

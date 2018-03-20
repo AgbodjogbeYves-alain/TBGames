@@ -5,13 +5,13 @@ import application.*;
 /**
  * 
  */
-public interface UserDAO {
-
-	public String getUserId(String username, String pwd) ;
+public abstract class UserDAO {
+	
+	public abstract String getUserId(String username, String pwd) ;
 	/**
      * @param id
      */
-    public User createById(String id);
+    public abstract User createById(String id);
     
     
 

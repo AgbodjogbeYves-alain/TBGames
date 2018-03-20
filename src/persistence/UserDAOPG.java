@@ -1,12 +1,14 @@
 package persistence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import application.*;
 
 /**
  * 
  */
-public class UserDAOPG implements UserDAO {
+public class UserDAOPG extends UserDAO {
 
     /**
      * Default constructor
@@ -18,20 +20,48 @@ public class UserDAOPG implements UserDAO {
      * 
      */
     public User createById(String id) {
-    	ArrayList<String> r = PGDAOFactory.getConnector().getRowById("SIMPLEUSER",id);
-    	User u = null ;
-    	if (r != null) {
-    		u = new User(r) ;
-    	}
-        return u ;
+    	String query = "SELECT * FROM SimpleUser WHERE id = '" + id + "';" ;
+    	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+    	
+    	try {
+			queryResult.next();
+			int i = 0;
+			int nbColumns = queryResult.getMetaData().getColumnCount();
+			ArrayList<String> r = new ArrayList<String>(nbColumns);
+			while (i < nbColumns) {
+				r.add(queryResult.getString(i + 1));
+				i++;
+			}
+			User u = null ;
+	    	if (r != null) {
+	    		u = new User(r) ;
+	    	}
+	        return u ;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+    	return null;
+    	
     }
 
 	@Override
 	/**
-	 * 
+	 * return : null if User is not in the database
 	 */
 	public String getUserId(String username, String pwd) {
-		String id = PGDAOFactory.getConnector().getUserId(username, pwd) ;
+		String id = null ;
+		String query = "SELECT id FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		try {
+			if (queryResult.next()) {
+				id = queryResult.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return id ;
 	}
 
