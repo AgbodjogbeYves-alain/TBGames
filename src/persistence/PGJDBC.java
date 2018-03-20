@@ -2,7 +2,7 @@ package persistence;
 
 import java.util.*;
 
-import application.Editor;
+//import application.Editor;
 
 import java.sql.*;
 
@@ -50,50 +50,34 @@ public class PGJDBC {
 		}
 
 	}
-
-	/**
-	 * 
-	 * @param username
-	 * @param pwd
-	 * @return
-	 */
-	public String getUserId(String username, String pwd) {
+	
+	public ResultSet executeQuery(String query) {
+		ResultSet result = null ;
 		PreparedStatement pstmt;
-		String result = null;
 		try {
-			// TODO : do this in the DAO
-			pstmt = dbConnection.prepareStatement(
-					"SELECT id FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';");
-			ResultSet pstmtResult = pstmt.executeQuery();
-
-			if (pstmtResult.next()) {
-				result = pstmtResult.getString(1);
-			}
+			pstmt = dbConnection.prepareStatement(query);
+			result = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
 	}
-
-	/**
-	 * 
-	 * @param table
-	 * @param id
-	 * @return
-	 */
-	public ArrayList<String> getRowById(String table, String id) {
+/*
+	public ArrayList<Editor> getAll(String table){
+		
 		PreparedStatement pstmt;
-		ArrayList<String> result = null;
+		ArrayList<Editor> result = null;
 		try {
-			pstmt = dbConnection.prepareStatement("SELECT * FROM " + table + " WHERE id = '" + id + "';");
+			pstmt = dbConnection.prepareStatement("SELECT * FROM " + table +" ;");
 			ResultSet pstmtResult = pstmt.executeQuery();
 			pstmtResult.next();
 			int i = 0;
 			int nbColumns = pstmtResult.getMetaData().getColumnCount();
-			result = new ArrayList<String>(nbColumns);
+			int nbRow = pstmtResult.getRow();
+			result = new ArrayList<Editor>(nbColumns);
 			while (i < nbColumns) {
-				result.add(pstmtResult.getString(i + 1));
+				result.add(pstmtResult.get);
 				i++;
 			}
 		} catch (SQLException e) {
@@ -101,6 +85,7 @@ public class PGJDBC {
 			e.printStackTrace();
 		}
 		return result;
-
+		
 	}
+*/
 }
