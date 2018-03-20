@@ -1,6 +1,10 @@
 package application;
 
+import java.util.ArrayList;
+
+import javafx.collections.ObservableList;
 import persistence.AbstractDAOFactory;
+import persistence.EditorDAO;
 import persistence.UserDAO;
 
 /**
@@ -38,6 +42,13 @@ public class ApplicationFacade {
     		connectedUser = userDAO.createById(userId) ;
     	}
         return connectedUser != null ;
+    }
+    
+    public ObservableList<Editor> getAllEditors(){
+    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("PG","postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
+    	ObservableList<Editor> editors = editorDAO.getAllEditors() ;
+    	return editors;
     }
 
 }

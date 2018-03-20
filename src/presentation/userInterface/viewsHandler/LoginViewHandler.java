@@ -23,7 +23,7 @@ public class LoginViewHandler{
 	private void handlelogAction(ActionEvent event) {
 		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
     		System.out.println("Accepted");
-			MainStage.showView("EditorConnectedView.fxml","Home page Editor");
+			MainStage.showView("HomeViewAdministrators.fxml","Administrator Home Page");
 			
     	}
     	else {
