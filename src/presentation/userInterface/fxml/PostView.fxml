@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.PostViewHandler">
+   <children>
+      <AnchorPane layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="125.0" fitWidth="376.0" layoutX="140.0" layoutY="14.0">
+               <image>
+                  <Image url="@../../images/Logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="cancelBTN" layoutX="14.0" layoutY="434.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="191.0" style="-fx-background-color: #2880BA;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="435.0" AnchorPane.topAnchor="434.0" />
+            <Button fx:id="deleteBTN" layoutX="415.0" layoutY="434.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="211.0" style="-fx-background-color: #2880BA;" text="Delete" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="415.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="434.0" />
+            <GridPane layoutX="141.0" layoutY="145.0" prefHeight="189.0" prefWidth="374.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="14.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="314.4000244140625" minWidth="10.0" prefWidth="141.60003662109375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="520.7999877929688" minWidth="10.0" prefWidth="498.39996337890625" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="40.8000244140625" minHeight="10.0" prefHeight="28.000006103515624" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="127.99999389648437" minHeight="10.0" prefHeight="124.80001831054689" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="58.5999816894531" minHeight="10.0" prefHeight="28.59998168945313" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="54.0" prefWidth="374.0" text="Description" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="330.0" text="Price" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="31.0" prefWidth="326.0" text="Post Title" textAlignment="CENTER" />
+                  <Label fx:id="labelPost" prefHeight="31.0" prefWidth="492.0" text="LabelPost" GridPane.columnIndex="1" />
+                  <Label fx:id="labelDescription" prefHeight="126.0" prefWidth="492.0" text="LabelDescription" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="labelPrice" prefHeight="31.0" prefWidth="492.0" text="LabelPrice" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <CheckBox fx:id="offerCB" layoutX="168.0" layoutY="407.0" mnemonicParsing="false" text="Offer" />
+            <CheckBox fx:id="demandCB" layoutX="390.0" layoutY="407.0" mnemonicParsing="false" text="Demand" />
+            <Button fx:id="updateBTN" layoutX="220.0" layoutY="434.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="185.0" style="-fx-background-color: #2880BA;" text="Update" textFill="WHITE" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="335.0" prefHeight="31.0" prefWidth="136.0" text="Item Type" />
+            <Label fx:id="labelItemType" layoutX="134.0" layoutY="335.0" prefHeight="31.0" prefWidth="492.0" text="LabelItemType" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="366.0" prefHeight="31.0" prefWidth="136.0" text="Item" />
+            <Label fx:id="labelItemName" layoutX="134.0" layoutY="366.0" prefHeight="31.0" prefWidth="492.0" text="LabelItemName" />
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>
