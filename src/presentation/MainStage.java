@@ -21,6 +21,7 @@ public class MainStage extends Application {
 	@Override
 	public void start(Stage stage) {
 		mainStage = stage;
+		mainStage.setResizable(false);
         showView("","");
 	}
 	
