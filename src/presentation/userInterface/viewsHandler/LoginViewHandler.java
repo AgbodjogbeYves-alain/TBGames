@@ -36,7 +36,6 @@ public class LoginViewHandler{
 	@FXML
 	private void handlesignupAction(ActionEvent event) throws ClassNotFoundException {
 		//showView("Enregistrez-vous!","managePostView.fxml");
-		System.out.println("ta mère");
 		MainStage.showView("SignUpView.fxml","Sign Up");
 	}
 }
