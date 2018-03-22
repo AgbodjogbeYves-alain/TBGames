@@ -14,11 +14,11 @@ public class PGDAOFactory extends AbstractDAOFactory {
     private PGDAOFactory() {
     }
     
-    public static AbstractDAOFactory getFactory(String dbms, String dbName, String host, String port, String user,
+    public static AbstractDAOFactory getFactory(String dbName, String host, String port, String user,
 			String password) {
 		if (thePGDAOFactory == null) {
 			thePGDAOFactory = new PGDAOFactory() ;
-			connector = new PGJDBC(dbms, dbName, host, port, user, password) ;
+			connector = new PGJDBC(dbName, host, port, user, password) ;
 		}
 		return thePGDAOFactory;
 	}

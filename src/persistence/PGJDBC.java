@@ -11,7 +11,7 @@ import java.sql.*;
  */
 public class PGJDBC {
 
-	private String dbms ;
+	private String dbms = "postgresql" ;
 	private String dbName ;
 	private String host ;
 	private String port ;
@@ -23,9 +23,8 @@ public class PGJDBC {
 	/**
 	 * Constructor
 	 */
-	PGJDBC(String newDbms, String newDbName, String newHost, String newPort, String newUser,
+	PGJDBC(String newDbName, String newHost, String newPort, String newUser,
 			String newPassword) {
-		dbms = newDbms;
 		dbName = newDbName; 
 		host = newHost;
 		port = newPort;
