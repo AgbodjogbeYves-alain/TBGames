@@ -33,7 +33,7 @@
          </rowConstraints>
          <children>
             <Label alignment="CENTER" prefHeight="54.0" prefWidth="374.0" text="Description" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="usernameTF" blendMode="MULTIPLY" prefHeight="128.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="descriptionTF" blendMode="MULTIPLY" prefHeight="128.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="3.0" />
                </GridPane.margin>
@@ -49,6 +49,6 @@
          </children>
       </GridPane>
       <CheckBox fx:id="offerCB" layoutX="163.0" layoutY="376.0" mnemonicParsing="false" text="Offer" />
-      <CheckBox fx:id="demandeCB" layoutX="385.0" layoutY="376.0" mnemonicParsing="false" text="Demand" />
+      <CheckBox fx:id="demandCB" layoutX="385.0" layoutY="376.0" mnemonicParsing="false" text="Demand" />
    </children>
 </AnchorPane>

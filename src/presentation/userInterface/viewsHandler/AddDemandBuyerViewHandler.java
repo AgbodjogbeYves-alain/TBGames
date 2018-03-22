@@ -1,5 +1,11 @@
 package presentation.userInterface.viewsHandler;
 
-public class AddDemandBuyerViewHandler {
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
+public class AddDemandBuyerViewHandler {
+	@FXML private TextField itemnameTF;
+	@FXML private Button validateBTN;
+	@FXML private Button cancelBTN;
 }
