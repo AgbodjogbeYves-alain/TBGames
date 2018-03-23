@@ -50,5 +50,9 @@ public class ApplicationFacade {
     	ObservableList<Editor> editors = editorDAO.getAllEditors() ;
     	return editors;
     }
+    
+    public SignUp () {
+    	
+    }
 
 }
