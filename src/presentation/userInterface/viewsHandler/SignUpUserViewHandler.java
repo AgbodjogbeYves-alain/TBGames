@@ -24,6 +24,16 @@ public class SignUpUserViewHandler {
 	
 	@FXML
 	private void handleconfirmsignupAction (ActionEvent event) {
-		// TODO: Manage add to db
+		String username = usernameTF.getText();
+		String email = emailTF.getText();
+		String zipCode = zipcodeTF.getText();
+		String phoneNumber = phonenumberTF.getText();
+		String password = passwordTF.getText();
+		String cPassword = confirmpasswordTF.getText();
+		if(password == cPassword) {
+			ApplicationFacade.getInstance().SignUpUser(username, email, password, zipCode, phoneNumber);
+		}else{
+			
+		}
 	}
 }

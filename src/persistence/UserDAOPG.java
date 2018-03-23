@@ -64,21 +64,20 @@ public class UserDAOPG extends UserDAO {
 		}
 		return id ;
 	}
+	
 	/**
-	 * @return : the id of the last user added to the database
+	 * Function to save a user in the DB
 	 */
-	public String getLastId() {
-		String id = null;
-		String query = "SELECT id FROM BUYER ORDER BY id DESC;";
+	public void saveUser(User user) {
+		String name = user.getUsername();
+		String zipCode = user.getZipCode();
+		String email = user.getEmail();
+		String password = user.getPassword();
+		String phoneNumber = user.getPhoneNumber();
+		String query = "INSERT INTO BUYER(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber) "
+				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
+				+ "," + zipCode + "," + phoneNumber + ")";
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
-		try {
-			if (queryResult.next()) {
-				id = queryResult.getString(1);
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return id;
 	}
 
 }
