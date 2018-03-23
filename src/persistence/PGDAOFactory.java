@@ -14,6 +14,9 @@ public class PGDAOFactory extends AbstractDAOFactory {
     private PGDAOFactory() {
     }
     
+    /*
+     * This should be improved
+     */
     public static AbstractDAOFactory getFactory(String dbName, String host, String port, String user,
 			String password) {
 		if (thePGDAOFactory == null) {
