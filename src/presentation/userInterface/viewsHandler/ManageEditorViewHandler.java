@@ -9,7 +9,7 @@ import javafx.scene.control.TableView;
 public class ManageEditorViewHandler {
 
 	 private TableView<Editor> table = new TableView<Editor>();
-	 private ObservableList<Editor> data = ApplicationFacade.getInstance().getAllEditors();
+	 private ObservableList<Editor> data = ApplicationFacade.getInstance().getEditorsList();
     /**
      * Constructor
      */

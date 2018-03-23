@@ -14,6 +14,7 @@ public class ApplicationFacade {
 	
 	private static ApplicationFacade afInstance = null ;
 	private User connectedUser = null ;
+	private ObservableList<Editor> editors = null;
     
 	/**
      * Default constructor
@@ -44,11 +45,14 @@ public class ApplicationFacade {
         return connectedUser != null ;
     }
     
-    public ObservableList<Editor> getAllEditors(){
+    public void setEditorsList(){
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("PG","postgresql","tbgames","localhost","5432","postgres","admin") ;
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
-    	ObservableList<Editor> editors = editorDAO.getAllEditors() ;
-    	return editors;
+    	editors = editorDAO.getAllEditors() ;
+    }
+    
+    public ObservableList<Editor> getEditorsList(){
+    	return this.editors;
     }
 
 }
