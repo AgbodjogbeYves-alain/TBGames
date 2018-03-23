@@ -90,4 +90,9 @@ public class ApplicationFacade {
     public void LogOff(){
     	connectedUser = null;
     }
+
+	public static ObservableList<Administrator> loadAdministratorsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
