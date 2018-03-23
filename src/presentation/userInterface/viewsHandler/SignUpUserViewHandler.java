@@ -1,12 +1,16 @@
 package presentation.userInterface.viewsHandler;
 
+import java.io.IOException;
+
 import application.ApplicationFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import presentation.MainStage;
-
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class SignUpUserViewHandler {
 
@@ -19,7 +23,19 @@ public class SignUpUserViewHandler {
 	
 	@FXML
 	private void handlecancelsignupAction (ActionEvent event) {
-		MainStage.showView("LoginUserView.fxml","Login");
+		try {
+			FXMLLoader loader = new FXMLLoader();
+    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
+    		AnchorPane view;
+    		view = (AnchorPane) loader.load();
+    		Scene scene = new Scene(view);
+    		MainStage.getPrimaryStage().setTitle("Login");
+    		MainStage.getPrimaryStage().setScene(scene);
+    		MainStage.getPrimaryStage().show();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -32,8 +48,22 @@ public class SignUpUserViewHandler {
 		String cPassword = confirmpasswordTF.getText();
 		if(password == cPassword) {
 			ApplicationFacade.getInstance().SignUpUser(username, email, password, zipCode, phoneNumber);
+			try {
+				FXMLLoader loader = new FXMLLoader();
+	    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
+	    		AnchorPane view;
+	    		view = (AnchorPane) loader.load();
+	    		Scene scene = new Scene(view);
+	    		MainStage.getPrimaryStage().setTitle("Login");
+	    		MainStage.getPrimaryStage().setScene(scene);
+	    		MainStage.getPrimaryStage().show();
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else{
 			
 		}
+		
 	}
 }
