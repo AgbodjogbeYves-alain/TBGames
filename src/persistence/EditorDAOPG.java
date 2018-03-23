@@ -19,19 +19,43 @@ public class EditorDAOPG extends EditorDAO {
     	
     }
 	
-
+    @Override
+	/**
+	 * return : null if eder is not in the database
+	 */
+	public Editor getEditorById(String id) {
+		String query = "SELECT  * FROM Editor WHERE idActor = '" + id + "';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		Editor ed = new Editor();
+		try {
+			if (queryResult.next()) {
+				
+				ed.setEmail(queryResult.getString("email"));
+				ed.setId(queryResult.getString("idEditor"));
+				ed.setPhoneNumber(queryResult.getString("phoneNumber"));
+				ed.setUsername(queryResult.getString("username"));
+				ed.setZipCode(queryResult.getString("zipCode"));
+				ed.setValidate(queryResult.getBoolean("validation"));
+				ed.setRepresentativeName(queryResult.getString("representativeName"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ed ;
+	}
 	@Override
 	public ObservableList<Editor> getAllEditors() {
 		String query = "SELECT * FROM EDITOR ;" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		ObservableList<Editor> ed = FXCollections.observableArrayList();
 		try {
-				
 				while (queryResult.next()) {
 					Editor e  = new Editor();
 					e.setEmail(queryResult.getString("email"));
 					e.setPhoneNumber(queryResult.getString("phonenumber"));
-					e.setUsername(queryResult.getString("username"));
+					e.setUsername(queryResult.getString("edername"));
 					e.setRepresentativeName(queryResult.getString("representativeName"));
 					e.setValidate(queryResult.getBoolean("validate"));
 					e.setZipCode(queryResult.getString("zipcode"));
@@ -48,7 +72,7 @@ public class EditorDAOPG extends EditorDAO {
 
 
 	@Override
-	public String getEditorId(String username, String pwd) {
+	public String getEditorId(String edername, String pwd) {
 		// TODO Auto-generated method stub
 		return null;
 	}

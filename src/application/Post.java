@@ -10,6 +10,7 @@ public class Post {
 	private int price ;
 	private int posttype ;
 	private int iduser ;
+	private String item ;
 	
 
     /**
@@ -26,6 +27,7 @@ public class Post {
 		this.price = price;
 		this.posttype = posttype;
 		this.iduser = iduser;
+		this.item = null ;
 	}
 
 	public Post(ArrayList<String> r) {
@@ -83,6 +85,14 @@ public class Post {
 
 	public void setIduser(int iduser) {
 		this.iduser = iduser;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
 	}
 	
 }
