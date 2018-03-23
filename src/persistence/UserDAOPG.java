@@ -20,7 +20,7 @@ public class UserDAOPG extends UserDAO {
      * 
      */
     public User createById(String id) {
-    	String query = "SELECT * FROM SimpleUser WHERE id = '" + id + "';" ;
+    	String query = "SELECT * FROM SimpleUser WHERE idSimpleUser = '" + id + "';" ;
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	
     	try {
@@ -52,7 +52,7 @@ public class UserDAOPG extends UserDAO {
 	 */
 	public String getUserId(String username, String pwd) {
 		String id = null ;
-		String query = "SELECT id FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
+		String query = "SELECT idSimpleUser FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			if (queryResult.next()) {
@@ -64,21 +64,21 @@ public class UserDAOPG extends UserDAO {
 		}
 		return id ;
 	}
+	
 	/**
-	 * @return : the id of the last user added to the database
+	 * Method to save a user in the DB
+	 * @param user : the user to save in the database
 	 */
-	public String getLastId() {
-		String id = null;
-		String query = "SELECT id FROM BUYER ORDER BY id DESC;";
+	public void saveUser(User user) {
+		String name = user.getUsername();
+		String zipCode = user.getZipCode();
+		String email = user.getEmail();
+		String password = user.getPassword();
+		String phoneNumber = user.getPhoneNumber();
+		String query = "INSERT INTO BUYER(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber) "
+				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
+				+ "," + zipCode + "," + phoneNumber + ")";
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
-		try {
-			if (queryResult.next()) {
-				id = queryResult.getString(1);
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return id;
 	}
 
 }

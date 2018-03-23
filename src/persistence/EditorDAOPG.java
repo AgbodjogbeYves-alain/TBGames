@@ -9,7 +9,7 @@ import application.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class EditorDAOPG implements EditorDAO {
+public class EditorDAOPG extends EditorDAO {
 	
 	
 	/**
@@ -58,5 +58,22 @@ public class EditorDAOPG implements EditorDAO {
 	public Editor createById(String id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	/**
+	 * Method to save a editor into DB
+	 * @param editor : the editor to save in the database
+	 */
+	public void saveEditor(Editor editor) {
+		String name = editor.getUsername();
+		String zipCode = editor.getZipCode();
+		String email = editor.getEmail();
+		String password = editor.getPassword();
+		String phoneNumber = editor.getPhoneNumber();
+		String representativeName = editor.getRepresentativeName();
+		String query = "INSERT INTO EDITOR(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber, representativeName) "
+				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
+				+ "," + zipCode + "," + phoneNumber + "," + representativeName +")";
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
 	}
 }

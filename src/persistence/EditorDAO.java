@@ -6,12 +6,14 @@ import application.Editor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public interface EditorDAO {
+public abstract class EditorDAO {
 	ObservableList<Editor> editorData = FXCollections.observableArrayList();
 
-	public String getEditorId(String username, String pwd);
+	public abstract String getEditorId(String username, String pwd);
 
-	public Editor createById(String id);
+	public abstract Editor createById(String id);
 
-	public ObservableList<Editor> getAllEditors();
+	public abstract ObservableList<Editor> getAllEditors();
+	
+	public abstract void saveEditor(Editor editor);
 }

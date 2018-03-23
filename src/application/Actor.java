@@ -15,10 +15,21 @@ public class Actor {
 	private String username ;
 	private String email ; 
 	private String password ;
+	private boolean isBuyer = false;
+	private boolean isAdministrator = false;
+	private boolean isEditor = false;
+	private boolean isSuperAdmin = false;
 	
 	public Actor() {
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * Contructor with id
+	 * @param id : id of the actor
+	 * @param username : username of the actor
+	 * @param email : actor's email
+	 * @param password : actor's password
+	 */
 	
 	public Actor(String id, String username, String email, String password) {
 		super();
@@ -28,6 +39,18 @@ public class Actor {
 		this.password = password;
 	}
 	
+	/**
+	 * Contructor without id
+	 * @param username : actor's username
+	 * @param email : actor's email
+	 * @param password : actor's password
+	 */
+	public Actor(String username, String email, String password) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
 	/**
      * Creates new Actor from a query result
      */

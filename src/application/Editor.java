@@ -12,8 +12,14 @@ public class Editor extends User {
 		super();
 	}
 	
-	public Editor(String id, String username, String email, String password, String zipCode, String phoneNumber,String representativeName) {
+	public Editor(String id, String username, String email, String password, String zipCode, String phoneNumber, String representativeName) {
 		super(id,username,email,password,zipCode,phoneNumber);
+		this.representativeName = representativeName;
+		this.validate = false;
+	}
+	
+	public Editor(String username, String email, String password, String zipCode, String phoneNumber,String representativeName) {
+		super(username,email,password,zipCode,phoneNumber);
 		this.representativeName = representativeName;
 		this.validate = false;
 	}
@@ -30,7 +36,10 @@ public class Editor extends User {
 	
 	public void setRepresentativeName(String rn) {
 		this.representativeName = rn;
-		
+	}
+	
+	public String getRepresentativeName() {
+		return this.representativeName;
 	}
 	
 	public void setValidate(boolean bool) {
