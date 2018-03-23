@@ -52,6 +52,14 @@ public class ApplicationFacade {
     	editors = editorDAO.getAllEditors() ;
     }
     
+    /**
+     * Method to signUp as a User
+     * @param username : user's username
+     * @param email : user's email
+     * @param password : user's password
+     * @param zipCode : user's zipcode
+     * @param phoneNumber : user's phone number
+     */
     public void SignUpUser(String username, String email, String password, String zipCode, String phoneNumber) {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	UserDAO userDAO =  daoFactory.getUserDAO() ;
@@ -63,10 +71,23 @@ public class ApplicationFacade {
     	return this.editors;
     }
 
+    /**
+     * Method to signUp as an Editor
+     * @param username : editor's username
+     * @param email : editor's email
+     * @param password : editor's password
+     * @param zipCode : editor's zipcode
+     * @param phoneNumber : editor's phone number
+     * @param representativeName : editor's representative name
+     */
     public void SignUpEditor(String username, String email, String password, String zipCode, String phoneNumber, String representativeName) {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
     	Editor editorToSave = new Editor(username, email, password, zipCode, phoneNumber, representativeName);
     	editorDAO.saveEditor(editorToSave);
+    }
+    
+    public void LogOff(){
+    	connectedUser = null;
     }
 }

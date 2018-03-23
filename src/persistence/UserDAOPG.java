@@ -66,7 +66,8 @@ public class UserDAOPG extends UserDAO {
 	}
 	
 	/**
-	 * Function to save a user in the DB
+	 * Method to save a user in the DB
+	 * @param user : the user to save in the database
 	 */
 	public void saveUser(User user) {
 		String name = user.getUsername();
