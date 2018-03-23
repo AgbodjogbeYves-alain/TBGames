@@ -20,7 +20,7 @@ public class UserDAOPG extends UserDAO {
      * 
      */
     public User createById(String id) {
-    	String query = "SELECT * FROM SimpleUser WHERE id = '" + id + "';" ;
+    	String query = "SELECT * FROM SimpleUser WHERE idSimpleUser = '" + id + "';" ;
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	
     	try {
@@ -52,7 +52,7 @@ public class UserDAOPG extends UserDAO {
 	 */
 	public String getUserId(String username, String pwd) {
 		String id = null ;
-		String query = "SELECT id FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
+		String query = "SELECT idSimpleUser FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			if (queryResult.next()) {
