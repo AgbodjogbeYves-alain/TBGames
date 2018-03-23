@@ -23,7 +23,7 @@ public class PGJDBC {
 	/**
 	 * Constructor
 	 */
-	PGJDBC(String newDbName, String newHost, String newPort, String newUser,
+	public PGJDBC(String newDbName, String newHost, String newPort, String newUser,
 			String newPassword) {
 		dbName = newDbName; 
 		host = newHost;
