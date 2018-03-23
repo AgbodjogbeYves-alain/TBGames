@@ -86,4 +86,8 @@ public class ApplicationFacade {
     	Editor editorToSave = new Editor(username, email, password, zipCode, phoneNumber, representativeName);
     	editorDAO.saveEditor(editorToSave);
     }
+    
+    public void LogOff(){
+    	connectedUser = null;
+    }
 }
