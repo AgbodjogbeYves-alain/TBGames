@@ -35,7 +35,7 @@ public class ApplicationFacade {
      * @return
      */
     public Boolean login(String username, String pwd) {
-    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("PG","postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	UserDAO userDAO =  daoFactory.getUserDAO() ;
     	String userId = userDAO.getUserId(username, pwd) ;
     	System.out.println(userId) ;//TEST
@@ -45,8 +45,9 @@ public class ApplicationFacade {
         return connectedUser != null ;
     }
     
+
     public void setEditorsList(){
-    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("PG","postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
     	editors = editorDAO.getAllEditors() ;
     }
@@ -54,5 +55,9 @@ public class ApplicationFacade {
     public ObservableList<Editor> getEditorsList(){
     	return this.editors;
     }
+    
+//    public SignUp () {
+//    	
+//    }
 
 }

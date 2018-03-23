@@ -11,10 +11,10 @@ public abstract class AbstractDAOFactory {
     public AbstractDAOFactory() {
     }
     
-	public static AbstractDAOFactory getFactory(String type, String dbms, String dbName, String host,
+	public static AbstractDAOFactory getFactory(String dbms, String dbName, String host,
 			String port, String user, String password) {
-		if (type.equals("PG")) {
-			return PGDAOFactory.getFactory(dbms, dbName, host, port, user, password) ;
+		if (dbms.equals("postgresql")) {
+			return PGDAOFactory.getFactory(dbName, host, port, user, password) ;
 		}
 		return null;
 	}

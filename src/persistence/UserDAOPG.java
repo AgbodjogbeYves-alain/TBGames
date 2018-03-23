@@ -64,5 +64,21 @@ public class UserDAOPG extends UserDAO {
 		}
 		return id ;
 	}
+	/**
+	 * @return : the id of the last user added to the database
+	 */
+	public String getLastId() {
+		String id = null;
+		String query = "SELECT id FROM BUYER ORDER BY id DESC;";
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+		try {
+			if (queryResult.next()) {
+				id = queryResult.getString(1);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
 
 }
