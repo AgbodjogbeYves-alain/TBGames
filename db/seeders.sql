@@ -15,17 +15,17 @@ insert into Buyer (username, email, password, isBuyer, isSuperAdmin, isAdministr
 
 
 
-insert into Buyer (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
+insert into Editor (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
     values ('Mordred Pendragon', 'swordjava@yopmail.com', 'truc', false, false, false, true)
 
-insert into Buyer (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
+insert into Editor (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
     values ('Astolfo', 'bookjava@yopmail.com', 'truc', false, false, false, true)
 
-insert into Buyer (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
+insert into Editor (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
     values ('Kino', 'motorradjava@yopmail.com', 'truc', false, false, false, true)
 
-insert into Buyer (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
+insert into Editor (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
     values ('Nagisa Shiota', 'korojava@yopmail.com', 'truc', false, false, false, true)
 
-insert into Buyer (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
+insert into Editor (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor)
     values ('Bolt', 'housekijava@yopmail.com', 'truc', false, false, false, true)
