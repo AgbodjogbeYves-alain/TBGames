@@ -23,13 +23,20 @@ public class LoginViewHandler{
     
 	@FXML
 	private void handlelogAction(ActionEvent event) {
+<<<<<<< HEAD
 		//Faire les tests editor, buyer,administrator ici. Pour chaque if faire la redirection adéquate
+=======
+>>>>>>> 6489002bf5cea91da64bc41e8703f2df96fd7eff
 		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
 			
     		System.out.println("Accepted");
     		try {
     			FXMLLoader loader = new FXMLLoader();
+<<<<<<< HEAD
         		loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
+=======
+        		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
+>>>>>>> 6489002bf5cea91da64bc41e8703f2df96fd7eff
         		AnchorPane view;
         		view = (AnchorPane) loader.load();
         		Scene scene = new Scene(view);

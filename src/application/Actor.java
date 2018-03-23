@@ -23,6 +23,13 @@ public class Actor {
 	public Actor() {
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * Contructor with id
+	 * @param id : id of the actor
+	 * @param username : username of the actor
+	 * @param email : actor's email
+	 * @param password : actor's password
+	 */
 	
 	public Actor(String id, String username, String email, String password) {
 		super();
@@ -32,6 +39,12 @@ public class Actor {
 		this.password = password;
 	}
 	
+	/**
+	 * Contructor without id
+	 * @param username : actor's username
+	 * @param email : actor's email
+	 * @param password : actor's password
+	 */
 	public Actor(String username, String email, String password) {
 		super();
 		this.username = username;
