@@ -23,6 +23,12 @@ public class User extends Actor {
 		this.zipCode = zipCode;
 		this.phoneNumber = phoneNumber;
 	}
+	
+	public User(String username, String email, String password, String zipCode, String phoneNumber){
+		super(username,email,password);
+		this.zipCode = zipCode;
+		this.phoneNumber = phoneNumber;
+	}
 
 	public User(ArrayList<String> queryResult) {
 		super(queryResult);

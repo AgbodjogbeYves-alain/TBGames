@@ -38,6 +38,11 @@ public class PGDAOFactory extends AbstractDAOFactory {
     	return connector;
     }
 
+	@Override
+	public ActorDAO getActorDAO() {
+		return new ActorDAOPG();
+	}
+
 	
     
 }

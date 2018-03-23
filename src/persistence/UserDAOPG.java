@@ -52,7 +52,7 @@ public class UserDAOPG extends UserDAO {
 	 */
 	public String getUserId(String username, String pwd) {
 		String id = null ;
-		String query = "SELECT  * FROM Editor,Buyer,Administrator,SuperAdmin WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
+		String query = "SELECT  * FROM SimpleUser WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			if (queryResult.next()) {
@@ -69,36 +69,40 @@ public class UserDAOPG extends UserDAO {
 	/**
 	 * return : null if User is not in the database
 	 */
-	public String getUserByUsernameandPwd(String username, String pwd) {
-		String id = null ;
-		String query = "SELECT  * FROM Editor,Buyer,Administrator,SuperAdmin WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
+	public User getUserById(String id) {
+		String query = "SELECT  * FROM SimpleUser WHERE idActor = '" + id + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		User us = new User();
 		try {
 			if (queryResult.next()) {
-				id = queryResult.getString(1);
+				
+				us.setEmail(queryResult.getString("email"));
+				us.setId(queryResult.getString("id"));
+				us.setPhoneNumber(queryResult.getString("phoneNumber"));
+				us.setUsername(queryResult.getString("username"));
+				us.setZipCode(queryResult.getString("zipCode"));
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return id ;
+		return us ;
 	}
 	
 	/**
-	 * @return : the id of the last user added to the database
+	 * Function to save a user in the DB
 	 */
-	public String getLastId() {
-		String id = null;
-		String query = "SELECT id FROM BUYER ORDER BY id DESC;";
+	public void saveUser(User user) {
+		String name = user.getUsername();
+		String zipCode = user.getZipCode();
+		String email = user.getEmail();
+		String password = user.getPassword();
+		String phoneNumber = user.getPhoneNumber();
+		String query = "INSERT INTO BUYER(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber) "
+				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
+				+ "," + zipCode + "," + phoneNumber + ")";
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
-		try {
-			if (queryResult.next()) {
-				id = queryResult.getString(1);
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return id;
 	}
 
 }
