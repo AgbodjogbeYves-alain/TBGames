@@ -23,27 +23,27 @@ public class LoginViewHandler{
     
 	@FXML
 	private void handlelogAction(ActionEvent event) {
-		//if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
+		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
 			
-//    		System.out.println("Accepted");
-//    		try {
-//    			FXMLLoader loader = new FXMLLoader();
-//        		loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
-//        		AnchorPane view;
-//        		view = (AnchorPane) loader.load();
-//        		Scene scene = new Scene(view);
-//        		MainStage.getPrimaryStage().setTitle("Administrator view");
-//        		MainStage.getPrimaryStage().setScene(scene);
-//        		MainStage.getPrimaryStage().show();
-//    		}catch (IOException e) {
-//    			// TODO Auto-generated catch block
-//    			e.printStackTrace();
-//    		}
+    		System.out.println("Accepted");
+    		try {
+    			FXMLLoader loader = new FXMLLoader();
+        		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
+        		AnchorPane view;
+        		view = (AnchorPane) loader.load();
+        		Scene scene = new Scene(view);
+        		MainStage.getPrimaryStage().setTitle("Administrator view");
+        		MainStage.getPrimaryStage().setScene(scene);
+        		MainStage.getPrimaryStage().show();
+    		}catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
     		
-    	//}
-    	//else {
+    	}
+    	else {
     		System.out.println("Refused");
-    	//}
+    	}
 		
 		
 	}
