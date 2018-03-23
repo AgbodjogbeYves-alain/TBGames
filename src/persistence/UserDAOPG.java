@@ -20,7 +20,7 @@ public class UserDAOPG extends UserDAO {
      * 
      */
     public User createById(String id) {
-    	String query = "SELECT * FROM SimpleUser WHERE id = '" + id + "';" ;
+    	String query = "SELECT * FROM Editor,Buyer,Administrator,SuperAdmin WHERE idactor = '" + id + "';" ;
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	
     	try {
@@ -52,7 +52,7 @@ public class UserDAOPG extends UserDAO {
 	 */
 	public String getUserId(String username, String pwd) {
 		String id = null ;
-		String query = "SELECT id FROM SIMPLEUSER WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
+		String query = "SELECT  * FROM Editor,Buyer,Administrator,SuperAdmin WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			if (queryResult.next()) {
@@ -64,6 +64,26 @@ public class UserDAOPG extends UserDAO {
 		}
 		return id ;
 	}
+	
+	@Override
+	/**
+	 * return : null if User is not in the database
+	 */
+	public String getUserByUsernameandPwd(String username, String pwd) {
+		String id = null ;
+		String query = "SELECT  * FROM Editor,Buyer,Administrator,SuperAdmin WHERE username = '" + username + "' AND password = '" + pwd + "';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		try {
+			if (queryResult.next()) {
+				id = queryResult.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id ;
+	}
+	
 	/**
 	 * @return : the id of the last user added to the database
 	 */

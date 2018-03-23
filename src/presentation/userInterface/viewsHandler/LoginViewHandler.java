@@ -23,6 +23,7 @@ public class LoginViewHandler{
     
 	@FXML
 	private void handlelogAction(ActionEvent event) {
+		//Faire les tests editor, buyer,administrator ici. Pour chaque if faire la redirection adéquate
 		//if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
 			
 //    		System.out.println("Accepted");
