@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Actor {
 	
-	private String id ;
+	private String idActor ;
 	private String username ;
 	private String email ; 
 	private String password ;
@@ -33,7 +33,7 @@ public class Actor {
 	
 	public Actor(String id, String username, String email, String password) {
 		super();
-		this.id = id;
+		this.idActor = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -55,18 +55,18 @@ public class Actor {
      * Creates new Actor from a query result
      */
 	public Actor(ArrayList<String> queryResult) {
-		this.id = queryResult.get(0);
+		this.idActor = queryResult.get(0);
 		this.username = queryResult.get(1);
 		this.email = queryResult.get(2) ;
 		this.password = queryResult.get(3) ;
 	}
 
 	public String getId() {
-		return id;
+		return idActor;
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this.idActor = id;
 	}
 
 	public String getUsername() {
@@ -93,4 +93,11 @@ public class Actor {
 		this.password = password;
 	}
 
+	public boolean getIsSimpleUser() {
+		return this.isBuyer;
+	}
+	
+	public boolean getEditor() {
+		return this.isEditor;
+	}
 }

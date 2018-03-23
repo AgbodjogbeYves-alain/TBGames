@@ -38,7 +38,12 @@ public class AddPostViewHandler {
 	}
 	
 	public void handlevalidateAction(ActionEvent event) {
+		String title = posttitleTF.getText();
+		String description = descriptionTF.getText();
+		String price = priceTF.getText();
+		boolean demand = demandCB.isSelected();
 		if(demandCB.isSelected()) {
+			
 			try {
 				FXMLLoader loader = new FXMLLoader();
 	    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddDemandBuyerView.fxml"));

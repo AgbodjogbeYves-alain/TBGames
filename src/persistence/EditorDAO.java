@@ -16,4 +16,6 @@ public abstract class EditorDAO {
 	public abstract ObservableList<Editor> getAllEditors();
 	
 	public abstract void saveEditor(Editor editor);
+
+	public abstract Editor getEditorById(String id);
 }
