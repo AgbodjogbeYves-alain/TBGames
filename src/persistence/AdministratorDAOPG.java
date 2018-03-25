@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import application.Administrator;
 import application.User;
 
-public class AdministratorDAOPG {
+public class AdministratorDAOPG extends AdministratorDAO{
 	
 	public void save(Administrator admin) {
 		String username = admin.getUsername();

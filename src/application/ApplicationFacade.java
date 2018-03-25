@@ -2,11 +2,10 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.AbstractDAOFactory;
-import persistence.ActorDAO;
-import persistence.EditorDAO;
-import persistence.UserDAO;
+import persistence.* ;
 
 /**
  * 
@@ -91,7 +90,15 @@ public class ApplicationFacade {
     }
 
 	public static ObservableList<Administrator> loadAdministratorsList() {
-		// TODO Auto-generated method stub
-		return null;
+		ObservableList<Administrator> admins = FXCollections.observableArrayList() ;
+		
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AdministratorDAO adminDAO =  daoFactory.getAdministratorDAO() ;
+    	
+    	ArrayList<Administrator> adminsList = adminDAO.getAll() ;
+    	for (int i=0 ; i< adminsList.size() ; i++) {
+    		admins.add(adminsList.get(i)) ;
+    	}
+    	return admins;
 	}
 }
