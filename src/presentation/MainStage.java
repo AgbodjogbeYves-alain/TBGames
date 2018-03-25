@@ -15,9 +15,6 @@ public class MainStage extends Application {
 	public static Stage mainStage = null;
 	public String fxml = "";
 	
-	
-
-	
 	@Override
 	public void start(Stage stage) {
 		mainStage = stage;
