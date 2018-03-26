@@ -45,7 +45,7 @@
                </GridPane.margin>
             </TextField>
             <Label alignment="CENTER" prefHeight="31.0" prefWidth="326.0" text="Post Title" textAlignment="CENTER" />
-            <TextField fx:id="posttitleTF1" blendMode="MULTIPLY" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" />
+            <TextField fx:id="posttitleTF" blendMode="MULTIPLY" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <CheckBox fx:id="offerCB" layoutX="163.0" layoutY="376.0" mnemonicParsing="false" text="Offer" />

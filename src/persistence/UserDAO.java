@@ -13,14 +13,6 @@ public abstract class UserDAO {
      */
     public abstract User createById(String id);
     
-    /**
-     * 
-     * @param id
-     * @return
-     */
-	public abstract User getUserById(String id);
-	
-	public abstract void saveUser(User user);
-    
+    public abstract void saveUser(User user);
 
 }

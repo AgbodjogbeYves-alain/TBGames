@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import persistence.AbstractDAOFactory;
-import persistence.ActorDAO;
 import persistence.EditorDAO;
 import persistence.UserDAO;
 
@@ -14,7 +13,7 @@ import persistence.UserDAO;
 public class ApplicationFacade {
 	
 	private static ApplicationFacade afInstance = null ;
-	private Object connectedUser = null ;
+	private User connectedUser = null ;
 	private ObservableList<Editor> editors = null;
     
 	/**
@@ -35,12 +34,14 @@ public class ApplicationFacade {
      * @param pwd 
      * @return
      */
-    public boolean login(String username, String pwd) {
+    public Boolean login(String username, String pwd) {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
-    	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
-    	Object user = actorDAO.getActorById(username, pwd) ;
-    	System.out.println(user) ;//TEST
-    	connectedUser = user;
+    	UserDAO userDAO =  daoFactory.getUserDAO() ;
+    	String userId = userDAO.getUserId(username, pwd) ;
+    	System.out.println(userId) ;//TEST
+    	if (userId != null) {
+    		connectedUser = userDAO.createById(userId) ;
+    	}
         return connectedUser != null ;
     }
     
@@ -89,9 +90,4 @@ public class ApplicationFacade {
     public void LogOff(){
     	connectedUser = null;
     }
-
-	public static ObservableList<Administrator> loadAdministratorsList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
