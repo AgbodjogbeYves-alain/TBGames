@@ -22,6 +22,7 @@ public class AddPostViewHandler {
 	@FXML private CheckBox demandCB;
 	
 	public void handlecancelAction(ActionEvent event) {
+		System.out.println("ok");
 		try {
 			FXMLLoader loader = new FXMLLoader();
     		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
@@ -38,10 +39,14 @@ public class AddPostViewHandler {
 	}
 	
 	public void handlevalidateAction(ActionEvent event) {
-		String title = posttitleTF.getText();
-		String description = descriptionTF.getText();
-		String price = priceTF.getText();
-		boolean demand = demandCB.isSelected();
+//		//String title = posttitleTF.getText();
+//		System.out.println("ok");
+//		System.out.println(posttitleTF.getText());
+//		String description = descriptionTF.getText();
+//		System.out.println(description);
+//		String price = priceTF.getText();
+//		System.out.println(price);
+//		boolean demand = demandCB.isSelected();
 		if(demandCB.isSelected()) {
 			
 			try {

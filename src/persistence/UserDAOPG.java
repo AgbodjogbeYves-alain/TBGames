@@ -65,31 +65,6 @@ public class UserDAOPG extends UserDAO {
 		return id ;
 	}
 	
-	@Override
-	/**
-	 * return : null if User is not in the database
-	 */
-	public User getUserById(String id) {
-		String query = "SELECT  * FROM SimpleUser WHERE idActor = '" + id + "';" ;
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
-		User us = new User();
-		try {
-			if (queryResult.next()) {
-				
-				us.setEmail(queryResult.getString("email"));
-				us.setId(queryResult.getString("id"));
-				us.setPhoneNumber(queryResult.getString("phoneNumber"));
-				us.setUsername(queryResult.getString("username"));
-				us.setZipCode(queryResult.getString("zipCode"));
-				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return us ;
-	}
-	
 	/**
 	 * Method to save a user in the DB
 	 * @param user : the user to save in the database
@@ -101,7 +76,8 @@ public class UserDAOPG extends UserDAO {
 		String password = user.getPassword();
 		String phoneNumber = user.getPhoneNumber();
 		String query = "INSERT INTO BUYER(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber) "
-				+ "VALUES ('" + name + "','" + email + "','" + password + "',"+ true + "," + false + "," + false + "," + false + ",'" + zipCode + "','" + phoneNumber + "')";
+				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
+				+ "," + zipCode + "," + phoneNumber + ")";
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
 	}
 

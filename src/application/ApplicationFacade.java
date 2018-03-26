@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import persistence.AbstractDAOFactory;
 import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
+import persistence.EditorDAO;
+import persistence.UserDAO;
 
 /**
  * 
@@ -35,7 +37,7 @@ public class ApplicationFacade {
      * @param pwd 
      * @return
      */
-    public boolean login(String username, String pwd) {
+    public Boolean login(String username, String pwd) {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
     	Object user = actorDAO.getActorById(username, pwd) ;

@@ -4,8 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="246.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="presentation.userInterface.viewsHandler.SortPostsViewHandler">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.SortPostsViewHandler">
    <children>
       <CheckBox layoutX="37.0" layoutY="21.0" mnemonicParsing="false" text="Title alphabetical order" />
       <CheckBox layoutX="37.0" layoutY="45.0" mnemonicParsing="false" text="Console type alphabetical order" />

@@ -47,12 +47,14 @@ public class EditorDAOPG extends EditorDAO {
 		}
 		return ed ;
 	}
+
 	@Override
 	public ArrayList<Editor> getAllEditors() {
 		String query = "SELECT * FROM EDITOR ;" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		ArrayList<Editor> ed = new ArrayList<Editor>();
 		try {
+				
 				while (queryResult.next()) {
 					Editor e  = new Editor();
 					e.setEmail(queryResult.getString("email"));
@@ -74,7 +76,7 @@ public class EditorDAOPG extends EditorDAO {
 
 
 	@Override
-	public String getEditorId(String edername, String pwd) {
+	public String getEditorId(String username, String pwd) {
 		// TODO Auto-generated method stub
 		return null;
 	}
