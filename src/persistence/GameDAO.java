@@ -1,17 +1,42 @@
 package persistence;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+
 import application.*;
 
 public abstract class GameDAO {
-	
 
 	/**
-     * @param id
-     */
+	 * @param game
+	 */
+	public abstract void save(Game game);
 
-    
+	/**
+	 * @param oldGame
+	 * @param newGame
+	 */
+	public abstract void update(Game oldGame, Game newGame);
+
+	/**
+	 * @param game
+	 */
+	public abstract void delete(Game game);
+
+	/**
+	 * @return
+	 */
+	public abstract ArrayList<Game> getAll();
+
+	/**
+	 * @param gameId
+	 * @return
+	 */
+	public abstract ArrayList<Game> getById(String gameId);
+
+	/**
+	 * @param gameName
+	 * @return
+	 */
+	public abstract ArrayList<Game> getByName(String gameName);
 
 }
