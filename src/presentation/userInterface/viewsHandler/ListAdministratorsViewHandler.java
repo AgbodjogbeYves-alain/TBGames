@@ -1,26 +1,25 @@
 package presentation.userInterface.viewsHandler;
 
-import java.util.ArrayList;
 
 import application.ApplicationFacade;
 import application.Administrator;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ListAdministratorsViewHandler {
-	@FXML private TableView tableView;
-	private ObservableList<Administrator> admins ;
 	
+	@FXML TableView<Administrator> tableView ;
+	@FXML TableColumn<Administrator, String> usernameCol;
+	@FXML TableColumn<Administrator, String> emailCol;
+
 	@FXML
 	protected void initialize(){
-		admins = ApplicationFacade.loadAdministratorsList() ;
-		for (int i = 0 ; i<admins.size() ; i++) {
-			// THE RIGHT WAY TO IMPLEMENT : http://code.makery.ch/library/javafx-8-tutorial/part2/
-			tableView.setItems(admins);
-		}
-		
+		//admins = ApplicationFacade.loadAdministratorsList() ;
+		// THE RIGHT WAY TO IMPLEMENT : http://code.makery.ch/library/javafx-8-tutorial/part2/
+		usernameCol.setCellValueFactory(new PropertyValueFactory<Administrator, String>("username"));
+		emailCol.setCellValueFactory(new PropertyValueFactory<Administrator, String>("email"));
+		tableView. setItems(ApplicationFacade.loadAdministratorsList()) ;
 	}
-
 }

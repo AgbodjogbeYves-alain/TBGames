@@ -2,11 +2,11 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.AbstractDAOFactory;
-import persistence.ActorDAO;
-import persistence.EditorDAO;
-import persistence.UserDAO;
+import presentation.userInterface.tableCells.EditorCell;
+import persistence.* ;
 
 /**
  * 
@@ -15,7 +15,7 @@ public class ApplicationFacade {
 	
 	private static ApplicationFacade afInstance = null ;
 	private Object connectedUser = null ;
-	private ObservableList<Editor> editors = null;
+	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
     
 	/**
      * Default constructor
@@ -41,14 +41,22 @@ public class ApplicationFacade {
     	Object user = actorDAO.getActorById(username, pwd) ;
     	System.out.println(user) ;//TEST
     	connectedUser = user;
-        return connectedUser != null ;
+    	setEditorsList();
+        if(connectedUser != null) {
+        	this.setEditorsList();
+        }
+        return connectedUser != null;
     }
     
 
     public void setEditorsList(){
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
-    	editors = editorDAO.getAllEditors() ;
+    	ArrayList<Editor> ed = editorDAO.getAllEditors();
+    	for(int i=0;i<ed.size();i++) {
+    		EditorCell cellEd = new EditorCell(ed.get(i).getUsername(),ed.get(i).getRepresentativeName());
+    		editors.add(cellEd);
+    	}
     }
     
     /**
@@ -66,7 +74,7 @@ public class ApplicationFacade {
     	userDAO.saveUser(userToSave);
     }
 
-    public ObservableList<Editor> getEditorsList(){
+    public ObservableList<EditorCell> getEditorsList(){
     	return this.editors;
     }
 
@@ -91,7 +99,15 @@ public class ApplicationFacade {
     }
 
 	public static ObservableList<Administrator> loadAdministratorsList() {
-		// TODO Auto-generated method stub
-		return null;
+		ObservableList<Administrator> admins = FXCollections.observableArrayList() ;
+		
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AdministratorDAO adminDAO =  daoFactory.getAdministratorDAO() ;
+    	
+    	ArrayList<Administrator> adminsList = adminDAO.getAll() ;
+    	for (int i=0 ; i< adminsList.size() ; i++) {
+    		admins.add(adminsList.get(i)) ;
+    	}
+    	return admins;
 	}
 }
