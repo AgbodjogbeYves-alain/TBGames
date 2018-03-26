@@ -83,7 +83,7 @@ public class ApplicationFacade {
     	PostDAO postDAO = DAOFactory.getPostDAO();
     	String user = ((Actor)connectedUser).getId() ;
     	PostTypeDAO posttypeDAO = DAOFactory.getPostTypeDAO();
-    	int posttypeId = posttypeDAO.getPostTypeId(posttype);
+    	String posttypeId = posttypeDAO.getPostTypeId(posttype);
     	Post postToSave = new Post(title,descr,price,posttypeId,user);
     	postDAO.savePost(postToSave);
     }

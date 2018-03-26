@@ -8,7 +8,7 @@ public class Post {
 	private String title ;
 	private String description ;
 	private int price ;
-	private int posttype ;
+	private String posttype ;
 	private String iduser ;
 	private String item ;
 	
@@ -20,7 +20,7 @@ public class Post {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Post(String title, String description, int price, int posttype, String iduser) {
+	public Post(String title, String description, int price, String posttype, String iduser) {
 		this.title = title;
 		this.description = description;
 		this.price = price;
@@ -34,7 +34,7 @@ public class Post {
 		this.title = r.get(1);
 		this.description = r.get(2);
 		this.price = Integer.parseInt(r.get(3));
-		this.posttype = Integer.parseInt(r.get(4));
+		this.posttype = r.get(4);
 		this.iduser = r.get(5);
 	}
 
@@ -70,11 +70,11 @@ public class Post {
 		this.price = price;
 	}
 
-	public int getPosttype() {
+	public String getPosttype() {
 		return posttype;
 	}
 
-	public void setPosttype(int posttype) {
+	public void setPosttype(String posttype) {
 		this.posttype = posttype;
 	}
 

@@ -47,9 +47,9 @@ public class PostTypeDAOPG extends PostTypeDAO {
 	/**
 	 * return : null if Post is not in the database
 	 */
-	public int getPostTypeId(String label)  {
+	public String getPostTypeId(String label)  {
 		String id = null ;
-		String query = "SELECT idpost FROM PostType WHERE label = '" + label + "';" ;
+		String query = "SELECT idposttype FROM PostType WHERE label = '" + label + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			if (queryResult.next()) {
@@ -59,6 +59,6 @@ public class PostTypeDAOPG extends PostTypeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Integer.parseInt(id) ;
+		return id ;
 	}
 }

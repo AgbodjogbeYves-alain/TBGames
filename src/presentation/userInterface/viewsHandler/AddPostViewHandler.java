@@ -41,12 +41,8 @@ public class AddPostViewHandler {
 	
 	public void handlevalidateAction(ActionEvent event) {
 		String title = posttitleTF.getText();
-		System.out.println("ok");
-		System.out.println(posttitleTF.getText());
 		String description = descriptionTF.getText();
-		System.out.println(description);
 		int price = Integer.parseInt(priceTF.getText());
-		System.out.println(price);
 		boolean demand = demandCB.isSelected();
 		if(demand) {
 			ApplicationFacade.getInstance().CreatePostDemand(title, description, price, "Demand");

@@ -4,7 +4,7 @@ import application.*;
 
 public abstract class PostTypeDAO {
 	
-	public abstract int getPostTypeId(String label) ;
+	public abstract String getPostTypeId(String label) ;
 	/**
      * @param id
      */

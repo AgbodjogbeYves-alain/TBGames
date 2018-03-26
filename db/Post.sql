@@ -13,7 +13,7 @@ create table Post
   status varchar(50),
   postDate date,
   postType serial REFERENCES PostType,
-  idUser serial REFERENCES SimpleUser
+  idSimpleUser REFERENCES SimpleUser
 );
 
 create table Demand

@@ -67,13 +67,15 @@ public class PostDAOPG extends PostDAO{
 	 * Function to save a post in the DB
 	 */
 	public void savePost(Post post) {
-		String title = post.getTitle();
-		String description = post.getDescription();
-		int price = post.getPrice();
-		int posttype = post.getPosttype();
-		String iduser = post.getIduser();
-		String query = "INSERT INTO Post(title, description, price, posttype, price, posttype, iduser) "
-				+ "VALUES (" + title + "," + description + "," + price + "," + posttype + "," + iduser + ")";
+		String title1 = post.getTitle();
+		String description1 = post.getDescription();
+		int price1 = post.getPrice();
+		String posttype1 = post.getPosttype();
+		String iduser1 = post.getIduser();
+		String query = "INSERT INTO Post(title, descriptionpost, price, posttype,iduser) "
+				+ "VALUES ('" + title1 + "','" + description1 + "'," + price1 + ",'" + posttype1 + "','" + iduser1 + "')";
+		System.out.println(query);
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+
 	}
 }
