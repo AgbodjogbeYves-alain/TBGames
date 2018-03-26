@@ -3,17 +3,19 @@ package application;
 import java.util.ArrayList;
 
 public class Editor extends User {
-
+	String idEditor;
 	String representativeName ;
 	boolean validate;
+	
 	
 	
 	public Editor() {
 		super();
 	}
 	
-	public Editor(String id, String username, String email, String password, String zipCode, String phoneNumber, String representativeName) {
-		super(id,username,email,password,zipCode,phoneNumber);
+	public Editor(String idActor,String idSU,String idEditor, String username, String email, String password, String zipCode, String phoneNumber, String representativeName) {
+		super(idActor,idSU,username,email,password,zipCode,phoneNumber);
+		this.idEditor = idEditor;
 		this.representativeName = representativeName;
 		this.validate = false;
 	}
@@ -44,5 +46,14 @@ public class Editor extends User {
 	
 	public void setValidate(boolean bool) {
 		this.validate = bool;
+	}
+
+	public void setIdEditor(String id) {
+		this.idEditor = id;
+	}
+
+	public void setIdActor(String idActor) {
+		// TODO Auto-generated method stub
+		
 	}
 }

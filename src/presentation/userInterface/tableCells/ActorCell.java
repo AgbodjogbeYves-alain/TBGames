@@ -54,6 +54,13 @@ public class ActorCell {
 		return isSuperAdmin.get();
 	}
 	
+	public boolean getIsAdministrator() {
+		return isAdministrator.get();
+	}
+	
+	public void setId(String id) {
+		this.idActor.set(id);
+	}
 	
 	public void setUsername(String name) {
 		this.username.set(name);
@@ -62,13 +69,46 @@ public class ActorCell {
 		this.email.set(email);
 	}
 	
+	public void setIsBuyer() {
+		this.isBuyer.set(!this.isBuyer.get());
+	}
 	
+	public void setIsEditor() {
+		this.isEditor.set(!this.isEditor.get());
+	}
+	public void setIsSuperAdmin() {
+		this.isSuperAdmin.set(!this.isSuperAdmin.get());
+	}
+	
+	public void setIsAdministrator() {
+		this.isAdministrator.set(!this.isAdministrator.get());
+	}
+	
+	
+	public StringProperty idProperty() {
+		return idActor;
+	}
 	
 	public StringProperty usernameProperty() {
 		return username;
 	}
 	public StringProperty emailProperty() {
 		return email;
+	}
+
+	public BooleanProperty isBuyerProperty() {
+		return isBuyer;
+	}
+	
+	public BooleanProperty isEditorProperty() {
+		return isEditor;
+	}
+	public BooleanProperty isSuperAdminProperty() {
+		return isSuperAdmin;
+	}
+	
+	public BooleanProperty isAdministratorProperty() {
+		return isAdministrator;
 	}
 
 }

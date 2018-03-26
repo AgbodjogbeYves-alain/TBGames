@@ -19,6 +19,34 @@ public class EditorDAOPG extends EditorDAO {
     	
     }
 	
+    @Override
+	/**
+	 * return : null if eder is not in the database
+	 */
+	public Editor getEditorById(String id) {
+		String query = "SELECT  * FROM Editor WHERE idActor = '" + id + "';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		Editor ed = new Editor();
+		try {
+			if (queryResult.next()) {
+				ed.setIdActor(queryResult.getString("idActor"));
+				ed.setIdEditor(queryResult.getString("idEditor"));
+				ed.setIdSU(queryResult.getString("idSuperAdmin"));
+				ed.setEmail(queryResult.getString("email"));
+				ed.setId(queryResult.getString("idEditor"));
+				ed.setPhoneNumber(queryResult.getString("phoneNumber"));
+				ed.setUsername(queryResult.getString("username"));
+				ed.setZipCode(queryResult.getString("zipCode"));
+				ed.setValidate(queryResult.getBoolean("validation"));
+				ed.setRepresentativeName(queryResult.getString("representativeName"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ed ;
+	}
 
 	@Override
 	public ArrayList<Editor> getAllEditors() {

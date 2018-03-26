@@ -9,6 +9,7 @@ import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
 import persistence.EditorDAO;
 import persistence.UserDAO;
+import presentation.userInterface.helper.*;
 
 /**
  * 
@@ -56,7 +57,8 @@ public class ApplicationFacade {
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
     	ArrayList<Editor> ed = editorDAO.getAllEditors();
     	for(int i=0;i<ed.size();i++) {
-    		EditorCell cellEd = new EditorCell(ed.get(i).getUsername(),ed.get(i).getRepresentativeName());
+    		
+    		EditorCell cellEd = new EditorCell();
     		editors.add(cellEd);
     	}
     }
@@ -74,6 +76,23 @@ public class ApplicationFacade {
     	UserDAO userDAO =  daoFactory.getUserDAO() ;
     	User userToSave = new User(username, email, password, zipCode, phoneNumber);
     	userDAO.saveUser(userToSave);
+    }
+    
+    public void CreatePostDemand(String title, String descr, int price, String posttype) {
+    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	PostDAO postDAO = DAOFactory.getPostDAO();
+    	String user = ((Actor)connectedUser).getId() ;
+    	PostTypeDAO posttypeDAO = DAOFactory.getPostTypeDAO();
+    	int posttypeId = posttypeDAO.getPostTypeId(posttype);
+    	Post postToSave = new Post(title,descr,price,posttypeId,user);
+    	postDAO.savePost(postToSave);
+    }
+    
+    public void AddItemToPost(Post post, String item) {
+    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	PostDAO postDAO = DAOFactory.getPostDAO();
+    	post.setItem(item);
+    	postDAO.savePost(post);
     }
 
     public ObservableList<EditorCell> getEditorsList(){
@@ -96,6 +115,9 @@ public class ApplicationFacade {
     	editorDAO.saveEditor(editorToSave);
     }
     
+    /**
+     * Methods to LogOff a user
+     */
     public void LogOff(){
     	connectedUser = null;
     }
@@ -111,5 +133,67 @@ public class ApplicationFacade {
     		admins.add(adminsList.get(i)) ;
     	}
     	return admins;
+	}
+	
+	/**
+	 * Methods to get the type of the actor
+	 * @param actor
+	 * @return: a string corresponding to the actor's type
+	 */
+	public String getActorType(Actor actor) {
+		try {
+			if (actor.getIsAdministrator()) {
+				return ("Administrator");
+			}
+			else if (actor.getIsBuyer()) {
+				return ("Buyer");
+			}
+			else if (actor.getIsEditor()) {
+				return ("Editor");
+			}
+			else if (actor.getIsSuperAdmin()) {
+				return ("SuperAdmin");
+			}
+		}catch (Error e){
+			AlertBox.showAlert("No type found for this user","No typ found","Erreur");
+		}
+		return null;
+	}
+	
+	/**
+	 * Methods to get the Buyer corresponding to the id
+	 * @param idActor
+	 * @return: return the Buyer who has idActor as id
+	 */
+	public User getBuyer(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql", "tbgames", "localhost", "5432",
+				"postgres", "admin");
+		UserDAO buyerDAO = daoFactory.getUserDAO();
+		User user = buyerDAO.createById(idActor); //To check
+		return (user);
+	}
+
+	/**
+	 * Methods to get the Editor corresponding to the id
+	 * @param idActor
+	 * @return: return the Editor who has idActor as id
+	 */
+	public Editor getEditor(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	EditorDAO editorDAO = daoFactory.getEditorDAO();
+    	Editor editor = editorDAO.getEditorById(idActor);
+    	return (editor);
+	}
+	
+	/**
+	 * Methods to get the Administrator corresponding to the id
+	 * @param idActor
+	 * @return: return the Administrator who has idActor as id
+	 */
+	public Administrator getAdministrator(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
+    	Administrator admin = AdministratorDAO.getById(idActor);
+    	return (admin);
 	}
 }

@@ -27,9 +27,10 @@ public class ListEditorsViewHandler {
 	 @FXML private TableColumn<EditorCell,String> representativeNameColumnEditor ;
 	 @FXML private TableColumn<EditorCell,String> nameColumnEditor ;
 	 @FXML private Label phoneNumberLabelEditor ;
-	 @FXML private Label labelDescriptionEditors ;
 	 @FXML private Label emailLabelEditor ;
-	 @FXML private Tab manageEditorsPane;
+	 @FXML private Label userNameLabelEditor;
+	 @FXML private Label representativeNameLabelEditor;
+	 @FXML private Label zipCodeLabelEditor;
 
 
 
@@ -41,7 +42,7 @@ public class ListEditorsViewHandler {
 	    @FXML public void initialize() {
 	        // Initialize the person table with the two columns.
 	    	representativeNameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
-			nameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().representativenameProperty());
+			nameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().representativeNameProperty());
 			
 			tableViewEditors.setItems(ApplicationFacade.getInstance().getEditorsList());
 			
@@ -63,14 +64,18 @@ public class ListEditorsViewHandler {
 	        if (editor != null) {
 	            // Fill the labels with info from the person object.
 	        	phoneNumberLabelEditor.setText(editor.getPhoneNumber());
-	            labelDescriptionEditors.setText(editor.getDescription());
-	            emailLabelEditor.setText(editor.getEmail());
+	        	emailLabelEditor.setText(editor.getEmail());
+	        	userNameLabelEditor.setText(editor.getUN());
+	        	representativeNameLabelEditor.setText(editor.getRN());
+	        	zipCodeLabelEditor.setText(editor.getZipCode());
 	            
 	        } else {
 	            // Person is null, remove all the text.
 	        	phoneNumberLabelEditor.setText("");
-	            labelDescriptionEditors.setText("");
 	            emailLabelEditor.setText("");
+	            userNameLabelEditor.setText("");
+	        	representativeNameLabelEditor.setText("");
+	        	zipCodeLabelEditor.setText("");
 	        }
 	    }
 	    
