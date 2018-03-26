@@ -59,6 +59,6 @@ public class PostTypeDAOPG extends PostTypeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return id ;
+		return Integer.parseInt(id) ;
 	}
 }
