@@ -159,4 +159,41 @@ public class ApplicationFacade {
 		}
 		return null;
 	}
+	
+	/**
+	 * Methods to get the Buyer corresponding to the id
+	 * @param idActor
+	 * @return: return the Buyer who has idActor as id
+	 */
+	public User getBuyer(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql", "tbgames", "localhost", "5432",
+				"postgres", "admin");
+		UserDAO buyerDAO = daoFactory.getUserDAO();
+		User user = buyerDAO.createById(idActor); //To check
+		return (user);
+	}
+
+	/**
+	 * Methods to get the Editor corresponding to the id
+	 * @param idActor
+	 * @return: return the Editor who has idActor as id
+	 */
+	public Editor getEditor(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	EditorDAO editorDAO = daoFactory.getEditorDAO();
+    	Editor editor = editorDAO.getEditorById(idActor);
+    	return (editor);
+	}
+	
+	/**
+	 * Methods to get the Administrator corresponding to the id
+	 * @param idActor
+	 * @return: return the Administrator who has idActor as id
+	 */
+	public Administrator getAdministrator(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
+    	Administrator admin = AdministratorDAO.getById(idActor);
+    	return (admin);
+	}
 }
