@@ -11,7 +11,7 @@ public class DeleteGameViewHandler {
 	@FXML private Button cancelDelete;
 	@FXML private Button confirmDelete;
 
-	public void deleteGame (String gameTitle, int IdGame){
+	public void deleteGame (int IdGame){
 		//si bouton cancel --> ne rien faire
 		//si bouton delete:
 		
