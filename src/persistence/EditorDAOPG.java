@@ -29,7 +29,9 @@ public class EditorDAOPG extends EditorDAO {
 		Editor ed = new Editor();
 		try {
 			if (queryResult.next()) {
-				
+				ed.setIdActor(queryResult.getString("idActor"));
+				ed.setIdEditor(queryResult.getString("idEditor"));
+				ed.setIdSU(queryResult.getString("idSuperAdmin"));
 				ed.setEmail(queryResult.getString("email"));
 				ed.setId(queryResult.getString("idEditor"));
 				ed.setPhoneNumber(queryResult.getString("phoneNumber"));

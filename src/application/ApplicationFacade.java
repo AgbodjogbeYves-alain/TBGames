@@ -54,7 +54,8 @@ public class ApplicationFacade {
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
     	ArrayList<Editor> ed = editorDAO.getAllEditors();
     	for(int i=0;i<ed.size();i++) {
-    		EditorCell cellEd = new EditorCell(ed.get(i).getUsername(),ed.get(i).getRepresentativeName());
+    		
+    		EditorCell cellEd = new EditorCell();
     		editors.add(cellEd);
     	}
     }
