@@ -27,6 +27,9 @@ public abstract class AbstractDAOFactory {
 
 	public abstract EditorDAO getEditorDAO();
 
+	public abstract ActorDAO getActorDAO();
+	
+	public abstract AdministratorDAO getAdministratorDAO() ;
 
 
 

@@ -20,7 +20,7 @@ public class UserDAOPG extends UserDAO {
      * 
      */
     public User createById(String id) {
-    	String query = "SELECT * FROM SimpleUser WHERE idSimpleUser = '" + id + "';" ;
+    	String query = "SELECT * FROM Editor,Buyer,Administrator,SuperAdmin WHERE idactor = '" + id + "';" ;
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	
     	try {

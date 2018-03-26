@@ -21,10 +21,10 @@ public class EditorDAOPG extends EditorDAO {
 	
 
 	@Override
-	public ObservableList<Editor> getAllEditors() {
+	public ArrayList<Editor> getAllEditors() {
 		String query = "SELECT * FROM EDITOR ;" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
-		ObservableList<Editor> ed = FXCollections.observableArrayList();
+		ArrayList<Editor> ed = new ArrayList<Editor>();
 		try {
 				
 				while (queryResult.next()) {
@@ -33,7 +33,7 @@ public class EditorDAOPG extends EditorDAO {
 					e.setPhoneNumber(queryResult.getString("phonenumber"));
 					e.setUsername(queryResult.getString("username"));
 					e.setRepresentativeName(queryResult.getString("representativeName"));
-					e.setValidate(queryResult.getBoolean("validate"));
+					e.setValidate(queryResult.getBoolean("validation"));
 					e.setZipCode(queryResult.getString("zipcode"));
 					ed.add(e);
 				}

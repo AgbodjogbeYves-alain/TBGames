@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import application.Administrator;
 import application.User;
 
-public class AdministratorDAOPG {
+public class AdministratorDAOPG extends AdministratorDAO{
 	
 	public void save(Administrator admin) {
 		String username = admin.getUsername();
@@ -49,7 +49,7 @@ public class AdministratorDAOPG {
      * @param id
      */
     public Administrator getById(String id) {
-		String query = "SELECT id FROM ADMINISTRATOR WHERE id = '" + id + "';" ;
+		String query = "SELECT * FROM ADMINISTRATOR WHERE id = '" + id + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			queryResult.next();
