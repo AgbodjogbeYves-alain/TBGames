@@ -49,7 +49,7 @@ public class AdministratorDAOPG extends AdministratorDAO{
      * @param id
      */
     public Administrator getById(String id) {
-		String query = "SELECT id FROM ADMINISTRATOR WHERE id = '" + id + "';" ;
+		String query = "SELECT * FROM ADMINISTRATOR WHERE id = '" + id + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			queryResult.next();

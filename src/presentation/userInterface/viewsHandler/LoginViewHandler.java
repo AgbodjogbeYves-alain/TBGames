@@ -27,7 +27,20 @@ public class LoginViewHandler{
 		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
 			
     		System.out.println("Accepted");
-    		TabPaneAdminViewHandler.initialize();
+    		FXMLLoader loader = new FXMLLoader();
+    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
+    		AnchorPane view;
+			try {
+				view = (AnchorPane) loader.load();
+				Scene scene = new Scene(view);
+	    		MainStage.getPrimaryStage().setTitle("Administrator view");
+	    		MainStage.getPrimaryStage().setScene(scene);
+	    		MainStage.getPrimaryStage().show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
     		
     	}
     	else {
