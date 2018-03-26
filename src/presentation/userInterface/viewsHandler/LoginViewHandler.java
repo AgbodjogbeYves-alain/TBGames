@@ -28,7 +28,7 @@ public class LoginViewHandler{
 			
     		System.out.println("Accepted");
     		FXMLLoader loader = new FXMLLoader();
-    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
+    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
     		AnchorPane view;
 			try {
 				view = (AnchorPane) loader.load();

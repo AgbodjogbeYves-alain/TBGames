@@ -37,10 +37,6 @@ public class PGDAOFactory extends AbstractDAOFactory {
     	return new EditorDAOPG();
     }
     
-    public PostDAO getPostDAO() {
-    	return new PostDAOPG();
-    }
-    
     public static PGJDBC getConnector() {
     	return connector;
     }
@@ -52,6 +48,15 @@ public class PGDAOFactory extends AbstractDAOFactory {
 	
 	public AdministratorDAO getAdministratorDAO() {
 		return new AdministratorDAOPG();
+	}
+	
+	@Override
+	public PostDAO getPostDAO() {
+		return new PostDAOPG();
+	}
+
+	public PostTypeDAO getPostTypeDAO() {
+		return new PostTypeDAOPG();		
 	}
 
 	

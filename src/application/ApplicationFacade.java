@@ -75,6 +75,23 @@ public class ApplicationFacade {
     	User userToSave = new User(username, email, password, zipCode, phoneNumber);
     	userDAO.saveUser(userToSave);
     }
+    
+    public void CreatePostDemand(String title, String descr, int price, String posttype) {
+    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	PostDAO postDAO = DAOFactory.getPostDAO();
+    	String user = ((Actor)connectedUser).getId() ;
+    	PostTypeDAO posttypeDAO = DAOFactory.getPostTypeDAO();
+    	int posttypeId = posttypeDAO.getPostTypeId(posttype);
+    	Post postToSave = new Post(title,descr,price,posttypeId,user);
+    	postDAO.savePost(postToSave);
+    }
+    
+    public void AddItemToPost(Post post, String item) {
+    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	PostDAO postDAO = DAOFactory.getPostDAO();
+    	post.setItem(item);
+    	postDAO.savePost(post);
+    }
 
     public ObservableList<EditorCell> getEditorsList(){
     	return this.editors;

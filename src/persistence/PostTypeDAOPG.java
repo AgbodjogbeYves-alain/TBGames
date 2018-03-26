@@ -6,19 +6,18 @@ import java.util.ArrayList;
 
 import application.Post;
 
-public class PostDAOPG extends PostDAO{
-
+public class PostTypeDAOPG extends PostTypeDAO {
     /**
      * Default constructor
      */
-    public PostDAOPG() {
+    public PostTypeDAOPG() {
     }
     
     /**
      * 
      */
     public Post createById(String id) {
-    	String query = "SELECT * FROM Post WHERE Post = '" + id + "';" ;
+    	String query = "SELECT * FROM PostType WHERE idposttype = '" + id + "';" ;
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	
     	try {
@@ -48,9 +47,9 @@ public class PostDAOPG extends PostDAO{
 	/**
 	 * return : null if Post is not in the database
 	 */
-	public String getPostId(String title, String description) {
+	public int getPostTypeId(String label)  {
 		String id = null ;
-		String query = "SELECT idpost FROM Post WHERE title = '" + title + "' AND description = '" + description + "';" ;
+		String query = "SELECT idpost FROM PostType WHERE label = '" + label + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			if (queryResult.next()) {
@@ -61,19 +60,5 @@ public class PostDAOPG extends PostDAO{
 			e.printStackTrace();
 		}
 		return id ;
-	}
-	
-	/**
-	 * Function to save a post in the DB
-	 */
-	public void savePost(Post post) {
-		String title = post.getTitle();
-		String description = post.getDescription();
-		int price = post.getPrice();
-		int posttype = post.getPosttype();
-		String iduser = post.getIduser();
-		String query = "INSERT INTO Post(title, description, price, posttype, price, posttype, iduser) "
-				+ "VALUES (" + title + "," + description + "," + price + "," + posttype + "," + iduser + ")";
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
 	}
 }
