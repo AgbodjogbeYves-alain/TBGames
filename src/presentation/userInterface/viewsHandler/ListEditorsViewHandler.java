@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import presentation.MainStage;
 import presentation.userInterface.helper.AlertBox;
+import presentation.userInterface.tableCells.ActorCell;
 import presentation.userInterface.tableCells.EditorCell;
 
 public class ListEditorsViewHandler {
@@ -31,6 +33,9 @@ public class ListEditorsViewHandler {
 	 @FXML private Label userNameLabelEditor;
 	 @FXML private Label representativeNameLabelEditor;
 	 @FXML private Label zipCodeLabelEditor;
+	 @FXML private Button deleteBTN;
+	 @FXML private Button EditBTN;
+	 
 
 
 
@@ -41,8 +46,8 @@ public class ListEditorsViewHandler {
 	     */
 	    @FXML public void initialize() {
 	        // Initialize the person table with the two columns.
-	    	representativeNameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
-			nameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().representativeNameProperty());
+	    	representativeNameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().representativeNameProperty());
+			nameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
 			
 			tableViewEditors.setItems(ApplicationFacade.getInstance().getEditorsList());
 			
@@ -86,19 +91,20 @@ public class ListEditorsViewHandler {
 	    @FXML
 	    private void handleDeleteEditor() {
 	        int selectedIndex = tableViewEditors.getSelectionModel().getSelectedIndex();
+	        System.out.print(selectedIndex+"Index");
 	        if (selectedIndex >= 0) {
+	        	
+	        	String idActor = ApplicationFacade.getInstance().getEditorsList().get(selectedIndex).getId();
+	        	System.out.print("IdActor" + idActor);
+	        	ApplicationFacade.getInstance().getEditorsList().remove(selectedIndex);
+	        	ApplicationFacade.getInstance().deleteActor(idActor);
 	            tableViewEditors.getItems().remove(selectedIndex);
+	            AlertBox.showAlert("Delete successfull", "", "Editor deletion");
+	            
 	        } else {
 	            AlertBox.showAlert("", "", "");
 	        }
 	    }
    
-//    /**
-//     * Returns the data as an observable list of Persons. 
-//     * @return
-//     */
-//    public ObservableList<Person> getPersonData() {
-//        return personData;
-//    }
-
+   
 }

@@ -9,6 +9,9 @@ import application.Administrator;
 
 public class ActorDAOPG extends ActorDAO {
 
+	/**
+	 * 
+	 */
 	@Override
 	public Actor getActorById(String username, String pwd) {
 		String query = "SELECT * FROM Actor WHERE username = '" + username + "'AND password = '"+ pwd + "';" ;
@@ -33,6 +36,15 @@ public class ActorDAOPG extends ActorDAO {
 			e.printStackTrace();
 		}
     	return null;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void deleteActor(String id) {
+		String query = "DELETE FROM Actor WHERE idActor = '" + id +"';" ;
+		PGDAOFactory.getConnector().executeQuery(query) ;
 	}
 
 }

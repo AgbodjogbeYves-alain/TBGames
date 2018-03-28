@@ -25,6 +25,10 @@ public class ApplicationFacade {
     private ApplicationFacade() {
     }
     
+    /**
+     * 
+     * @return
+     */
     public static ApplicationFacade getInstance(){
     	if (afInstance == null) {
     		afInstance = new ApplicationFacade() ;
@@ -41,23 +45,32 @@ public class ApplicationFacade {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
     	Object user = actorDAO.getActorById(username, pwd) ;
-    	System.out.println(user) ;//TEST
     	connectedUser = user;
-    	setEditorsList();
         if(connectedUser != null) {
         	this.setEditorsList();
         }
         return connectedUser != null;
     }
     
-
+/**
+ * 
+ */
     public void setEditorsList(){
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
     	ArrayList<Editor> ed = editorDAO.getAllEditors();
+
     	for(int i=0;i<ed.size();i++) {
-    		
-    		EditorCell cellEd = new EditorCell();
+    		String idActor = ed.get(i).getIdActor();
+    		String idSimpleUser = ed.get(i).getIdSU();
+    		String idEditor = ed.get(i).getIdEditor();
+    		String username = ed.get(i).getUsername();
+    		String email = ed.get(i).getEmail();
+    		String zipcode = ed.get(i).getZipCode();
+    		String phoneNumber = ed.get(i).getPhoneNumber();
+    		String representativeName = ed.get(i).getRepresentativeName();
+    		boolean validation = ed.get(i).getValidation();
+    		EditorCell cellEd = new EditorCell(idActor,idSimpleUser,idEditor,username, email,zipcode,phoneNumber,representativeName, validation);
     		editors.add(cellEd);
     	}
     }
@@ -78,6 +91,7 @@ public class ApplicationFacade {
     }
 
     public ObservableList<EditorCell> getEditorsList(){
+    	System.out.print(editors);
     	return this.editors;
     }
 
@@ -97,10 +111,17 @@ public class ApplicationFacade {
     	editorDAO.saveEditor(editorToSave);
     }
     
+    /**
+     * 
+     */
     public void LogOff(){
     	connectedUser = null;
     }
 
+    /**
+     * 
+     * @return
+     */
 	public static ObservableList<Administrator> loadAdministratorsList() {
 		ObservableList<Administrator> admins = FXCollections.observableArrayList() ;
 		
@@ -112,5 +133,18 @@ public class ApplicationFacade {
     		admins.add(adminsList.get(i)) ;
     	}
     	return admins;
+	}
+
+	/**
+	 * 
+	 * @param id
+	 */
+	public void deleteActor(String id) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
+    	
+    	actorDAO.deleteActor(id);
+    	
+		
 	}
 }

@@ -21,7 +21,7 @@ public class EditorDAOPG extends EditorDAO {
 	
     @Override
 	/**
-	 * return : null if eder is not in the database
+	 * return : null if editor is not in the database
 	 */
 	public Editor getEditorById(String id) {
 		String query = "SELECT  * FROM Editor WHERE idActor = '" + id + "';" ;
@@ -29,7 +29,7 @@ public class EditorDAOPG extends EditorDAO {
 		Editor ed = new Editor();
 		try {
 			if (queryResult.next()) {
-				ed.setIdActor(queryResult.getString("idActor"));
+				ed.setId(queryResult.getString("idActor"));
 				ed.setIdEditor(queryResult.getString("idEditor"));
 				ed.setIdSU(queryResult.getString("idSuperAdmin"));
 				ed.setEmail(queryResult.getString("email"));
@@ -53,10 +53,13 @@ public class EditorDAOPG extends EditorDAO {
 		String query = "SELECT * FROM EDITOR ;" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		ArrayList<Editor> ed = new ArrayList<Editor>();
+		
 		try {
-				
 				while (queryResult.next()) {
 					Editor e  = new Editor();
+					e.setId(queryResult.getString("idActor"));
+					e.setIdSU(queryResult.getString("idSimpleUser"));
+					e.setIdEditor(queryResult.getString("idEditor"));
 					e.setEmail(queryResult.getString("email"));
 					e.setPhoneNumber(queryResult.getString("phonenumber"));
 					e.setUsername(queryResult.getString("username"));
@@ -64,12 +67,14 @@ public class EditorDAOPG extends EditorDAO {
 					e.setValidate(queryResult.getBoolean("validation"));
 					e.setZipCode(queryResult.getString("zipcode"));
 					ed.add(e);
+				
 				}
 				
-			}catch (SQLException e) {
+			}catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		System.out.println("Taille ed : "+ed.size());
 		return ed;
 		
 	}

@@ -61,7 +61,7 @@ public class Actor {
 		this.password = queryResult.get(3) ;
 	}
 
-	public String getId() {
+	public String getIdActor() {
 		return id;
 	}
 
