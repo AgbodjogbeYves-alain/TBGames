@@ -92,5 +92,21 @@ public class Actor {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public boolean getIsBuyer() {
+		return isBuyer;
+	}
+
+	public boolean getIsAdministrator() {
+		return isAdministrator;
+	}
+	
+	public boolean getIsEditor() {
+		return isEditor;
+	}
+	
+	public boolean getIsSuperAdmin() {
+		return isSuperAdmin;
+	}
 
 }

@@ -1,3 +1,4 @@
+
 package application;
 
 import java.util.ArrayList;
@@ -5,6 +6,7 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.AbstractDAOFactory;
+import presentation.userInterface.helper.AlertBox;
 import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
 import persistence.EditorDAO;
@@ -146,5 +148,89 @@ public class ApplicationFacade {
     	actorDAO.deleteActor(id);
     	
 		
+	}
+
+  
+    
+
+   
+    
+    public void CreatePostDemand(String title, String descr, int price, String posttype) {
+    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	PostDAO postDAO = DAOFactory.getPostDAO();
+    	String user = ((Actor)connectedUser).getIdActor() ;
+    	PostTypeDAO posttypeDAO = DAOFactory.getPostTypeDAO();
+    	String posttypeId = posttypeDAO.getPostTypeId(posttype);
+    	Post postToSave = new Post(title,descr,price,posttypeId,user);
+    	postDAO.savePost(postToSave);
+    }
+    
+    public void AddItemToPost(Post post, String item) {
+    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	PostDAO postDAO = DAOFactory.getPostDAO();
+    	post.setItem(item);
+    	postDAO.savePost(post);
+    }
+
+	/**
+	 * Methods to get the type of the actor
+	 * @param actor
+	 * @return: a string corresponding to the actor's type
+	 */
+	public String getActorType(Actor actor) {
+		try {
+			if (actor.getIsAdministrator()) {
+				return ("Administrator");
+			}
+			else if (actor.getIsBuyer()) {
+				return ("Buyer");
+			}
+			else if (actor.getIsEditor()) {
+				return ("Editor");
+			}
+			else if (actor.getIsSuperAdmin()) {
+				return ("SuperAdmin");
+			}
+		}catch (Error e){
+			AlertBox.showAlert("No type found for this user","No type found","Erreur");
+		}
+		return null;
+	}
+	
+	/**
+	 * Methods to get the Buyer corresponding to the id
+	 * @param idActor
+	 * @return: return the Buyer who has idActor as id
+	 */
+	public User getBuyer(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql", "tbgames", "localhost", "5432",
+				"postgres", "admin");
+		UserDAO buyerDAO = daoFactory.getUserDAO();
+		User user = buyerDAO.createById(idActor); //To check
+		return (user);
+	}
+
+	/**
+	 * Methods to get the Editor corresponding to the id
+	 * @param idActor
+	 * @return: return the Editor who has idActor as id
+	 */
+	public Editor getEditor(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	EditorDAO editorDAO = daoFactory.getEditorDAO();
+    	Editor editor = editorDAO.getEditorById(idActor);
+    	return (editor);
+	}
+	
+	/**
+	 * Methods to get the Administrator corresponding to the id
+	 * @param idActor
+	 * @return: return the Administrator who has idActor as id
+	 */
+	public Administrator getAdministrator(String idActor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
+    	Administrator admin = AdministratorDAO.getById(idActor);
+    	return (admin);
 	}
 }

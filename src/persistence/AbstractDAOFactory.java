@@ -30,7 +30,9 @@ public abstract class AbstractDAOFactory {
 	public abstract ActorDAO getActorDAO();
 	
 	public abstract AdministratorDAO getAdministratorDAO() ;
+	
+	public abstract PostDAO getPostDAO();
 
-
+	public abstract PostTypeDAO getPostTypeDAO();
 
 }
