@@ -2,6 +2,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,15 @@ import persistence.UserDAO;
 public class ApplicationFacade {
 	
 	private static ApplicationFacade afInstance = null ;
-	private Object connectedUser = null ;
+	private static Object connectedUser = null ;
+	public static Object getConnectedUser() {
+		return connectedUser;
+	}
+
+	public void setConnectedUser(Object connectedUser) {
+		this.connectedUser = connectedUser;
+	}
+
 	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
     
 	/**
@@ -155,22 +164,16 @@ public class ApplicationFacade {
 
    
     
-    public void CreatePostDemand(String title, String descr, int price, String posttype) {
+    public void CreatePostDemand(String title, String descr, int price, String posttype, Optional<String> result) {
     	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	PostDAO postDAO = DAOFactory.getPostDAO();
     	String user = ((Actor)connectedUser).getIdActor() ;
     	PostTypeDAO posttypeDAO = DAOFactory.getPostTypeDAO();
     	String posttypeId = posttypeDAO.getPostTypeId(posttype);
-    	Post postToSave = new Post(title,descr,price,posttypeId,user);
+    	Post postToSave = new Post(title,descr,price,posttypeId,user,result);
     	postDAO.savePost(postToSave);
     }
     
-    public void AddItemToPost(Post post, String item) {
-    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
-    	PostDAO postDAO = DAOFactory.getPostDAO();
-    	post.setItem(item);
-    	postDAO.savePost(post);
-    }
 
 	/**
 	 * Methods to get the type of the actor

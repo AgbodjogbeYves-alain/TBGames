@@ -1,7 +1,7 @@
 
 create TABLE Actor
 (
-  idActor serial PRIMARY KEY,
+  idActor serial PRIMARY KEY UNIQUE,
   username varchar(50),
   email varchar(50),
   password varchar(50),
@@ -13,7 +13,7 @@ create TABLE Actor
 
 create TABLE SimpleUser
 (
-  idSimpleUser serial PRIMARY KEY,
+  idSimpleUser serial PRIMARY KEY UNIQUE,
   zipCode varchar(50),
   phoneNumber varchar(20)
 ) INHERITS (Actor);

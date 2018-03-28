@@ -1,4 +1,4 @@
-create table PostType
+﻿create table PostType
 (
   idPostType serial PRIMARY KEY,
   label varchar(50)
@@ -13,7 +13,7 @@ create table Post
   status varchar(50),
   postDate date,
   postType serial REFERENCES PostType,
-  idSimpleUser REFERENCES SimpleUser
+  idSimpleUser serial REFERENCES SimpleUser
 );
 
 create table Demand
