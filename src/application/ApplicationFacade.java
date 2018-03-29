@@ -370,4 +370,9 @@ public class ApplicationFacade {
 	    	gameDAO.save(gameToSave);
 	    }
 	    
+		public void deleteGame(Game game) {
+			AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+			GameDAO gameDAO = daoFactory.getGameDAO();
+			gameDAO.delete(game);
+		}
 }
