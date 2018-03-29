@@ -26,23 +26,23 @@ public class AddPostViewHandler {
 	@FXML private CheckBox offerCB;
 	@FXML private CheckBox demandCB;
 	Optional<String> item = null;
-	
+
 	public void handlecancelAction(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
-    		AnchorPane view;
-    		view = (AnchorPane) loader.load();
-    		Scene scene = new Scene(view);
-    		MainStage.getPrimaryStage().setTitle("Administrator view");
-    		MainStage.getPrimaryStage().setScene(scene);
-    		MainStage.getPrimaryStage().show();
+			loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
+			AnchorPane view;
+			view = (AnchorPane) loader.load();
+			Scene scene = new Scene(view);
+			MainStage.getPrimaryStage().setTitle("Administrator view");
+			MainStage.getPrimaryStage().setScene(scene);
+			MainStage.getPrimaryStage().show();
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void handlevalidateAction(ActionEvent event) {
 		String title = posttitleTF.getText();
 		String description = descriptionTF.getText();
@@ -56,41 +56,41 @@ public class AddPostViewHandler {
 
 			Optional<String> result = dialog.showAndWait();
 			this.item = result;
-			
-			} else if (demand) {
-					ApplicationFacade.getInstance().CreatePostDemand(title, description, price, "Demand",item);
-					PostViewHandler.setPost(title, description, price, "Demand",item);
-					try {
-						FXMLLoader loader = new FXMLLoader();
-			    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/PostView.fxml"));
-			    		AnchorPane view;
-			    		view = (AnchorPane) loader.load();
-			    		Scene scene = new Scene(view);
-			    		MainStage.getPrimaryStage().setTitle("Administrator view");
-			    		MainStage.getPrimaryStage().setScene(scene);
-			    		MainStage.getPrimaryStage().show();
-					}catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
-			else {
-				try {
-					FXMLLoader loader = new FXMLLoader();
-		    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
-		    		AnchorPane view;
-		    		view = (AnchorPane) loader.load();
-		    		Scene scene = new Scene(view);
-		    		MainStage.getPrimaryStage().setTitle("Administrator view");
-		    		MainStage.getPrimaryStage().setScene(scene);
-		    		MainStage.getPrimaryStage().show();
-				}catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 
-			
+		} else if (demand && ApplicationFacade.getInstance().isBuyer()) {
+			ApplicationFacade.getInstance().CreatePostDemand(title, description, price, "Demand",item);
+			PostViewHandler.setPost(title, description, price, "Demand",item);
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(MainStage.class.getResource("userInterface/fxml/PostView.fxml"));
+				AnchorPane view;
+				view = (AnchorPane) loader.load();
+				Scene scene = new Scene(view);
+				MainStage.getPrimaryStage().setTitle("Administrator view");
+				MainStage.getPrimaryStage().setScene(scene);
+				MainStage.getPrimaryStage().show();
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-	
+		else {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
+				AnchorPane view;
+				view = (AnchorPane) loader.load();
+				Scene scene = new Scene(view);
+				MainStage.getPrimaryStage().setTitle("Administrator view");
+				MainStage.getPrimaryStage().setScene(scene);
+				MainStage.getPrimaryStage().show();
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
+	}
+
 }

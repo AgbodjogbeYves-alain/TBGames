@@ -8,20 +8,20 @@ import application.Post;
 
 public class PostDAOPG extends PostDAO{
 
-    /**
-     * Default constructor
-     */
-    public PostDAOPG() {
-    }
-    
-    /**
-     * 
-     */
-    public Post createById(String id) {
-    	String query = "SELECT * FROM Post WHERE Post = '" + id + "';" ;
-    	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
-    	
-    	try {
+	/**
+	 * Default constructor
+	 */
+	public PostDAOPG() {
+	}
+
+	/**
+	 * 
+	 */
+	public Post createById(String id) {
+		String query = "SELECT * FROM Post WHERE Post = '" + id + "';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+
+		try {
 			queryResult.next();
 			int i = 0;
 			int nbColumns = queryResult.getMetaData().getColumnCount();
@@ -31,18 +31,18 @@ public class PostDAOPG extends PostDAO{
 				i++;
 			}
 			Post u = null ;
-	    	if (r != null) {
-	    		u = new Post(r) ;
-	    	}
-	        return u ;
+			if (r != null) {
+				u = new Post(r) ;
+			}
+			return u ;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-    	return null;
-    	
-    }
+
+		return null;
+
+	}
 
 	@Override
 	/**
@@ -62,7 +62,7 @@ public class PostDAOPG extends PostDAO{
 		}
 		return id ;
 	}
-	
+
 	/**
 	 * Function to save a post in the DB
 	 */
@@ -76,7 +76,7 @@ public class PostDAOPG extends PostDAO{
 				+ "VALUES ('" + title1 + "','" + description1 + "'," + price1 + ",'" + posttype1 + "','" + iduser1 + "')";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
-	
+
 	public void deletePost(Post post) {
 		String title1 = post.getTitle();
 		String description1 = post.getDescription();
