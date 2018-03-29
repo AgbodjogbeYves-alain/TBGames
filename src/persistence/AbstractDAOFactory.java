@@ -49,6 +49,8 @@ public abstract class AbstractDAOFactory {
 	 * @return PostTypeDAO
 	 */
 	public abstract PostTypeDAO getPostTypeDAO();
+	
+	public abstract GameDAO getGameDAO();
 
 	/**
 	 * @return CategoryDAO

@@ -363,4 +363,13 @@ public class ApplicationFacade {
 		CategoryDAO.update(oldCategory,newCategory);
 >>>>>>> 219b84f3057af547e1b0ac13ba6dc33d1bb0efe2
 	}
+
+	 public void CreateGame(String title, String descr) {
+	    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+	    	GameDAO gameDAO = DAOFactory.getGameDAO();
+	    	String user = ((Actor)connectedUser).getIdActor();
+	    	Game gameToSave = new Game(title,descr);
+	    	gameDAO.save(gameToSave);
+	    }
+	    
 }

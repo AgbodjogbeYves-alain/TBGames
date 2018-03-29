@@ -58,6 +58,10 @@ public class PGDAOFactory extends AbstractDAOFactory {
 	public PostTypeDAO getPostTypeDAO() {
 		return new PostTypeDAOPG();		
 	}
+	
+	public GameDAO getGameDAO() {
+		return new GameDAOPG();
+	}
 
 	@Override
 	public CategoryDAO getCategoryDAO() {
