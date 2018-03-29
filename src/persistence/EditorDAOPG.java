@@ -107,6 +107,6 @@ public class EditorDAOPG extends EditorDAO {
 		String query = "INSERT INTO EDITOR(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber, representativeName) "
 				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
 				+ "," + zipCode + "," + phoneNumber + "," + representativeName +")";
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 }
