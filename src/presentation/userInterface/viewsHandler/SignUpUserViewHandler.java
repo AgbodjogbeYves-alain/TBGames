@@ -40,13 +40,14 @@ public class SignUpUserViewHandler {
 	
 	@FXML
 	private void handleconfirmsignupAction (ActionEvent event) {
+		
 		String username = usernameTF.getText();
 		String email = emailTF.getText();
 		String zipCode = zipcodeTF.getText();
 		String phoneNumber = phonenumberTF.getText();
 		String password = passwordTF.getText();
 		String cPassword = confirmpasswordTF.getText();
-		if(password == cPassword) {
+		if(password.equals(cPassword)) {
 			ApplicationFacade.getInstance().SignUpUser(username, email, password, zipCode, phoneNumber);
 			try {
 				FXMLLoader loader = new FXMLLoader();
