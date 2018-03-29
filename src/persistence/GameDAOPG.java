@@ -62,6 +62,8 @@ public class GameDAOPG extends GameDAO {
 	public ArrayList<Game> getAll() {
 		ArrayList<Game> gameList = new ArrayList<Game>() ;
 		//TODO Implementation
+		String query = "SELECT * FROM game" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
 		return gameList;
 	}
 
@@ -71,7 +73,10 @@ public class GameDAOPG extends GameDAO {
 	 */
 	public ArrayList<Game> getById(String gameId) {
 		//TODO
-		return null ;
+		ArrayList<Game> gameList = new ArrayList<Game>() ;
+		String query = "SELECT FROM game WHERE idGame = "+ gameId ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+		return gameList ;
 	}
 
 	/**
@@ -80,6 +85,9 @@ public class GameDAOPG extends GameDAO {
 	 */
 	public ArrayList<Game> getByName(String gameName) {
 		//TODO 
-		return null;
+		ArrayList<Game> gameList = new ArrayList<Game>() ;
+		String query = "SELECT FROM game WHERE name = "+ gameName ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+		return gameList;
 	}
 }

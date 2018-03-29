@@ -21,6 +21,11 @@ public class Game extends Item {
 		this.idGame = idGame;
 		this.description = description;
 		this.category = category;
+		}
+		
+		public Game(String name, String description) {
+			super(name);
+			this.description = description;
 	}
 
 	/**

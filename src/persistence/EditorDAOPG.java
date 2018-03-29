@@ -26,26 +26,29 @@ public class EditorDAOPG extends EditorDAO {
 	public Editor getEditorById(String id) {
 		String query = "SELECT  * FROM Editor WHERE idActor = '" + id + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
-		Editor ed = new Editor();
 		try {
 			if (queryResult.next()) {
-				ed.setId(queryResult.getString("idActor"));
-				ed.setIdEditor(queryResult.getString("idEditor"));
-				ed.setIdSU(queryResult.getString("idSuperAdmin"));
-				ed.setEmail(queryResult.getString("email"));
-				ed.setId(queryResult.getString("idEditor"));
-				ed.setPhoneNumber(queryResult.getString("phoneNumber"));
-				ed.setUsername(queryResult.getString("username"));
-				ed.setZipCode(queryResult.getString("zipCode"));
-				ed.setValidate(queryResult.getBoolean("validation"));
-				ed.setRepresentativeName(queryResult.getString("representativeName"));
+				String id1 = queryResult.getString("idActor");
+				String username1 = queryResult.getString("username");
+				String email = queryResult.getString("email");
+				String password = queryResult.getString("password");
+				String zipCode = queryResult.getString("zipCode");
+				String phoneNumber = queryResult.getString("phoneNumber");
+				boolean isAdmin = queryResult.getBoolean("isAdministrator");
+				boolean isEd = queryResult.getBoolean("isEditor");
+				boolean isSA = queryResult.getBoolean("isSuperAdmin");
+				boolean isB = queryResult.getBoolean("isBuyer");
+				boolean validate = queryResult.getBoolean("validation");
+				String rn = queryResult.getString("representativeName");
 				
+				Editor e = new Editor(id1,username1, email, password, zipCode, phoneNumber,rn,validate,isAdmin, isSA, isEd, isB);
+				return e;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return ed ;
+		return null;
 	}
 
 	@Override
@@ -108,5 +111,12 @@ public class EditorDAOPG extends EditorDAO {
 				+ "VALUES ('" + name + "','" + email + "','" + password + "'," + true + "," + false + "," + false + "," + false 
 				+ ",'" + zipCode + "','" + phoneNumber + "','" + representativeName +"')";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
+	}
+
+	@Override
+	public void updateEditor(String idActor, String usernameEditor, String emailEditor, String passwordEditor,
+		String zipCodeEditor, String phoneNumberEditor, String representativeNameEditor) {
+		String query = "UPDATE Editor SET (username, email, password,zipcode,phonenumber,representativename) = ('"+usernameEditor+"', '"+emailEditor+"', '"+passwordEditor+"','"+zipCodeEditor+"','"+phoneNumberEditor+"','"+representativeNameEditor+"') WHERE idActor = '"+idActor+"';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 	}
 }

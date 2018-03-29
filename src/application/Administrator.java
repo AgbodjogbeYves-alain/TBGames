@@ -15,15 +15,19 @@ public class Administrator extends Actor {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param userName
+	 * @param email
+	 * @param password
+	 */
 	public Administrator(String id, String userName, String email, String password) {
 		super(id,userName,email,password);
 	}
 	
-	/**
-	 * Creates an Administrator from a query result
-	 * @param queryResult : 
-	 */
-	public Administrator(ArrayList<String> queryResult) {
-		super(queryResult);
-    }
+	
+	public Administrator(String id, String userName, String email, String password,boolean isAdmin, boolean isSA, boolean isEd, boolean isB) {
+		super(id,userName,email,password,isAdmin,isSA,isEd,isB);
+	} 
 }

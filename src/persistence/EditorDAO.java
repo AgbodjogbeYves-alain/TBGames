@@ -19,4 +19,7 @@ public abstract class EditorDAO {
 	public abstract void saveEditor(Editor editor);
 
 	public abstract Editor getEditorById(String id);
+
+	public abstract void updateEditor(String idActor, String userNameEditor, String emailEditor, String passwordEditor,
+			String zipCodeEditor, String phoneNumberEditor, String representativeNameEditor);
 }

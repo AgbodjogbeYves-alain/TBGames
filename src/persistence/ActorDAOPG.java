@@ -18,18 +18,16 @@ public class ActorDAOPG extends ActorDAO {
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			queryResult.next();
-			int i = 0;
-			int nbColumns = queryResult.getMetaData().getColumnCount();
-			ArrayList<String> r = new ArrayList<String>(nbColumns);
-			while (i < nbColumns) {
-				r.add(queryResult.getString(i + 1));
-				i++;
-			}
-			Actor a = null ;
-	    	if (r != null) {
-	    		a = new Actor(r);
-				i++;
-	    	}
+			String id = queryResult.getString("idActor");
+			String username1 = queryResult.getString("username");
+			String email = queryResult.getString("email");
+			String password = queryResult.getString("password");
+			boolean isAdmin = queryResult.getBoolean("isAdministrator");
+			boolean isEd = queryResult.getBoolean("isEditor");
+			boolean isSA = queryResult.getBoolean("isSuperAdmin");
+			boolean isB = queryResult.getBoolean("isBuyer");
+			
+			Actor a = new Actor(id, username1, email, password, isAdmin, isSA, isEd, isB);
 	        return a ;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
