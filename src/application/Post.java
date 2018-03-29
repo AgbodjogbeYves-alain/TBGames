@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Post {
 
@@ -10,7 +11,7 @@ public class Post {
 	private int price ;
 	private String posttype ;
 	private String iduser ;
-	private String item ;
+	private Optional<String> item ;
 	
 
     /**
@@ -27,6 +28,15 @@ public class Post {
 		this.posttype = posttype;
 		this.iduser = iduser;
 		this.item = null ;
+	}
+	
+	public Post(String title, String description, int price, String posttype, String iduser, Optional<String> result) {
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.posttype = posttype;
+		this.iduser = iduser;
+		this.item = result ;
 	}
 
 	public Post(ArrayList<String> r) {
@@ -86,11 +96,11 @@ public class Post {
 		this.iduser = iduser;
 	}
 
-	public String getItem() {
+	public Optional<String> getItem() {
 		return item;
 	}
 
-	public void setItem(String item) {
+	public void setItem(Optional<String> item) {
 		this.item = item;
 	}
 	
