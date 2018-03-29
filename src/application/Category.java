@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 public class Category {
 	private String idCategory;
 	private String nameCategory;
@@ -12,6 +14,11 @@ public class Category {
 		super();
 		this.idCategory = idCategory;
 		this.nameCategory = nameCategory;
+	}
+
+	public Category(ArrayList<String> queryResult) {
+    	this.idCategory = queryResult.get(0);
+    	this.nameCategory = queryResult.get(1);
 	}
 
 	/**
