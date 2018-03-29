@@ -6,11 +6,10 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-<<<<<<< HEAD
+
 import persistence.AbstractDAOFactory;
 import presentation.MainStage;
-=======
->>>>>>> 219b84f3057af547e1b0ac13ba6dc33d1bb0efe2
+
 import presentation.userInterface.helper.AlertBox;
 import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
@@ -205,16 +204,18 @@ public class ApplicationFacade {
     	postDAO.savePost(postToSave);
     }
     
-<<<<<<< HEAD
+
     /**
      * 
      * @param post
      * @param item
      */
     public void AddItemToPost(Post post, String item) {
-=======
+    
+    }
+
     public void DeletePostDemand(Post post) {
->>>>>>> 219b84f3057af547e1b0ac13ba6dc33d1bb0efe2
+
     	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	PostDAO postDAO =  DAOFactory.getPostDAO();
     	postDAO.deletePost(post);
@@ -285,10 +286,7 @@ public class ApplicationFacade {
     	return (admin);
 	}
 	
-<<<<<<< HEAD
-	public Object getConnectedUser() {
-		return this.connectedUser;
-	}
+
 
 
 
@@ -304,7 +302,7 @@ public class ApplicationFacade {
     	((Editor) connectedUser).setPassword(passwordEditor);
     	((Editor) connectedUser).setZipCode(zipCodeEditor);
     	((Editor) connectedUser).setRepresentativeName(representativeNameEditor);
-=======
+	}
 	/**
 	 * @param email
 	 * @param username
@@ -361,7 +359,7 @@ public class ApplicationFacade {
 		CategoryDAO CategoryDAO = daoFactory.getCategoryDAO();
 		Category newCategory = new Category(null, nameCategory);
 		CategoryDAO.update(oldCategory,newCategory);
->>>>>>> 219b84f3057af547e1b0ac13ba6dc33d1bb0efe2
+
 	}
 
 	 public void CreateGame(String title, String descr) {
