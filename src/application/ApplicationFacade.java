@@ -7,6 +7,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import presentation.userInterface.helper.AlertBox;
+import presentation.userInterface.tableCells.AdministratorCell;
 import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
 
@@ -26,6 +27,7 @@ public class ApplicationFacade {
 	}
 
 	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
+	private ObservableList<AdministratorCell> admins = FXCollections.observableArrayList();
     
 	/**
      * Default constructor
@@ -227,6 +229,30 @@ public class ApplicationFacade {
     	Editor editor = editorDAO.getEditorById(idActor);
     	return (editor);
 	}
+	
+	/**
+	 * 
+	 */
+	public void setAdminsList(){
+    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	AdministratorDAO adminDAO =  daoFactory.getAdministratorDAO();
+    	ArrayList<Administrator> admins = adminDAO.getAll();
+
+    	for(int i=0;i<admins.size();i++) {
+    		AdministratorCell cellAdmin = new AdministratorCell(admins.get(i).getIdActor(), admins.get(i).getUsername(), admins.get(i).getEmail());
+    		this.admins.add(cellAdmin);
+    	}
+    }
+	
+    /**
+     * @return
+     */
+    public ObservableList<AdministratorCell> getAdministratorsList(){
+    	if (this.admins.size() == 0) {
+    		setAdminsList() ;
+    	}
+    	return this.admins;
+    }
 	
 	/**
 	 * Methods to get the Administrator corresponding to the id
