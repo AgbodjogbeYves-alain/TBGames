@@ -21,18 +21,38 @@ public abstract class AbstractDAOFactory {
     
     /**
      * 
-     * @return
+     * @return UserDAO
      */
     public abstract UserDAO getUserDAO();
 
+	/**
+	 * @return EditorDAO
+	 */
 	public abstract EditorDAO getEditorDAO();
 
+	/**
+	 * @return ActorDAO
+	 */
 	public abstract ActorDAO getActorDAO();
 	
+	/**
+	 * @return AdministratorDAO
+	 */
 	public abstract AdministratorDAO getAdministratorDAO() ;
 	
+	/**
+	 * @return PostDAO
+	 */
 	public abstract PostDAO getPostDAO();
 
+	/**
+	 * @return PostTypeDAO
+	 */
 	public abstract PostTypeDAO getPostTypeDAO();
+
+	/**
+	 * @return CategoryDAO
+	 */
+	public abstract CategoryDAO getCategoryDAO();
 
 }

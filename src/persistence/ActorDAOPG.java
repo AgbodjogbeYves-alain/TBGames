@@ -42,7 +42,7 @@ public class ActorDAOPG extends ActorDAO {
 	@Override
 	public void deleteActor(String id) {
 		String query = "DELETE FROM Actor WHERE idActor = '" + id +"';" ;
-		PGDAOFactory.getConnector().executeQuery(query) ;
+		PGDAOFactory.getConnector().executeUpdate(query) ;
 	}
 
 }

@@ -108,9 +108,9 @@ public class EditorDAOPG extends EditorDAO {
 		String phoneNumber = editor.getPhoneNumber();
 		String representativeName = editor.getRepresentativeName();
 		String query = "INSERT INTO EDITOR(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber, representativeName) "
-				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
-				+ "," + zipCode + "," + phoneNumber + "," + representativeName +")";
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+				+ "VALUES ('" + name + "','" + email + "','" + password + "'," + true + "," + false + "," + false + "," + false 
+				+ ",'" + zipCode + "','" + phoneNumber + "','" + representativeName +"')";
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
 	@Override

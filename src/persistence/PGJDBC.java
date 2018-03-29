@@ -63,8 +63,17 @@ public class PGJDBC {
 		return result;
 	}
 	
-	
-	
+	public int executeUpdate(String query) {
+		int result = 0;
+		PreparedStatement pstmt;
+		try {
+			pstmt = dbConnection.prepareStatement(query);
+			result = pstmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (result);
+	}
 /*
 	public ArrayList<Editor> getAll(String table){
 		
@@ -90,4 +99,5 @@ public class PGJDBC {
 		
 	}
 */
+
 }

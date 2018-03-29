@@ -1,12 +1,12 @@
 create table Category
 (
-  idCategory serial PRIMARY KEY,
+  idCategory serial PRIMARY KEY UNIQUE,
   nameCategory varchar(50)
 );
 
 create table ConsoleType
 (
-  idConsoleType serial PRIMARY KEY,
+  idConsoleType serial PRIMARY KEY UNIQUE,
   brand varchar(50)
 );
 
@@ -30,7 +30,7 @@ create table Game
 create table Console
 (
   idConsole serial PRIMARY Key
-) INHERITS(AbstractItem);
+ UNIQUE) INHERITS(AbstractItem);
 
 
 
