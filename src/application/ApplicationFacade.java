@@ -5,12 +5,9 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import persistence.AbstractDAOFactory;
 import presentation.userInterface.helper.AlertBox;
 import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
-import persistence.EditorDAO;
-import persistence.UserDAO;
 
 /**
  * 
@@ -232,5 +229,63 @@ public class ApplicationFacade {
     	AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
     	Administrator admin = AdministratorDAO.getById(idActor);
     	return (admin);
+	}
+	
+	/**
+	 * @param email
+	 * @param username
+	 * @param pwd
+	 */
+	public void addAdministrator(String email, String username, String pwd) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
+		Administrator admin = new Administrator(null,username,email,pwd) ;
+		AdministratorDAO.save(admin);
+	}
+	
+	/**
+	 * @param admin
+	 */
+	public void deleteAdministrator(Administrator admin) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
+		AdministratorDAO.delete(admin);
+	}
+	
+	/**
+	 * @param oldAdmin
+	 * @param newAdmin
+	 */
+	public void updateAdministrator(Administrator oldAdmin, String email, String username, String pwd) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
+		Administrator newAdmin = new Administrator(null,username,email,pwd) ;
+		AdministratorDAO.update(oldAdmin, newAdmin);
+	}
+	
+	/**
+	 * @param nameCategory
+	 */
+	public void addCategory(String nameCategory) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		CategoryDAO CategoryDAO = daoFactory.getCategoryDAO();
+		Category newCategory = new Category(null,nameCategory) ;
+		CategoryDAO.save(newCategory);
+	}
+	
+	/**
+	 * @param category
+	 */
+	public void deleteCategory(Category category) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		CategoryDAO CategoryDAO = daoFactory.getCategoryDAO();
+		CategoryDAO.delete(category);
+	}
+	
+	public void updateCategory(Category oldCategory, String nameCategory) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		CategoryDAO CategoryDAO = daoFactory.getCategoryDAO();
+		Category newCategory = new Category(null, nameCategory);
+		CategoryDAO.update(oldCategory,newCategory);
 	}
 }
