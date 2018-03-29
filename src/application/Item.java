@@ -22,6 +22,11 @@ public abstract class Item {
 		this.setUser(user);
 		this.setConsoleType(consoleType);
 	}
+	
+	public Item(String name) {
+		super();
+		this.name = name;
+	}
 
 	/**
 	 * @return

@@ -72,10 +72,16 @@ public class PostDAOPG extends PostDAO{
 		int price1 = post.getPrice();
 		String posttype1 = post.getPosttype();
 		int iduser1 = Integer.parseInt(post.getIduser());
-		String query = "INSERT INTO Post(title, descriptionpost, price, posttype,idsimpleuser) "
-				+ "VALUES ('" + title1 + "','" + description1 + "'," + price1 + ",'" + posttype1 + "'," + iduser1 + ")";
-		System.out.println(query);
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
-
+		String query = "INSERT INTO Post(title, descriptionpost, price, posttype,idactor) "
+				+ "VALUES ('" + title1 + "','" + description1 + "'," + price1 + ",'" + posttype1 + "','" + iduser1 + "')";
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
+	}
+	
+	public void deletePost(Post post) {
+		String title1 = post.getTitle();
+		String description1 = post.getDescription();
+		String query = "DELETE FROM Post WHERE title='" + title1 + "' AND descriptionpost='"
+				+ description1 + "';";
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 }
