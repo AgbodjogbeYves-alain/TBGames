@@ -28,7 +28,6 @@ public class AddPostViewHandler {
 	Optional<String> item = null;
 	
 	public void handlecancelAction(ActionEvent event) {
-		System.out.println("ok");
 		try {
 			FXMLLoader loader = new FXMLLoader();
     		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));

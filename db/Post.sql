@@ -1,4 +1,8 @@
-﻿create table PostType
+﻿alter table actor add constraint id_unique_user unique (idactor);
+alter table post drop constraint post_idactor_fkey;
+alter table post add constraint fk_idactor FOREIGN KEY (idactor) REFERENCES actor (idactor);
+
+create table PostType
 (
   idPostType serial PRIMARY KEY,
   label varchar(50)
@@ -13,7 +17,7 @@ create table Post
   status varchar(50),
   postDate date,
   postType serial REFERENCES PostType,
-  idSimpleUser serial REFERENCES SimpleUser
+  idactor serial REFERENCES Actor
 );
 
 create table Demand
@@ -32,5 +36,3 @@ create table Trial
   idTrial serial primary KEY,
   version varchar(50)
 ) INHERITS(Offer);
-
-
