@@ -40,7 +40,6 @@ public class PostViewHandler {
     }
 	
 	public void handlecancelAction(ActionEvent event) {
-		System.out.println("ok");
 		try {
 			FXMLLoader loader = new FXMLLoader();
     		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
@@ -57,6 +56,21 @@ public class PostViewHandler {
 	}
 	
 	public void handledeleteAction(ActionEvent event) {
+		ApplicationFacade.getInstance().DeletePostDemand(post);
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			System.out.println("oklol");
+    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LogInUserView.fxml"));
+    		AnchorPane view;
+    		view = (AnchorPane) loader.load();
+    		Scene scene = new Scene(view);
+    		MainStage.getPrimaryStage().setTitle("Administrator view");
+    		MainStage.getPrimaryStage().setScene(scene);
+    		MainStage.getPrimaryStage().show();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void handleupdateAction(ActionEvent event) {

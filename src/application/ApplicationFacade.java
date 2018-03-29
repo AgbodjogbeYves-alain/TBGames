@@ -174,6 +174,12 @@ public class ApplicationFacade {
     	postDAO.savePost(postToSave);
     }
     
+    public void DeletePostDemand(Post post) {
+    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	PostDAO postDAO =  DAOFactory.getPostDAO();
+    	postDAO.deletePost(post);
+    }
+    
 
 	/**
 	 * Methods to get the type of the actor

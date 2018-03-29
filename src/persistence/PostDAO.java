@@ -11,4 +11,6 @@ public abstract class PostDAO {
     public abstract Post createById(String id);
     
     public abstract void savePost(Post post);
+    
+    public abstract void deletePost(Post post);
 }
