@@ -50,22 +50,32 @@ public class Editor extends User {
 		this.validation = false;
 	}
 	
+	
+	/**
+	 * 
+	 * @param id
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param zipCode
+	 * @param phoneNumber
+	 * @param representativeName
+	 * @param isAdmin
+	 * @param isSA
+	 * @param isEd
+	 * @param isB
+	 */
+	public Editor(String id,String username, String email, String password, String zipCode, String phoneNumber,String representativeName,boolean validation,boolean isAdmin, boolean isSA, boolean isEd, boolean isB) {
+		super(id,username,email,password,zipCode,phoneNumber,isAdmin,isSA,isEd,isB);
+		this.representativeName = representativeName;
+		this.validation = validation;
+	}
 	/**
 	 * 
 	 */
 	public void changeValidate() {
 		this.validation= !validation;
 	}
-	
-	/**
-	 * 
-	 * @param queryResult
-	 */
-	public Editor(ArrayList queryResult) {
-		super(queryResult);
-    	this.representativeName = (String) queryResult.get(7);
-		this.validation = (boolean) queryResult.get(8);
-    }
 	
 	/**
 	 * 

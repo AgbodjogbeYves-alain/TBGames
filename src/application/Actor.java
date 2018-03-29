@@ -40,6 +40,29 @@ public class Actor {
 	}
 	
 	/**
+	 * 
+	 * @param id
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param isAdmin
+	 * @param isSA
+	 * @param isEd
+	 * @param isB
+	 */
+	public Actor(String id, String username, String email, String password, boolean isAdmin, boolean isSA, boolean isEd, boolean isB) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.isAdministrator = isAdmin;
+		this.isEditor = isEd;
+		this.isBuyer = isB;
+		this.isSuperAdmin = isSA;
+	}
+	
+	/**
 	 * Contructor without id
 	 * @param username : actor's username
 	 * @param email : actor's email
@@ -50,15 +73,6 @@ public class Actor {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-	}
-	/**
-     * Creates new Actor from a query result
-     */
-	public Actor(ArrayList<String> queryResult) {
-		this.id = queryResult.get(0);
-		this.username = queryResult.get(1);
-		this.email = queryResult.get(2) ;
-		this.password = queryResult.get(3) ;
 	}
 
 	public String getIdActor() {

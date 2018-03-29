@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.AbstractDAOFactory;
+import presentation.MainStage;
 import presentation.userInterface.helper.AlertBox;
 import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
@@ -47,7 +48,27 @@ public class ApplicationFacade {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
     	Object user = actorDAO.getActorById(username, pwd) ;
-    	connectedUser = user;
+    	String userType = this.getActorType((Actor)user);
+    	switch (userType) {
+		case "Administrator" : 
+			//AdminDAO actorDAO =  daoFactory.getActorDAO() ;
+			break;
+			
+		case "Editor" : 
+			EditorDAO editorDAO = daoFactory.getEditorDAO() ;
+			Editor editor = editorDAO.getEditorById(((Actor) user).getIdActor()) ;
+			connectedUser = editor;
+			break;
+			
+		case "Buyer" : 
+			
+			break;
+			
+		case "SuperAdministrator":
+			
+			break;
+    	}
+			
         if(connectedUser != null) {
         	this.setEditorsList();
         }
@@ -92,8 +113,11 @@ public class ApplicationFacade {
     	userDAO.saveUser(userToSave);
     }
 
+    /**
+     * 
+     * @return
+     */
     public ObservableList<EditorCell> getEditorsList(){
-    	System.out.print(editors);
     	return this.editors;
     }
 
@@ -153,7 +177,13 @@ public class ApplicationFacade {
   
     
 
-   
+   /**
+    * 
+    * @param title
+    * @param descr
+    * @param price
+    * @param posttype
+    */
     
     public void CreatePostDemand(String title, String descr, int price, String posttype) {
     	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -165,6 +195,11 @@ public class ApplicationFacade {
     	postDAO.savePost(postToSave);
     }
     
+    /**
+     * 
+     * @param post
+     * @param item
+     */
     public void AddItemToPost(Post post, String item) {
     	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	PostDAO postDAO = DAOFactory.getPostDAO();
@@ -178,23 +213,25 @@ public class ApplicationFacade {
 	 * @return: a string corresponding to the actor's type
 	 */
 	public String getActorType(Actor actor) {
+		String type = null;
 		try {
+
 			if (actor.getIsAdministrator()) {
-				return ("Administrator");
+				type = "Administrator";
 			}
 			else if (actor.getIsBuyer()) {
-				return ("Buyer");
+				type = "Buyer";
 			}
 			else if (actor.getIsEditor()) {
-				return ("Editor");
+				type = "Editor";
 			}
 			else if (actor.getIsSuperAdmin()) {
-				return ("SuperAdmin");
+				type = "SuperAdmin";
 			}
 		}catch (Error e){
 			AlertBox.showAlert("No type found for this user","No type found","Erreur");
 		}
-		return null;
+		return type;
 	}
 	
 	/**
@@ -232,5 +269,25 @@ public class ApplicationFacade {
     	AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
     	Administrator admin = AdministratorDAO.getById(idActor);
     	return (admin);
+	}
+	
+	public Object getConnectedUser() {
+		return this.connectedUser;
+	}
+
+
+
+	public void updateEditor(String userNameEditor, String emailEditor, String passwordEditor, String zipCodeEditor,
+		String phoneNumberEditor, String representativeNameEditor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	EditorDAO editorDAO = daoFactory.getEditorDAO();
+    	editorDAO.updateEditor(((Actor) connectedUser).getIdActor(),userNameEditor, emailEditor, passwordEditor, zipCodeEditor,
+		phoneNumberEditor, representativeNameEditor);
+    	((Editor) connectedUser).setUsername(userNameEditor);
+    	((Editor) connectedUser).setEmail(emailEditor);
+    	((Editor) connectedUser).setPhoneNumber(phoneNumberEditor);
+    	((Editor) connectedUser).setPassword(passwordEditor);
+    	((Editor) connectedUser).setZipCode(zipCodeEditor);
+    	((Editor) connectedUser).setRepresentativeName(representativeNameEditor);
 	}
 }

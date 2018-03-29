@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import application.Actor;
 import application.Administrator;
 import application.User;
 
@@ -22,20 +23,20 @@ public class AdministratorDAOPG extends AdministratorDAO{
      */
     public ArrayList<Administrator> getAll(){
     	ArrayList<Administrator> adminsList = new ArrayList<Administrator>() ;
-    	int i ;
-    	int nbColumns ;
     	String query = "SELECT * FROM Administrator" ;
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	try {
 			while (queryResult.next()) {
-				i = 0;
-				nbColumns = queryResult.getMetaData().getColumnCount();
-				ArrayList<String> r = new ArrayList<String>(nbColumns);
-				while (i < nbColumns) {
-					r.add(queryResult.getString(i + 1));
-					i++;
-				}
-				Administrator a = new Administrator(r) ;
+				String id = queryResult.getString("idActor");
+				String username1 = queryResult.getString("username");
+				String email = queryResult.getString("email");
+				String password = queryResult.getString("password");
+				boolean isAdmin = queryResult.getBoolean("isAdministrator");
+				boolean isEd = queryResult.getBoolean("isEditor");
+				boolean isSA = queryResult.getBoolean("isSuperAdmin");
+				boolean isB = queryResult.getBoolean("isBuyer");	
+					
+				Administrator a = new Administrator(id, username1, email, password, isAdmin, isSA, isEd, isB); ;
 		    	adminsList.add(a) ;
 			}
 		} catch (SQLException e) {
@@ -53,18 +54,17 @@ public class AdministratorDAOPG extends AdministratorDAO{
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			queryResult.next();
-			int i = 0;
-			int nbColumns = queryResult.getMetaData().getColumnCount();
-			ArrayList<String> r = new ArrayList<String>(nbColumns);
-			while (i < nbColumns) {
-				r.add(queryResult.getString(i + 1));
-				i++;
-			}
-			Administrator a = null ;
-	    	if (r != null) {
-	    		a = new Administrator(r) ;
-	    	}
-	        return a ;
+			String id1 = queryResult.getString("idActor");
+			String username1 = queryResult.getString("username");
+			String email = queryResult.getString("email");
+			String password = queryResult.getString("password");
+			boolean isAdmin = queryResult.getBoolean("isAdministrator");
+			boolean isEd = queryResult.getBoolean("isEditor");
+			boolean isSA = queryResult.getBoolean("isSuperAdmin");
+			boolean isB = queryResult.getBoolean("isBuyer");	
+				
+			Administrator a = new Administrator(id1, username1, email, password, isAdmin, isSA, isEd, isB); ;
+			return a;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,60 +76,56 @@ public class AdministratorDAOPG extends AdministratorDAO{
      * @param userName
      * @return
      */
-    public ArrayList<Administrator> getByUserName(String userName){
+    public Administrator getByUserName(String userName){
     	ArrayList<Administrator> adminsList = new ArrayList<Administrator>() ;
     	String query = "SELECT id FROM ADMINISTRATOR WHERE username = '" + userName + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
-			while (queryResult.next()) {
-				int i = 0;
-				int nbColumns = queryResult.getMetaData().getColumnCount();
-				ArrayList<String> r = new ArrayList<String>(nbColumns);
-				while (i < nbColumns) {
-					r.add(queryResult.getString(i + 1));
-					i++;
-				}
-				Administrator a = null ;
-		    	if (r != null) {
-		    		a = new Administrator(r) ;
-		    	}
-		    	adminsList.add(a) ;
-			}
+			queryResult.next();
+			String id = queryResult.getString("idActor");
+			String username1 = queryResult.getString("username");
+			String email = queryResult.getString("email");
+			String password = queryResult.getString("password");
+			boolean isAdmin = queryResult.getBoolean("isAdministrator");
+			boolean isEd = queryResult.getBoolean("isEditor");
+			boolean isSA = queryResult.getBoolean("isSuperAdmin");
+			boolean isB = queryResult.getBoolean("isBuyer");	
+				
+			Administrator a = new Administrator(id, username1, email, password, isAdmin, isSA, isEd, isB); ;
+			return a;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return adminsList;
+    	return null;
     }
     
     /**
      * @param userEmail
      * @return
      */
-    public ArrayList<Administrator> getByUserEmail(String userEmail){
-    	ArrayList<Administrator> adminsList = new ArrayList<Administrator>() ;
-    	String query = "SELECT id FROM ADMINISTRATOR WHERE email = '" + userEmail + "';" ;
+    public Administrator getByUserEmail(String userEmail){
+    	String query = "SELECT * FROM ADMINISTRATOR WHERE email = '" + userEmail + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
-			while (queryResult.next()) {
-				int i = 0;
-				int nbColumns = queryResult.getMetaData().getColumnCount();
-				ArrayList<String> r = new ArrayList<String>(nbColumns);
-				while (i < nbColumns) {
-					r.add(queryResult.getString(i + 1));
-					i++;
-				}
-				Administrator a = null ;
-		    	if (r != null) {
-		    		a = new Administrator(r) ;
-		    	}
-		    	adminsList.add(a) ;
-			}
+			queryResult.next();
+			String id = queryResult.getString("idActor");
+			String username1 = queryResult.getString("username");
+			String email = queryResult.getString("email");
+			String password = queryResult.getString("password");
+			boolean isAdmin = queryResult.getBoolean("isAdministrator");
+			boolean isEd = queryResult.getBoolean("isEditor");
+			boolean isSA = queryResult.getBoolean("isSuperAdmin");
+			boolean isB = queryResult.getBoolean("isBuyer");	
+				
+			Administrator a = new Administrator(id, username1, email, password, isAdmin, isSA, isEd, isB); ;
+			return a;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return adminsList;
+    	return null;
     }
            
     /**

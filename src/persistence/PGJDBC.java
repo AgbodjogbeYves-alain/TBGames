@@ -62,6 +62,9 @@ public class PGJDBC {
 		}
 		return result;
 	}
+	
+	
+	
 /*
 	public ArrayList<Editor> getAll(String table){
 		

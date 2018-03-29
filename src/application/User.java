@@ -48,17 +48,22 @@ public class User extends Actor {
 		this.zipCode = zipCode;
 		this.phoneNumber = phoneNumber;
 	}
-
+	
 	/**
 	 * 
-	 * @param queryResult
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param zipCode
+	 * @param phoneNumber
 	 */
-	public User(ArrayList<String> queryResult) {
-		super(queryResult);
-    	this.zipCode = queryResult.get(4);
-		this.phoneNumber = queryResult.get(5);
-    }
-    
+	public User(String id,String username, String email, String password, String zipCode, String phoneNumber, boolean isAdmin, boolean isSA, boolean isEd, boolean isB){
+		super(id,username,email,password,isAdmin,isSA,isEd,isB);
+		this.zipCode = zipCode;
+		this.phoneNumber = phoneNumber;
+	}
+
+
 	/**
 	 * 
 	 * @return

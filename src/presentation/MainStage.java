@@ -4,7 +4,9 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import presentation.userInterface.viewsHandler.ManageInfosEditorViewHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -14,6 +16,7 @@ public class MainStage extends Application {
 	
 	public static Stage mainStage = null;
 	public String fxml = "";
+	public static Stage dialogStage;
 	
 	@Override
 	public void start(Stage stage) {
@@ -23,6 +26,7 @@ public class MainStage extends Application {
 		showView();
 	}
 	
+    
     /**
      * Shows the person overview inside the root layout.
      * @param string 
@@ -33,6 +37,7 @@ public class MainStage extends Application {
     public static void showView() {
     		mainStage.setTitle("Welcome on TBGames!!");
     		// Load person overview.
+    		
 			try {
 				FXMLLoader loader = new FXMLLoader();
 	            loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
@@ -48,6 +53,7 @@ public class MainStage extends Application {
 		// Set person overview into the center of root layout.
 		//rootLayout.setCenter(loginView);
     
+       
     /**
      * Returns the main stage.
      * @return

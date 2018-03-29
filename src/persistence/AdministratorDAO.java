@@ -29,13 +29,13 @@ public abstract class AdministratorDAO {
      * @param userName
      * @return
      */
-    public abstract ArrayList<Administrator> getByUserName(String userName);
+    public abstract Administrator getByUserName(String userName);
     
     /**
      * @param userEmail
      * @return
      */
-    public abstract ArrayList<Administrator> getByUserEmail(String userEmail);
+    public abstract Administrator getByUserEmail(String userEmail);
            
     /**
      * @param oldAdmin

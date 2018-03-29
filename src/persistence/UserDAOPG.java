@@ -24,19 +24,21 @@ public class UserDAOPG extends UserDAO {
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	
     	try {
-			queryResult.next();
-			int i = 0;
-			int nbColumns = queryResult.getMetaData().getColumnCount();
-			ArrayList<String> r = new ArrayList<String>(nbColumns);
-			while (i < nbColumns) {
-				r.add(queryResult.getString(i + 1));
-				i++;
-			}
-			User u = null ;
-	    	if (r != null) {
-	    		u = new User(r) ;
-	    	}
-	        return u ;
+    		queryResult.next();
+			String id1 = queryResult.getString("idActor");
+			String username1 = queryResult.getString("username");
+			String email = queryResult.getString("email");
+			String password = queryResult.getString("password");
+			String zipCode = queryResult.getString("zipCode");
+			String phoneNumber = queryResult.getString("phoneNumber");
+
+			boolean isAdmin = queryResult.getBoolean("isAdministrator");
+			boolean isEd = queryResult.getBoolean("isEditor");
+			boolean isSA = queryResult.getBoolean("isSuperAdmin");
+			boolean isB = queryResult.getBoolean("isBuyer");
+			
+			User a = new User(id1,username1,email,password,zipCode,phoneNumber,isAdmin,isSA,isEd,isB);
+	        return a ;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

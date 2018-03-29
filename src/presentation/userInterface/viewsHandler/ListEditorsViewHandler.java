@@ -91,15 +91,13 @@ public class ListEditorsViewHandler {
 	    @FXML
 	    private void handleDeleteEditor() {
 	        int selectedIndex = tableViewEditors.getSelectionModel().getSelectedIndex();
-	        System.out.print(selectedIndex+"Index");
 	        if (selectedIndex >= 0) {
 	        	
 	        	String idActor = ApplicationFacade.getInstance().getEditorsList().get(selectedIndex).getId();
-	        	System.out.print("IdActor" + idActor);
 	        	ApplicationFacade.getInstance().getEditorsList().remove(selectedIndex);
 	        	ApplicationFacade.getInstance().deleteActor(idActor);
 	            tableViewEditors.getItems().remove(selectedIndex);
-	            AlertBox.showAlert("Delete successfull", "", "Editor deletion");
+	            AlertBox.showAlert("Delete succeed", "", "Editor deletion");
 	            
 	        } else {
 	            AlertBox.showAlert("", "", "");
