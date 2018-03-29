@@ -12,17 +12,18 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class SignUpUserViewHandler {
+public class SignUpEditorViewHandler {
 
 	@FXML private TextField usernameTF;
 	@FXML private TextField emailTF;
-	@FXML private TextField zipcodeTF;
-	@FXML private TextField phonenumberTF;
+	@FXML private TextField representativeNameTF;
+	@FXML private TextField zipCodeTF;
+	@FXML private TextField phoneNumberTF;
 	@FXML private PasswordField passwordTF;
 	@FXML private PasswordField confirmpasswordTF;
 	
 	@FXML
-	private void handlecancelsignupAction (ActionEvent event) {
+	private void handlecancelsignupAction(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
     		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
@@ -39,15 +40,16 @@ public class SignUpUserViewHandler {
 	}
 	
 	@FXML
-	private void handleconfirmsignupAction (ActionEvent event) {
+	private void handleconfirmsignupAction(ActionEvent event) {
 		String username = usernameTF.getText();
 		String email = emailTF.getText();
-		String zipCode = zipcodeTF.getText();
-		String phoneNumber = phonenumberTF.getText();
+		String representativeName = representativeNameTF.getText();
+		String zipCode = zipCodeTF.getText();
+		String phoneNumber = phoneNumberTF.getText();
 		String password = passwordTF.getText();
-		String cPassword = confirmpasswordTF.getText();
-		if(password.equals(cPassword)) {
-			ApplicationFacade.getInstance().SignUpUser(username, email, password, zipCode, phoneNumber);
+		String cpassword = passwordTF.getText();
+		if (password.equals(cpassword)) {
+			ApplicationFacade.getInstance().SignUpEditor(username, email, password, zipCode, phoneNumber,representativeName);
 			try {
 				FXMLLoader loader = new FXMLLoader();
 	    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
@@ -62,7 +64,7 @@ public class SignUpUserViewHandler {
 				e.printStackTrace();
 			}
 		}else{
-			
-		}	
+		
+		}
 	}
 }
