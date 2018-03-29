@@ -181,8 +181,6 @@ public class ApplicationFacade {
     	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
     	
     	actorDAO.deleteActor(id);
-    	
-		
 	}
 
   
