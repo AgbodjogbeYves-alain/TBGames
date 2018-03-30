@@ -6,46 +6,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="974.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.LoginViewHandler">
-   <children>
-      <TabPane id="TabPaneAdmin" fx:id="tabPaneAdmin" layoutX="198.0" layoutY="43.0" prefHeight="588.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-          <Tab id="manageEditors" fx:id="manageEditorsPane" text="Manage Editors">
-            <content>
-    			<fx:include id="tab1" source="ListEditorsView.fxml" />
-            </content>
-          </Tab>
-          <Tab id="manageEditorsDemand" text="Manage Demands">
-            <content>
-    			<fx:include id="tab2" source="ManageEditorDemand.fxml" />
-            </content>
-          </Tab>
-            <Tab id="managePost" text="Manage Post">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-            <Tab id="manageConsole" text="Manage Console">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-            <Tab id="manageGame" text="Manage Games">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-            <Tab id="manageGame" text="Manage Buyers">
-               <content>
-                  <fx:include id="tab6" source="ListBuyerView.fxml" />
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <Button fx:id="logoutBTN" layoutX="-1.0" layoutY="588.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="41.0" prefWidth="295.0" style="-fx-background-color: #2980BA;" text="Logout" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0"
+	prefWidth="974.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.LoginViewHandler">
+	<children>
+		<TabPane id="TabPaneAdmin" fx:id="tabPaneAdmin" layoutX="198.0"
+			layoutY="43.0" prefHeight="588.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE"
+			AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<tabs>
+				<Tab id="manageEditors" fx:id="manageEditorsPane" text="Manage Editors">
+					<content>
+						<fx:include id="tab1" source="ListEditorsView.fxml" />
+					</content>
+				</Tab>
+				<Tab id="manageEditorsDemand" text="Manage Demands">
+					<content>
+						<fx:include id="tab2" source="ManageEditorDemand.fxml" />
+					</content>
+				</Tab>
+				<Tab id="managePost" text="Manage Post">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0" />
+					</content>
+				</Tab>
+				<Tab id="manageConsole" text="Manage Console">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0" />
+					</content>
+				</Tab>
+				<Tab id="manageGame" text="Manage Games">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0" />
+					</content>
+				</Tab>
+				<Tab id="manageGame" text="Manage Buyers">
+					<content>
+						<fx:include id='tab6' source="ListBuyerView.fxml" />
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+		<Button fx:id="logoutBTN" layoutX="-1.0" layoutY="588.0"
+			mnemonicParsing="false" onAction="#handleLogout" prefHeight="41.0"
+			prefWidth="295.0" style="-fx-background-color: #2980BA;" text="Logout"
+			textFill="WHITE">
+			<font>
+				<Font name="System Bold" size="12.0" />
+			</font>
+		</Button>
+	</children>
 </AnchorPane>

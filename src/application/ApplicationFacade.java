@@ -1,4 +1,4 @@
-
+ 
 package application;
 
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import presentation.MainStage;
 import presentation.userInterface.helper.AlertBox;
 import presentation.userInterface.tableCells.ConsoleCell;
 import presentation.userInterface.tableCells.AdministratorCell;
+import presentation.userInterface.tableCells.BuyerCell;
 import presentation.userInterface.tableCells.EditorCell;
 import presentation.userInterface.tableCells.GameCell;
 import persistence.* ;
@@ -34,11 +35,13 @@ public class ApplicationFacade {
 		this.connectedUser = connectedUser;
 	}
 
+	private ObservableList<EditorCell> editorsToValid = FXCollections.observableArrayList();
 	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
 	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
 	private ObservableList<AdministratorCell> administrators = FXCollections.observableArrayList();
 	private ObservableList<AdministratorCell> admins = FXCollections.observableArrayList();
 	private ObservableList<GameCell> games = FXCollections.observableArrayList();
+	private ObservableList<BuyerCell> buyers = FXCollections.observableArrayList();
 
 	/**
 	 * Default constructor
@@ -74,6 +77,7 @@ public class ApplicationFacade {
 				Administrator admin = adminDAO.getById(((Actor) user).getIdActor());
 				this.setEditorsList();
 				this.setEditorNotValidate();
+				this.setBuyerList();
 				connectedUser = admin;
 				
 				break;
@@ -130,6 +134,27 @@ public class ApplicationFacade {
 	/**
 	 * 
 	 */
+	public void setBuyerList() {
+    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	UserDAO buyerDAO =  daoFactory.getUserDAO() ;
+    	ArrayList<Buyer> buyer = buyerDAO.getAllBuyers();
+    	
+    	for(int i=0; i<buyer.size();i++) {
+    		String idActor = buyer.get(i).getIdActor();
+    		String idSimpleUser = buyer.get(i).getIdSU();
+    		String idBuyer = buyer.get(i).getIdBuyer();
+    		String username = buyer.get(i).getUsername();
+    		String email = buyer.get(i).getEmail();
+    		String zipcode = buyer.get(i).getZipCode();
+    		String phoneNumber = buyer.get(i).getPhoneNumber();
+    		BuyerCell cellBuyer = new BuyerCell(idActor,idSimpleUser,idBuyer,username, email,zipcode,phoneNumber);
+    		buyers.add(cellBuyer);
+    	}
+    }
+	
+	/**
+	 * 
+	 */
 	public void setEditorNotValidate(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
@@ -146,7 +171,7 @@ public class ApplicationFacade {
 			String representativeName = ed.get(i).getRepresentativeName();
 			boolean validation = ed.get(i).getValidation();
 			EditorCell cellEd = new EditorCell(idActor,idSimpleUser,idEditor,username, email,zipcode,phoneNumber,representativeName, validation);
-			editors.add(cellEd);
+			editorsToValid.add(cellEd);
 		}
 	}
 
@@ -193,12 +218,16 @@ public class ApplicationFacade {
 		return this.editors;
 	}
 	
+	public ObservableList<BuyerCell> getBuyersList(){
+		return this.buyers;
+	}
+	
 	/**
 	 * 
 	 * @return
 	 */
 	public ObservableList<EditorCell> getEditorsToValidList(){
-		return this.editors;
+		return this.editorsToValid;
 	}
 
 	/**
@@ -536,7 +565,6 @@ public class ApplicationFacade {
 	public void validateEditor(String editor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO =  daoFactory.getEditorDAO();
-		Editor editToValidate = editorDAO.getEditorById(editor);
-		editToValidate.changeValidate();
+		editorDAO.validateEditor(editor);
 	}
 }
