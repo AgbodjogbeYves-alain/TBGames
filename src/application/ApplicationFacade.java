@@ -18,6 +18,7 @@ import presentation.userInterface.tableCells.AdministratorCell;
 import presentation.userInterface.tableCells.BuyerCell;
 import presentation.userInterface.tableCells.EditorCell;
 import presentation.userInterface.tableCells.GameCell;
+import presentation.userInterface.tableCells.PostCell;
 import persistence.* ;
 
 /**
@@ -585,6 +586,11 @@ public class ApplicationFacade {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ObservableList<PostCell> getPostsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	/**
 	 * 
@@ -621,5 +627,12 @@ public class ApplicationFacade {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO =  daoFactory.getEditorDAO();
 		editorDAO.validateEditor(editor);
+	}
+	
+	public void updateGame(String idItem, String title, String description, String category, String consoleType) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		GameDAO gameDAO = daoFactory.getGameDAO();
+		Game newGame = new Game(title, description, category, consoleType);
+		gameDAO.update(idItem,newGame);
 	}
 }
