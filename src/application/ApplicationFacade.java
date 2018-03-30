@@ -39,7 +39,6 @@ public class ApplicationFacade {
 	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
 	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
 	private ObservableList<AdministratorCell> administrators = FXCollections.observableArrayList();
-	private ObservableList<AdministratorCell> admins = FXCollections.observableArrayList();
 	private ObservableList<GameCell> games = FXCollections.observableArrayList();
 	private ObservableList<BuyerCell> buyers = FXCollections.observableArrayList();
 
@@ -248,6 +247,12 @@ public class ApplicationFacade {
 	 */
 	public void logOff(){
 		connectedUser = null;
+		this.editors = null;
+		this.administrators = null;
+		this.buyers = null;
+		this.consoles = null;
+		this.editorsToValid = null;
+		this.games = null;
 	}
 
 	/**
