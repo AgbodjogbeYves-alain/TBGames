@@ -429,18 +429,22 @@ public class ApplicationFacade {
 		GameDAO gameDAO =  daoFactory.getGameDAO();
 		ArrayList<Game> games = gameDAO.getAll();
 		
+		String id;
 		String name ;
-		int rating ;
+		int rating = 0 ;
 		String consoleType ;
 		String description ;
 		String category ;
+		String idUser;
 
 		for(int i=0;i<games.size();i++) {
+			id = games.get(i).getIdItem();
 			name = games.get(i).getName() ;
-			consoleType = games.get(i).getConsoleType().getBrand() ;
+			consoleType = games.get(i).getConsoleType() ;
 			description = games.get(i).getDescription() ;
 			category = games.get(i).getCategory().getNameCategory() ;
-			GameCell gameCell = new GameCell(name, rating, consoleType, description, category);
+			idUser = games.get(i).getUser();
+			GameCell gameCell = new GameCell(id,name, rating, idUser,consoleType, description, category);
 			this.games.add(gameCell);
 		}
 	}

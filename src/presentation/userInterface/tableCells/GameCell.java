@@ -10,13 +10,12 @@ public class GameCell extends ItemCell{
 	private StringProperty gameCategory;
 	
 	public GameCell() {
-		this(null,null,0,null,null,null,null,null);
+		this(null,null,0,null,null,null,null);
 	}
 	
-	public GameCell(String id,String name, int ratingItem,String idUser, String consoleType, String idG, String description, String gameCategory) {
+	public GameCell(String id,String name, int ratingItem,String idUser, String consoleType, String description, String gameCategory) {
 		
 		super(id,name,ratingItem,idUser,consoleType);
-		this.idGame = new SimpleStringProperty(idG);
 		this.description = new SimpleStringProperty(description);
 		this.gameCategory = new SimpleStringProperty(gameCategory);
 	}
