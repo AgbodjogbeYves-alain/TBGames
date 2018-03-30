@@ -51,6 +51,38 @@ public class EditorDAOPG extends EditorDAO {
 		return null;
 	}
 
+    
+	@Override
+	public ArrayList<Editor> getAllEditorsNV() {
+		String query = "SELECT * FROM EDITOR WHERE validation = 'false';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		ArrayList<Editor> ed = new ArrayList<Editor>();
+		
+		try {
+				while (queryResult.next()) {
+					Editor e  = new Editor();
+					e.setId(queryResult.getString("idActor"));
+					e.setIdSU(queryResult.getString("idSimpleUser"));
+					e.setIdEditor(queryResult.getString("idEditor"));
+					e.setEmail(queryResult.getString("email"));
+					e.setPhoneNumber(queryResult.getString("phonenumber"));
+					e.setUsername(queryResult.getString("username"));
+					e.setRepresentativeName(queryResult.getString("representativeName"));
+					e.setValidate(queryResult.getBoolean("validation"));
+					e.setZipCode(queryResult.getString("zipcode"));
+					ed.add(e);
+				
+				}
+				
+			}catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("Taille ed : "+ed.size());
+		return ed;
+		
+	}
+	
 	@Override
 	public ArrayList<Editor> getAllEditors() {
 		String query = "SELECT * FROM EDITOR ;" ;

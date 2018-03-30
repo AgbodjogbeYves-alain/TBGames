@@ -14,6 +14,8 @@ public abstract class EditorDAO {
 
 	public abstract ArrayList<Editor> getAllEditors();
 	
+	public abstract ArrayList<Editor> getAllEditorsNV();
+	
 	public abstract void saveEditor(Editor editor);
 
 	public abstract Editor getEditorById(String id);
