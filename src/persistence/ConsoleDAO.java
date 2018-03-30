@@ -9,8 +9,6 @@ public abstract class ConsoleDAO {
 		
 	public abstract Console createById(String id);
 
-	public abstract ArrayList<Console> getAllConsoles(String idUser);
-
 	public abstract ArrayList<Console> getAllConsoles();
 	
 	public abstract void saveConsole(Console console);

@@ -18,7 +18,7 @@ import presentation.userInterface.tableCells.AdministratorCell;
 import presentation.userInterface.tableCells.BuyerCell;
 import presentation.userInterface.tableCells.EditorCell;
 import presentation.userInterface.tableCells.GameCell;
-import presentation.userInterface.tableCells.PostCell;
+//import presentation.userInterface.tableCells.PostCell;
 import persistence.* ;
 
 /**
@@ -86,6 +86,7 @@ public class ApplicationFacade {
 				this.setEditorsList();
 				this.setEditorNotValidate();
 				this.setBuyerList();
+				this.setConsolesList();
 				connectedUser = admin;
 				
 				break;
@@ -189,8 +190,8 @@ public class ApplicationFacade {
 	public void setConsolesList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		ConsoleDAO consoleDAO =  daoFactory.getConsoleDAO() ;
-		ArrayList<Console> cs = consoleDAO.getAllConsoles(((Actor) connectedUser).getIdActor());
-
+		ArrayList<Console> cs = consoleDAO.getAllConsoles();
+		System.out.print(cs);
 		for(int i=0;i<cs.size();i++) {
 			String idItem = cs.get(i).getIdItem();
 			String idConsole = cs.get(i).getIdConsole();
@@ -527,7 +528,7 @@ public class ApplicationFacade {
 	/**
 	 * Set the game list for the application façade
 	 */
-	public void setGamesList() {
+	/*public void setGamesList() {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		GameDAO gameDAO =  daoFactory.getGameDAO();
 		ArrayList<Game> games = gameDAO.getAll();
@@ -550,18 +551,18 @@ public class ApplicationFacade {
 			GameCell gameCell = new GameCell(id,name, rating, idUser,consoleType, description, category);
 			this.games.add(gameCell);
 		}
-	}
+	}*/
 
 	/**
 	 * Method to get the gamelist from the application façade
 	 * @return game list
 	 */
-	public ObservableList<GameCell> getGamesList(){
+	/*public ObservableList<GameCell> getGamesList(){
 		if (this.games.size() == 0) {
 			setGamesList() ;
 		}
 		return this.games;
-	}
+	}*/
 
 
 
@@ -584,13 +585,13 @@ public class ApplicationFacade {
 	 */
 	public ObservableList<ConsoleCell> getConsolesList() {
 		// TODO Auto-generated method stub
-		return null;
+		return consoles;
 	}
-	
+	/*
 	public ObservableList<PostCell> getPostsList() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	/**
 	 * 
