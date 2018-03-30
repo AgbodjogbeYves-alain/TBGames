@@ -95,12 +95,10 @@ public class ApplicationFacade {
 				break;
 
 			case "SuperAdmin":
-				System.out.println("YEAH");
 				SuperAdministratorDAO superAdminDAO =  daoFactory.getSuperAdministratorDAO();
 				SuperAdministrator sAdmin = superAdminDAO.getById(((Actor) user).getIdActor());
 				connectedUser = sAdmin;
 				break;
-
 
 			}
 		}
@@ -323,7 +321,10 @@ public class ApplicationFacade {
 		try {
 
 			if(actor!=null) {
-				if (actor.getIsAdministrator()) {
+				if (actor.getIsSuperAdmin()) {
+					type = "SuperAdmin";
+				}
+				else if (actor.getIsAdministrator()) {
 					type = "Administrator";
 				}
 				else if (actor.getIsBuyer()) {
@@ -332,11 +333,11 @@ public class ApplicationFacade {
 				else if (actor.getIsEditor()) {
 					type = "Editor";
 				}
-				else if (actor.getIsSuperAdmin()) {
-					type = "SuperAdmin";
-				}else {
+				else {
 					type = null;
 				}
+				
+				System.out.println("User is " + type) ;
 			}
 		}catch (Error e){
 			AlertBox.showAlert("No type found for this user","No type found","Erreur");

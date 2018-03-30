@@ -38,8 +38,8 @@
                   </Label>
                   <Label layoutX="200.0" layoutY="374.0" text="Username" />
                   <Label layoutX="200.0" layoutY="401.0" text="E-mail" />
-                  <Label fx:id="userNameLabelEditor" layoutX="448.0" layoutY="374.0" text="Label" />
-                  <Label fx:id="emailLabelEditor" layoutX="448.0" layoutY="401.0" text="Label" />
+                  <Label fx:id="adminUsername" layoutX="448.0" layoutY="374.0" text="Label" />
+                  <Label fx:id="adminEmail" layoutX="448.0" layoutY="401.0" text="Label" />
                   <Button fx:id="deleteBTN" layoutX="251.0" layoutY="484.0" mnemonicParsing="false" onAction="#handleDeleteAdministrator" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #2980BA;" text="Delete" textFill="WHITE" />
                </children>
             </AnchorPane>

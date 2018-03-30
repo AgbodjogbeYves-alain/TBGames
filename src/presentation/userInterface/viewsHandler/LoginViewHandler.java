@@ -61,7 +61,7 @@ public class LoginViewHandler{
 				break;
 
 			case "SuperAdmin":
-				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
+				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewSAdmin.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the force be with you " + userType );
 				break;
 		}    		
