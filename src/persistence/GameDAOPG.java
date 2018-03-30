@@ -22,12 +22,12 @@ public class GameDAOPG extends GameDAO {
 	public void save(Game game) {
 		String name = game.getName();
 		int rating = game.getRating();
-		User user = game.getUser();
-		ConsoleType consoleType = game.getConsoleType();
+		String user = game.getUser();
+		String consoleType = game.getConsoleType();
 		String description = game.getDescription();
 		Category category = game.getCategory();
-		String query = "INSERT INTO Game" + fieldsToInsert + " VALUES (" + name + "," + rating + "," + user.getIdActor()
-				+ "," + consoleType.getIdConsoleType() + "," + description + "," + category + ");";
+		String query = "INSERT INTO Game" + fieldsToInsert + " VALUES (" + name + "," + rating + "," + user
+				+ "," + consoleType + "," + description + "," + category + ");";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
@@ -38,12 +38,12 @@ public class GameDAOPG extends GameDAO {
 	public void update(Game oldGame, Game newGame) {
 		String name = newGame.getName();
 		int rating = newGame.getRating();
-		User user = newGame.getUser();
-		ConsoleType consoleType = newGame.getConsoleType();
+		String user = newGame.getUser();
+		String consoleType = newGame.getConsoleType();
 		String description = newGame.getDescription();
 		Category category = newGame.getCategory();
-		String query = "UPDATE TABLE Game SET " + fieldsToInsert + " = (" + name + "," + rating + "," + user.getIdActor()
-				+ "," + consoleType.getIdConsoleType() + "," + description + "," + category + ") WHERE idGame = "
+		String query = "UPDATE TABLE Game SET " + fieldsToInsert + " = (" + name + "," + rating + "," + user
+				+ "," + consoleType + "," + description + "," + category + ") WHERE idGame = "
 				+ oldGame.getIdGame() + ";";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
