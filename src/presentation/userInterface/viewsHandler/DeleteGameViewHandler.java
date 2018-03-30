@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import presentation.MainStage;
+import presentation.userInterface.helper.AlertBox;
 
 public class DeleteGameViewHandler {
 	@FXML private Label gameTitle;
@@ -35,9 +36,9 @@ public class DeleteGameViewHandler {
 			e.printStackTrace();
 		}
 	}
-	
+	/*
 	public void handlevalidateAction(ActionEvent event) {
-		/*
+		
 			ApplicationFacade.getInstance().CreateGame(title, description);
 			try {
 				FXMLLoader loader = new FXMLLoader();
@@ -55,5 +56,5 @@ public class DeleteGameViewHandler {
 		}
 		*/
 	}
-}
+
 	

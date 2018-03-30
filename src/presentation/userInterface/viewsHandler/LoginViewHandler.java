@@ -56,11 +56,11 @@ public class LoginViewHandler{
 				break;
 
 			case "Buyer" : 
-				loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
+				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewBuyer.fxml"));
 				MainStage.getPrimaryStage().setTitle("Let's be brave "+ userType);
 				break;
 
-			case "SuperAdministrator":
+			case "SuperAdmin":
 				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the force be with you " + userType );
 				break;
