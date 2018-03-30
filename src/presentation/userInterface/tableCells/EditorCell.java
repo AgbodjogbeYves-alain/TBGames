@@ -13,14 +13,14 @@ public class EditorCell extends SimpleUserCell{
 
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public EditorCell() {
 		this(null,null,null,null,null,null,null,null,false);
 	}
 	
 	/**
-	 * 
+	 * Constructor with parameters
 	 * @param idActor
 	 * @param idSimpleUser
 	 * @param idEditor

@@ -1,5 +1,7 @@
 package persistence;
 
+import java.util.ArrayList;
+
 import application.*;
 
 /**
@@ -19,5 +21,6 @@ public abstract class UserDAO {
 
     public abstract void updateUser(String idActor, String username, String email, String password, String zipCode, String phoneNumber);
 
+    public abstract ArrayList<Buyer> getAllBuyers();
 
 }

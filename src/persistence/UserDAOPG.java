@@ -109,9 +109,38 @@ public class UserDAOPG extends UserDAO {
 		}
 		return null;
 	}
-
-	   public void updateUser(String idActor, String username, String email, String password, String zipCode, String phoneNumber) {
-	    	String query = "UPDATE User SET (username, email, password,zipcode,phonenumber) = ('"+username+"', '"+email+"', '"+password+"','"+zipCode+"','"+phoneNumber+"') WHERE idActor = '"+idActor+"';" ;
-			int queryResult = PGDAOFactory.getConnector().executeUpdate(query) ;
-	    }
+	
+	@Override
+	public void updateUser(String idActor, String username, String email, String password, String zipCode, String phoneNumber) {
+	    String query = "UPDATE User SET (username, email, password,zipcode,phonenumber) = ('"+username+"', '"+email+"', '"+password+"','"+zipCode+"','"+phoneNumber+"') WHERE idActor = '"+idActor+"';" ;
+	    int queryResult = PGDAOFactory.getConnector().executeUpdate(query) ;
+	}
+	
+	@Override
+	public ArrayList<Buyer> getAllBuyers(){
+		String query = "SELECT * FROM Buyer ;" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		ArrayList<Buyer> buyers = new ArrayList<Buyer>();
+		
+		try {
+				while (queryResult.next()) {
+					Buyer b  = new Buyer();
+					b.setId(queryResult.getString("idActor"));
+					b.setIdSU(queryResult.getString("idSimpleUser"));
+					b.setIdBuyer(queryResult.getString("idEditor"));
+					b.setEmail(queryResult.getString("email"));
+					b.setPhoneNumber(queryResult.getString("phonenumber"));
+					b.setUsername(queryResult.getString("username"));
+					b.setZipCode(queryResult.getString("zipcode"));
+					buyers.add(b);
+				
+				}
+				
+			}catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("Taille b : "+buyers.size());
+		return buyers;
+	}
 }
