@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="tabInfos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="972.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.ManageInfosEditorViewHandler">
+<AnchorPane fx:id="tabInfos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="972.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.ManageInfosBuyerViewHandler">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="258.0" layoutY="109.0" prefHeight="629.0" prefWidth="972.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="editBTNBuyer" layoutX="63.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleEditEditor" prefHeight="47.0" prefWidth="159.0" style="-fx-background-color: #2980BA;" text="Edit" textFill="WHITE">
+                  <Button fx:id="editBTNBuyer" layoutX="63.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleEditBuyer" prefHeight="47.0" prefWidth="159.0" style="-fx-background-color: #2980BA;" text="Edit" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="deleteBTNBuyer" layoutX="63.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleDeleteEditor" prefHeight="47.0" prefWidth="159.0" style="-fx-background-color: #2980BA;" text="Delete account" textFill="WHITE">
+                  <Button fx:id="deleteBTNBuyer" layoutX="63.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleDeleteBuyer" prefHeight="47.0" prefWidth="159.0" style="-fx-background-color: #2980BA;" text="Delete account" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

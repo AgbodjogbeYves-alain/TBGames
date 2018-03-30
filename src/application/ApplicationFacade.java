@@ -546,7 +546,7 @@ public class ApplicationFacade {
 			name = games.get(i).getName() ;
 			consoleType = games.get(i).getConsoleType() ;
 			description = games.get(i).getDescription() ;
-			category = games.get(i).getCategory().getNameCategory() ;
+			category = games.get(i).getCategory();
 			idUser = games.get(i).getUser();
 			GameCell gameCell = new GameCell(id,name, rating, idUser,consoleType, description, category);
 			this.games.add(gameCell);
@@ -628,6 +628,13 @@ public class ApplicationFacade {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO =  daoFactory.getEditorDAO();
 		editorDAO.validateEditor(editor);
+	}
+
+	public void updateBuyer(String username, String email, String password, String phoneNumber, String zipCode) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		UserDAO userDAO = daoFactory.getUserDAO();
+		userDAO.updateUser(((Actor) connectedUser).getIdActor(),username, email, password, zipCode,
+				phoneNumber);
 	}
 	
 	public void updateGame(String idItem, String title, String description, String category, String consoleType) {
