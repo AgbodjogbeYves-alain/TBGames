@@ -43,7 +43,7 @@ public class AddGameViewHandler {
 			ApplicationFacade.getInstance().CreateGame(title, description);
 			try {
 				FXMLLoader loader = new FXMLLoader();
-	    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddDemandBuyerView.fxml"));
+	    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddGameView.fxml"));
 	    		AnchorPane view;
 	    		view = (AnchorPane) loader.load();
 	    		Scene scene = new Scene(view);
