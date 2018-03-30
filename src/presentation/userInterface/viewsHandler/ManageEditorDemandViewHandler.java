@@ -25,7 +25,7 @@ import presentation.userInterface.tableCells.EditorCell;
 
 public class ManageEditorDemandViewHandler {
 
-	@FXML private TableView<EditorCell> tableViewEditors;
+	@FXML private TableView<EditorCell> tableViewEditorsNV;
 	@FXML private TableColumn<EditorCell,String> representativeNameColumnEditor ;
 	@FXML private TableColumn<EditorCell,String> nameColumnEditor ;
 	@FXML private Label phoneNumberLabelEditor ;
@@ -45,13 +45,12 @@ public class ManageEditorDemandViewHandler {
 		representativeNameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().representativeNameProperty());
 		nameColumnEditor.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
 
-		tableViewEditors.setItems(ApplicationFacade.getInstance().getEditorsToValidList());
-
+		tableViewEditorsNV.setItems(ApplicationFacade.getInstance().getEditorsToValidList());
 		// Clear person details.
 		showEditorDetails(null);
 
 		// Listen for selection changes and show the person details when changed.
-		tableViewEditors.getSelectionModel().selectedItemProperty().addListener(
+		tableViewEditorsNV.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showEditorDetails(newValue));
 	}
 
@@ -86,13 +85,12 @@ public class ManageEditorDemandViewHandler {
 	 */
 	@FXML
 	private void handleDeleteEditor() {
-		int selectedIndex = tableViewEditors.getSelectionModel().getSelectedIndex();
+		int selectedIndex = tableViewEditorsNV.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-
-			String idActor = ApplicationFacade.getInstance().getEditorsList().get(selectedIndex).getId();
-			ApplicationFacade.getInstance().getEditorsList().remove(selectedIndex);
+			String idActor = ApplicationFacade.getInstance().getEditorsToValidList().get(selectedIndex).getId();
+			ApplicationFacade.getInstance().getEditorsToValidList().remove(selectedIndex);
 			ApplicationFacade.getInstance().deleteActor(idActor);
-			tableViewEditors.getItems().remove(selectedIndex);
+			tableViewEditorsNV.getItems().remove(selectedIndex);
 			AlertBox.showAlert("Delete succeed", "", "Editor deletion");
 
 		} else {
@@ -105,13 +103,14 @@ public class ManageEditorDemandViewHandler {
 	 */
 	@FXML
 	private void handleValidateEditor() {
-		int selectedIndex = tableViewEditors.getSelectionModel().getSelectedIndex();
+		int selectedIndex = tableViewEditorsNV.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 
-			String idActor = ApplicationFacade.getInstance().getEditorsList().get(selectedIndex).getId();
+			String idActor = ApplicationFacade.getInstance().getEditorsToValidList().get(selectedIndex).getId();
+			System.out.println(idActor);
 			ApplicationFacade.getInstance().validateEditor(idActor);
-			tableViewEditors.getItems().remove(selectedIndex);
-			AlertBox.showAlert("Delete succeed", "", "Editor deletion");
+			tableViewEditorsNV.getItems().remove(selectedIndex);
+			AlertBox.showAlert("Validate succeed", "", "Editor validation");
 
 		} else {
 			AlertBox.showAlert("", "", "");

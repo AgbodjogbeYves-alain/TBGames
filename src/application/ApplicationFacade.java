@@ -34,6 +34,7 @@ public class ApplicationFacade {
 		this.connectedUser = connectedUser;
 	}
 
+	private ObservableList<EditorCell> editorsToValid = FXCollections.observableArrayList();
 	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
 	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
 	private ObservableList<AdministratorCell> administrators = FXCollections.observableArrayList();
@@ -143,7 +144,7 @@ public class ApplicationFacade {
 			String representativeName = ed.get(i).getRepresentativeName();
 			boolean validation = ed.get(i).getValidation();
 			EditorCell cellEd = new EditorCell(idActor,idSimpleUser,idEditor,username, email,zipcode,phoneNumber,representativeName, validation);
-			editors.add(cellEd);
+			editorsToValid.add(cellEd);
 		}
 	}
 
@@ -195,7 +196,7 @@ public class ApplicationFacade {
 	 * @return
 	 */
 	public ObservableList<EditorCell> getEditorsToValidList(){
-		return this.editors;
+		return this.editorsToValid;
 	}
 
 	/**
@@ -533,7 +534,6 @@ public class ApplicationFacade {
 	public void validateEditor(String editor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO =  daoFactory.getEditorDAO();
-		Editor editToValidate = editorDAO.getEditorById(editor);
-		editToValidate.changeValidate();
+		editorDAO.validateEditor(editor);
 	}
 }

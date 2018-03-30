@@ -151,5 +151,11 @@ public class EditorDAOPG extends EditorDAO {
 		String query = "UPDATE Editor SET (username, email, password,zipcode,phonenumber,representativename) = ('"+usernameEditor+"', '"+emailEditor+"', '"+passwordEditor+"','"+zipCodeEditor+"','"+phoneNumberEditor+"','"+representativeNameEditor+"') WHERE idActor = '"+idActor+"';" ;
 		PGDAOFactory.getConnector().executeUpdate(query) ;
 	}
+	
+	@Override
+	public void validateEditor(String id) {
+		String query = "UPDATE Editor SET validation = true WHERE idActor = '" + id + "';" ;
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query) ;
+	}
 }
 
