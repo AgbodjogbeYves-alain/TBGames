@@ -15,7 +15,7 @@ public abstract class GameDAO {
 	 * @param oldGame
 	 * @param newGame
 	 */
-	public abstract void update(Game oldGame, Game newGame);
+	public abstract void update(String idItem, Game newGame);
 
 	/**
 	 * @param game

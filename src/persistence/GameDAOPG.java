@@ -25,7 +25,7 @@ public class GameDAOPG extends GameDAO {
 		String user = game.getUser();
 		String consoleType = game.getConsoleType();
 		String description = game.getDescription();
-		Category category = game.getCategory();
+		String category = game.getCategory();
 		String query = "INSERT INTO Game" + fieldsToInsert + " VALUES (" + name + "," + rating + "," + user
 				+ "," + consoleType + "," + description + "," + category + ");";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
@@ -35,16 +35,16 @@ public class GameDAOPG extends GameDAO {
 	 * @param oldGame
 	 * @param newGame
 	 */
-	public void update(Game oldGame, Game newGame) {
+	public void update(String idItem, Game newGame) {
 		String name = newGame.getName();
 		int rating = newGame.getRating();
 		String user = newGame.getUser();
 		String consoleType = newGame.getConsoleType();
 		String description = newGame.getDescription();
-		Category category = newGame.getCategory();
+		String category = newGame.getCategory();
 		String query = "UPDATE TABLE Game SET " + fieldsToInsert + " = (" + name + "," + rating + "," + user
-				+ "," + consoleType + "," + description + "," + category + ") WHERE idGame = "
-				+ oldGame.getIdGame() + ";";
+				+ "," + consoleType + "," + description + "," + category + ") WHERE idItem = "
+				+ idItem + ";";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
@@ -90,4 +90,6 @@ public class GameDAOPG extends GameDAO {
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
 		return gameList;
 	}
+
+
 }

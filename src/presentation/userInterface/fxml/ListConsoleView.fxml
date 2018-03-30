@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="tab1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.ListConsoleViewHandler">
+<AnchorPane fx:id="tab2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.ListConsolesViewHandler">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="974.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -22,7 +22,7 @@
                       <TableColumn fx:id="categoryConsoleColumn" prefWidth="152.79998779296875" text="Console type" />
                     </columns>
                   </TableView>
-                  <Button fx:id="deleteBTN11" layoutX="46.0" layoutY="574.0" mnemonicParsing="false" onAction="#handleAddConsole" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #2980BA;" text="Add Console" textFill="WHITE" />
+                  <Button fx:id="deleteBTN11" layoutX="46.0" layoutY="574.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #2980BA;" text="Add Console" textFill="WHITE" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="680.0" style="-fx-background-color: white;">
@@ -44,7 +44,7 @@
                   <Label fx:id="consoleTypeLabel" layoutX="469.0" layoutY="333.0" text="Label" />
                   <Label fx:id="ratingLabel" layoutX="469.0" layoutY="408.0" text="Label" />
                   <Button fx:id="deleteBTN" layoutX="393.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleDeleteConsole" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #2980BA;" text="Delete" textFill="WHITE" />
-                  <Button fx:id="editBTN" layoutX="141.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleEditConsole" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #2980BA;" text="Edit" textFill="WHITE" />
+                  <Button fx:id="editBTN" layoutX="141.0" layoutY="501.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #2980BA;" text="Edit" textFill="WHITE" />
                </children>
             </AnchorPane>
         </items>

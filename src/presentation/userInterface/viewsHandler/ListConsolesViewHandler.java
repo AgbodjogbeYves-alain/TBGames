@@ -74,7 +74,6 @@ public class ListConsolesViewHandler {
 	        	ApplicationFacade.getInstance().deleteConsole(idItem);
 	            tableViewConsole.getItems().remove(selectedIndex);
 	            AlertBox.showAlert("Delete succeed", "", "Console deletion");
-	            
 	        } else {
 	            AlertBox.showAlert("", "", "");
 	        }
