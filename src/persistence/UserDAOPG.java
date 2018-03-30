@@ -127,7 +127,7 @@ public class UserDAOPG extends UserDAO {
 					Buyer b  = new Buyer();
 					b.setId(queryResult.getString("idActor"));
 					b.setIdSU(queryResult.getString("idSimpleUser"));
-					b.setIdBuyer(queryResult.getString("idEditor"));
+					b.setIdBuyer(queryResult.getString("idBuyer"));
 					b.setEmail(queryResult.getString("email"));
 					b.setPhoneNumber(queryResult.getString("phonenumber"));
 					b.setUsername(queryResult.getString("username"));

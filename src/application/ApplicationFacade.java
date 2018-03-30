@@ -77,6 +77,7 @@ public class ApplicationFacade {
 				Administrator admin = adminDAO.getById(((Actor) user).getIdActor());
 				this.setEditorsList();
 				this.setEditorNotValidate();
+				this.setBuyerList();
 				connectedUser = admin;
 				
 				break;
