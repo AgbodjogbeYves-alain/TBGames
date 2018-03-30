@@ -82,5 +82,11 @@ public class UserDAOPG extends UserDAO {
 				+ "," + zipCode + "," + phoneNumber + ")";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
+	
+    public void updateUser(String idActor, String username, String email, String password, String zipCode, String phoneNumber) {
+    	String query = "UPDATE User SET (username, email, password,zipcode,phonenumber) = ('"+username+"', '"+email+"', '"+password+"','"+zipCode+"','"+phoneNumber+"') WHERE idActor = '"+idActor+"';" ;
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query) ;
+    }
+
 
 }

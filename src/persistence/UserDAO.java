@@ -14,5 +14,7 @@ public abstract class UserDAO {
     public abstract User createById(String id);
     
     public abstract void saveUser(User user);
+    
+    public abstract void updateUser(String idActor, String username, String email, String password, String zipCode, String phoneNumber);
 
 }
