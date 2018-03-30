@@ -31,7 +31,7 @@ public class ListBuyersViewHandler {
         // Initialize the person table with the two columns.
 		nameColumnBuyer.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());		
 		
-		tableViewBuyers.setItems(ApplicationFacade.getInstance().getBuyerList());
+		tableViewBuyers.setItems(ApplicationFacade.getInstance().getBuyersList());
 		
 		 // Clear person details.
 	    showBuyerDetails(null);
@@ -48,8 +48,8 @@ public class ListBuyersViewHandler {
 	private void handleDeleteBuyer() {
 		int selectedIndex = tableViewBuyers.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-        	String idActor = ApplicationFacade.getInstance().getBuyerList().get(selectedIndex).getId();
-        	ApplicationFacade.getInstance().getBuyerList().remove(selectedIndex);
+        	String idActor = ApplicationFacade.getInstance().getBuyersList().get(selectedIndex).getId();
+        	ApplicationFacade.getInstance().getBuyersList().remove(selectedIndex);
         	ApplicationFacade.getInstance().deleteActor(idActor);
             tableViewBuyers.getItems().remove(selectedIndex);
             AlertBox.showAlert("Delete succeed", "", "Buyer deletion");
