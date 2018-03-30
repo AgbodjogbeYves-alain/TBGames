@@ -499,4 +499,11 @@ public class ApplicationFacade {
 		String userType = this.getActorType((Actor)ApplicationFacade.getConnectedUser());
 		return  userType == "Buyer";
 	}
+	
+	public void validateEditor(String editor) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		EditorDAO editorDAO =  daoFactory.getEditorDAO();
+		Editor editToValidate = editorDAO.getEditorById(editor);
+		editToValidate.changeValidate();
+	}
 }
