@@ -29,56 +29,54 @@ public class PostViewHandler {
 	@FXML private Button deleteBTN;
 	@FXML private CheckBox offerCB;
 	@FXML private CheckBox demandCB;
-	
-    @FXML
-    public void initialize() {
-    	labelPost.setText(post.getTitle());;
-    	labelDescription.setText(post.getDescription());
+
+	@FXML
+	public void initialize() {
+		labelPost.setText(post.getTitle());;
+		labelDescription.setText(post.getDescription());
 		labelItemType.setText("Not Mentioned");
 		labelItemName.setText(post.getItem().get());
 		labelPrice.setText(Integer.toString(post.getPrice()));
-    }
-	
+	}
+
 	public void handlecancelAction(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
-    		AnchorPane view;
-    		view = (AnchorPane) loader.load();
-    		Scene scene = new Scene(view);
-    		MainStage.getPrimaryStage().setTitle("Administrator view");
-    		MainStage.getPrimaryStage().setScene(scene);
-    		MainStage.getPrimaryStage().show();
+			loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
+			AnchorPane view;
+			view = (AnchorPane) loader.load();
+			Scene scene = new Scene(view);
+			MainStage.getPrimaryStage().setTitle("Administrator view");
+			MainStage.getPrimaryStage().setScene(scene);
+			MainStage.getPrimaryStage().show();
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void handledeleteAction(ActionEvent event) {
 		ApplicationFacade.getInstance().DeletePostDemand(post);
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			System.out.println("oklol");
-    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LogInUserView.fxml"));
-    		AnchorPane view;
-    		view = (AnchorPane) loader.load();
-    		Scene scene = new Scene(view);
-    		MainStage.getPrimaryStage().setTitle("Administrator view");
-    		MainStage.getPrimaryStage().setScene(scene);
-    		MainStage.getPrimaryStage().show();
+			loader.setLocation(MainStage.class.getResource("userInterface/fxml/LogInUserView.fxml"));
+			AnchorPane view;
+			view = (AnchorPane) loader.load();
+			Scene scene = new Scene(view);
+			MainStage.getPrimaryStage().setTitle("Administrator view");
+			MainStage.getPrimaryStage().setScene(scene);
+			MainStage.getPrimaryStage().show();
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void handleupdateAction(ActionEvent event) {
 	}
-	
+
 	static void setPost(String title, String description, int price, String typePost,Optional<String> item) {
-    	String user = ((Actor) ApplicationFacade.getConnectedUser()).getIdActor();
+		String user = ((Actor) ApplicationFacade.getConnectedUser()).getIdActor();
 		post = new Post(title,description,price,typePost,user,item);
-		System.out.print(post.getTitle());
 	}
 }

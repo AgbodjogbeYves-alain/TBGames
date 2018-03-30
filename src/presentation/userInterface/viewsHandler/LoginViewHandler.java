@@ -17,23 +17,23 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class LoginViewHandler{
-	
+
 	/**
 	 * 
 	 */
-    @FXML private TextField usernameTF;
+	@FXML private TextField usernameTF;
 
-    
-    /**
-     * 
-     */
-    @FXML private PasswordField passwordTF;
-    public Label msg = new Label();
-    
-    /**
-     * 
-     * @param event
-     */
+
+	/**
+	 * 
+	 */
+	@FXML private PasswordField passwordTF;
+	public Label msg = new Label();
+
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void handlelogAction(ActionEvent event) {
 		//Faire les tests editor, buyer,administrator ici. Pour chaque if faire la redirection ad�quate
@@ -49,41 +49,40 @@ public class LoginViewHandler{
 				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the wisdom shine through you "+ userType );
 				break;
-				
+
 			case "Editor" : 
 				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewEditor.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the odds be in your favor "+ userType);
 				break;
-				
+
 			case "Buyer" : 
-				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewBuyer.fxml"));
+				loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
 				MainStage.getPrimaryStage().setTitle("Let's be brave "+ userType);
 				break;
-				
+
 			case "SuperAdministrator":
 				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the force be with you " + userType );
 				break;
 		}    		
-    		
 			try {
 				view = (AnchorPane) loader.load();
 				Scene scene = new Scene(view);
-	    		MainStage.getPrimaryStage().setScene(scene);
-	    		MainStage.getPrimaryStage().show();
+				MainStage.getPrimaryStage().setScene(scene);
+				MainStage.getPrimaryStage().show();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-    		
-    	}else {
+
+		}
+		else {
 			AlertBox.showAlert("Votre mot de passe ou login est invalide", "", "Echec de la connexion");
-    	}
-		
-		
+		}
+
+
 	}
-	
+
 	/**
 	 * 
 	 * @param event
@@ -93,13 +92,13 @@ public class LoginViewHandler{
 	private void handlesignupAction(ActionEvent event) throws ClassNotFoundException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/SignUpView.fxml"));
-    		AnchorPane view;
-    		view = (AnchorPane) loader.load();
-    		Scene scene = new Scene(view);
-    		MainStage.getPrimaryStage().setTitle("Sign up");
-    		MainStage.getPrimaryStage().setScene(scene);
-    		MainStage.getPrimaryStage().show();
+			loader.setLocation(MainStage.class.getResource("userInterface/fxml/SignUpView.fxml"));
+			AnchorPane view;
+			view = (AnchorPane) loader.load();
+			Scene scene = new Scene(view);
+			MainStage.getPrimaryStage().setTitle("Sign up");
+			MainStage.getPrimaryStage().setScene(scene);
+			MainStage.getPrimaryStage().show();
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

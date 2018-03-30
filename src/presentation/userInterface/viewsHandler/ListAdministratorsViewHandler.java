@@ -4,22 +4,49 @@ package presentation.userInterface.viewsHandler;
 import application.ApplicationFacade;
 import application.Administrator;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import presentation.userInterface.tableCells.AdministratorCell;
 
 public class ListAdministratorsViewHandler {
 	
-	@FXML TableView<Administrator> tableView ;
-	@FXML TableColumn<Administrator, String> usernameCol;
-	@FXML TableColumn<Administrator, String> emailCol;
+	@FXML TableView<AdministratorCell> tableView ;
+	@FXML TableColumn<AdministratorCell, String> usernameCol;
+	@FXML TableColumn<AdministratorCell, String> emailCol;
+	@FXML private Label adminUsername;
+	@FXML private Label adminEmail;
+	@FXML private Button deleteBTN;
+	@FXML private Button EditBTN;
 
 	@FXML
 	protected void initialize(){
-		//admins = ApplicationFacade.loadAdministratorsList() ;
-		// THE RIGHT WAY TO IMPLEMENT : http://code.makery.ch/library/javafx-8-tutorial/part2/
-		usernameCol.setCellValueFactory(new PropertyValueFactory<Administrator, String>("username"));
-		emailCol.setCellValueFactory(new PropertyValueFactory<Administrator, String>("email"));
-		tableView. setItems(ApplicationFacade.loadAdministratorsList()) ;
+        // Initialize the person table with the two columns.
+    	usernameCol.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
+		emailCol.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+		
+		tableView.setItems(ApplicationFacade.getInstance().getAdministratorsList());
+		
+		 // Clear person details.
+	    showAdministratorDetails(null);
+
+	    // Listen for selection changes and show the person details when changed.
+	    tableView.getSelectionModel().selectedItemProperty().addListener(
+	            (observable, oldValue, newValue) -> showAdministratorDetails(newValue));
+	}
+	
+	public void showAdministratorDetails(AdministratorCell administrator) {
+		if (administrator != null) {
+            // Fill the labels with info from the administrator object.
+			adminUsername.setText(administrator.getUN());
+			adminEmail.setText(administrator.getEmail());
+
+        } else {
+            // Administrator is null, remove all the text.
+        	adminUsername.setText("");
+        	adminEmail.setText("");
+        }
 	}
 }
