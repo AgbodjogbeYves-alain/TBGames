@@ -23,6 +23,12 @@ public abstract class Item {
 		this.setConsoleType(idConsoleType);
 	}
 	
+	public Item(String name, String idConsoleType) {
+		super();
+		this.name = name;
+		this.setConsoleType(idConsoleType);
+	}
+	
 	public Item(String name) {
 		super();
 		this.name = name;
