@@ -572,4 +572,11 @@ public class ApplicationFacade {
 		EditorDAO editorDAO =  daoFactory.getEditorDAO();
 		editorDAO.validateEditor(editor);
 	}
+
+	public void updateBuyer(String username, String email, String password, String phoneNumber, String zipCode) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		UserDAO userDAO = daoFactory.getUserDAO();
+		userDAO.updateUser(((Actor) connectedUser).getIdActor(),username, email, password, zipCode,
+				phoneNumber);
+	}
 }

@@ -78,9 +78,9 @@ public class UserDAOPG extends UserDAO {
 		String password = user.getPassword();
 		String phoneNumber = user.getPhoneNumber();
 		String query = "INSERT INTO BUYER(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber) "
-				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
-				+ "," + zipCode + "," + phoneNumber + ")";
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+				+ "VALUES ('" + name + "','" + email + "','" + password + "'," + true + "," + false + "," + false + "," + false 
+				+ ",'" + zipCode + "','" + phoneNumber + "')";
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class UserDAOPG extends UserDAO {
 	
 	@Override
 	public void updateUser(String idActor, String username, String email, String password, String zipCode, String phoneNumber) {
-	    String query = "UPDATE User SET (username, email, password,zipcode,phonenumber) = ('"+username+"', '"+email+"', '"+password+"','"+zipCode+"','"+phoneNumber+"') WHERE idActor = '"+idActor+"';" ;
+	    String query = "UPDATE Buyer SET (username, email, password,zipcode,phonenumber) = ('"+username+"', '"+email+"', '"+password+"','"+zipCode+"','"+phoneNumber+"') WHERE idActor = '"+idActor+"';" ;
 	    int queryResult = PGDAOFactory.getConnector().executeUpdate(query) ;
 	}
 	
