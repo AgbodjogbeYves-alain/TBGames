@@ -60,7 +60,7 @@ public class LoginViewHandler{
 				MainStage.getPrimaryStage().setTitle("Let's be brave "+ userType);
 				break;
 
-			case "SuperAdministrator":
+			case "SuperAdmin":
 				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the force be with you " + userType );
 				break;

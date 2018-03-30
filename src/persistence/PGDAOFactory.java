@@ -46,8 +46,14 @@ public class PGDAOFactory extends AbstractDAOFactory {
 		return new ActorDAOPG();
 	}
 	
+	@Override
 	public AdministratorDAO getAdministratorDAO() {
 		return new AdministratorDAOPG();
+	}
+	
+	@Override
+	public SuperAdministratorDAO getSuperAdministratorDAO() {
+		return new SuperAdministratorDAOPG();
 	}
 	
 	@Override
