@@ -18,8 +18,8 @@
           </Tab>
             <Tab text="Manage my consoles">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
+    					<fx:include id="tab2" source="ListConsoleView.fxml" />
+            	</content>
             </Tab>
             <Tab text="Manage my account">
                <content>
@@ -35,3 +35,4 @@
       
    </children>
 </AnchorPane>
+

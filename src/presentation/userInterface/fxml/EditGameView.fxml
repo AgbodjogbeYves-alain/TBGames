@@ -13,8 +13,8 @@
       <AnchorPane layoutY="2.0" prefHeight="497.0" prefWidth="430.0">
          <children>
             <Text layoutX="37.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categories" />
-            <Button fx:id="cancel" layoutX="214.0" layoutY="445.0" mnemonicParsing="false" style="-fx-background-color: #2880BA;" text="Cancel" textFill="WHITE" />
-            <Button fx:id="editGame" layoutX="276.0" layoutY="445.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #2880BA;" text="Edit game" textFill="WHITE" />
+            <Button fx:id="cancel" layoutX="214.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleCancel" style="-fx-background-color: #2880BA;" text="Cancel" textFill="WHITE" />
+            <Button fx:id="editGame" layoutX="276.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleValidateGameModification" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #2880BA;" text="Edit game" textFill="WHITE" />
             <Text layoutX="37.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Game">
                <font>
                   <Font name="System Bold" size="16.0" />

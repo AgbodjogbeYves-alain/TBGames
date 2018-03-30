@@ -15,14 +15,14 @@ public class ConsoleDAOPG extends ConsoleDAO {
 	}
 
 	@Override
-	public ArrayList<Console> getAllConsoles(String idUser) {
-		String query = "SELECT * FROM CONSOLE WHERE idUser = '"+idUser+"';" ;
+	public ArrayList<Console> getAllConsoles() {
+		String query = "SELECT * FROM CONSOLE;" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		ArrayList<Console> cs = new ArrayList<Console>();
 		
 		try {
 				while (queryResult.next()) {
-					Console cs1  = new Console(queryResult.getString("idItem"), queryResult.getString("nameItem"),Integer.parseInt(queryResult.getString("ratingItem")),queryResult.getString("idUser"),queryResult.getString("consoleType"),queryResult.getString("idConsole"));
+					Console cs1  = new Console(queryResult.getString("idItem"), queryResult.getString("nameItem"),0,queryResult.getString("idUser"),queryResult.getString("consoleType"),queryResult.getString("idConsole"));
 					cs.add(cs1);
 				}
 				
@@ -41,12 +41,6 @@ public class ConsoleDAOPG extends ConsoleDAO {
 
 	@Override
 	public Console getConsoleById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Console> getAllConsoles() {
 		// TODO Auto-generated method stub
 		return null;
 	}

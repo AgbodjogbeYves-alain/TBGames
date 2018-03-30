@@ -3,7 +3,7 @@ package application;
 public class Game extends Item {
 	private String idGame;
 	private String description;
-	private Category category;
+	private String category;
 
 	/**
 	 * @param idItem
@@ -16,9 +16,15 @@ public class Game extends Item {
 	 * @param category
 	 */
 	public Game(String idItem, String name, int rating, String idUser, String consoleType, String idGame,
-			String description, Category category) {
+			String description, String category) {
 		super(idItem, name, rating, idUser, consoleType);
 		this.idGame = idGame;
+		this.description = description;
+		this.category = category;
+		}
+	
+	public Game(String name, String description, String consoleType, String category) {
+		super(name, consoleType);
 		this.description = description;
 		this.category = category;
 		}
@@ -59,14 +65,14 @@ public class Game extends Item {
 	/**
 	 * @return
 	 */
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
 	/**
 	 * @param category
 	 */
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 

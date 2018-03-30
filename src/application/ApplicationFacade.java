@@ -18,6 +18,7 @@ import presentation.userInterface.tableCells.AdministratorCell;
 import presentation.userInterface.tableCells.BuyerCell;
 import presentation.userInterface.tableCells.EditorCell;
 import presentation.userInterface.tableCells.GameCell;
+//import presentation.userInterface.tableCells.PostCell;
 import persistence.* ;
 
 /**
@@ -27,22 +28,29 @@ public class ApplicationFacade {
 
 	private static ApplicationFacade afInstance = null ;
 	private static Object connectedUser = null ;
+	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
+	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
+	private ObservableList<AdministratorCell> administrators = FXCollections.observableArrayList();
+	private ObservableList<GameCell> games = FXCollections.observableArrayList();
+	private ObservableList<EditorCell> editorsToValid = FXCollections.observableArrayList();
+	private ObservableList<BuyerCell> buyers = FXCollections.observableArrayList();
+	/**
+	 * Get the current user of the application
+	 * @return Object : which will represent Editor, Administrator and so on
+	 */
 	public static Object getConnectedUser() {
 		return connectedUser;
 	}
 
+	/**
+	 * Modify the connected user and keep the current user for treatment
+	 * @param connectedUser
+	 */
 	public void setConnectedUser(Object connectedUser) {
 		this.connectedUser = connectedUser;
 	}
 
-	private ObservableList<EditorCell> editorsToValid = FXCollections.observableArrayList();
-	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
-	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
-	private ObservableList<AdministratorCell> administrators = FXCollections.observableArrayList();
-	private ObservableList<AdministratorCell> admins = FXCollections.observableArrayList();
-	private ObservableList<GameCell> games = FXCollections.observableArrayList();
-	private ObservableList<BuyerCell> buyers = FXCollections.observableArrayList();
-
+ 
 	/**
 	 * Default constructor
 	 */
@@ -78,6 +86,7 @@ public class ApplicationFacade {
 				this.setEditorsList();
 				this.setEditorNotValidate();
 				this.setBuyerList();
+				this.setConsolesList();
 				connectedUser = admin;
 				
 				break;
@@ -179,8 +188,8 @@ public class ApplicationFacade {
 	public void setConsolesList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		ConsoleDAO consoleDAO =  daoFactory.getConsoleDAO() ;
-		ArrayList<Console> cs = consoleDAO.getAllConsoles(((Actor) connectedUser).getIdActor());
-
+		ArrayList<Console> cs = consoleDAO.getAllConsoles();
+		System.out.print(cs);
 		for(int i=0;i<cs.size();i++) {
 			String idItem = cs.get(i).getIdItem();
 			String idConsole = cs.get(i).getIdConsole();
@@ -249,6 +258,12 @@ public class ApplicationFacade {
 	 */
 	public void logOff(){
 		connectedUser = null;
+		this.editors = null;
+		this.administrators = null;
+		this.buyers = null;
+		this.consoles = null;
+		this.editorsToValid = null;
+		this.games = null;
 	}
 
 	/**
@@ -269,8 +284,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
-	 * @param id
+	 * Allows the administrators to delete actors or Actor to delete his account
+	 * @param id : the Id of the user to delete
 	 */
 	public void deleteActor(String id) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -284,12 +299,11 @@ public class ApplicationFacade {
 
 	/**
 	 * Create a post demand with title description price and item, item as a String for the moment
-	 * @param title
-	 * @param descr
-	 * @param price
-	 * @param posttype
+	 * @param title : title of the post
+	 * @param descr : description of the post
+	 * @param price : price of the item
+	 * @param posttype : type of post : Demand or Offer or Trial
 	 */
-
 	public void CreatePostDemand(String title, String descr, int price, String posttype, Optional<String> result) {
 		AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		PostDAO postDAO = DAOFactory.getPostDAO();
@@ -300,9 +314,10 @@ public class ApplicationFacade {
 		postDAO.savePost(postToSave);
 	}
 
+	
 	/**
 	 * Delete a post
-	 * @param post
+	 * @param post : Teh post to delete
 	 */
 	public void DeletePostDemand(Post post) {
 		AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -345,6 +360,8 @@ public class ApplicationFacade {
 		return type;
 	}
 
+	
+	
 	/**
 	 * Methods to get the Buyer corresponding to the id
 	 * @param idActor
@@ -357,6 +374,8 @@ public class ApplicationFacade {
 		User user = buyerDAO.createById(idActor); //To check
 		return (user);
 	}
+	
+	
 
 	/**
 	 * Methods to get the Editor corresponding to the id
@@ -369,9 +388,11 @@ public class ApplicationFacade {
 		Editor editor = editorDAO.getEditorById(idActor);
 		return (editor);
 	}
+	
+	
 
 	/**
-	 * 
+	 * Method to set the administrator list in application façade for the super Administrator
 	 */
 	public void setAdminsList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -383,9 +404,12 @@ public class ApplicationFacade {
 			this.administrators.add(cellAdmin);
 		}
 	}
+	
+	
 
 	/**
-	 * @return
+	 * Return the administrator list which is registered in Application façade 
+	 * @return Administrators
 	 */
 	public ObservableList<AdministratorCell> getAdministratorsList(){
 		if (this.administrators.size() == 0) {
@@ -409,7 +433,15 @@ public class ApplicationFacade {
 
 
 
-
+	/**
+	 * Method to update the editors informations
+	 * @param userNameEditor : Editor username
+	 * @param emailEditor : Editor email
+	 * @param passwordEditor : Editor password
+	 * @param zipCodeEditor : Editor zipCode
+	 * @param phoneNumberEditor : Editor phone number
+	 * @param representativeNameEditor : Editor representative name
+	 */
 	public void updateEditor(String userNameEditor, String emailEditor, String passwordEditor, String zipCodeEditor,
 			String phoneNumberEditor, String representativeNameEditor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -423,10 +455,12 @@ public class ApplicationFacade {
 		((Editor) connectedUser).setZipCode(zipCodeEditor);
 		((Editor) connectedUser).setRepresentativeName(representativeNameEditor);
 	}
+	
 	/**
-	 * @param email
-	 * @param username
-	 * @param pwd
+	 * Method to add an administrator on the platform
+	 * @param email : New admin email
+	 * @param username : New admin username
+	 * @param pwd : New admin password
 	 */
 	public void addAdministrator(String email, String username, String pwd) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -436,7 +470,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * @param admin
+	 * Method to delete an administrator
+	 * @param admin : Administrator to delete
 	 */
 	public void deleteAdministrator(Administrator admin) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -445,7 +480,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * @param oldAdmin
+	 * Method to modify admministrator information
+	 * @param oldAdmin 
 	 * @param newAdmin
 	 */
 	public void updateAdministrator(Administrator oldAdmin, String email, String username, String pwd) {
@@ -456,6 +492,7 @@ public class ApplicationFacade {
 	}
 
 	/**
+	 * Add a new category on the platform
 	 * @param nameCategory
 	 */
 	public void addCategory(String nameCategory) {
@@ -466,6 +503,7 @@ public class ApplicationFacade {
 	}
 
 	/**
+	 * Method to delete a category on the platform
 	 * @param category
 	 */
 	public void deleteCategory(Category category) {
@@ -475,7 +513,7 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
+	 * Method to modfy a category
 	 * @param oldCategory
 	 * @param nameCategory
 	 */
@@ -487,7 +525,11 @@ public class ApplicationFacade {
 
 	}
 
-	public void setGamesList() {
+	
+	/**
+	 * Set the game list for the application façade
+	 */
+	/*public void setGamesList() {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		GameDAO gameDAO =  daoFactory.getGameDAO();
 		ArrayList<Game> games = gameDAO.getAll();
@@ -505,29 +547,30 @@ public class ApplicationFacade {
 			name = games.get(i).getName() ;
 			consoleType = games.get(i).getConsoleType() ;
 			description = games.get(i).getDescription() ;
-			category = games.get(i).getCategory().getNameCategory() ;
+			category = games.get(i).getCategory();
 			idUser = games.get(i).getUser();
 			GameCell gameCell = new GameCell(id,name, rating, idUser,consoleType, description, category);
 			this.games.add(gameCell);
 		}
-	}
+	}*/
 
 	/**
-	 * @return
+	 * Method to get the gamelist from the application façade
+	 * @return game list
 	 */
-	public ObservableList<GameCell> getGamesList(){
+	/*public ObservableList<GameCell> getGamesList(){
 		if (this.games.size() == 0) {
 			setGamesList() ;
 		}
 		return this.games;
-	}
+	}*/
 
 
 
 	/**
-	 * 
-	 * @param title
-	 * @param descr
+	 * Method to  add a new game in the platform
+	 * @param title : title of the game
+	 * @param descr : descritption of the gameS
 	 */
 	public void CreateGame(String title, String descr) {
 		AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -543,21 +586,40 @@ public class ApplicationFacade {
 	 */
 	public ObservableList<ConsoleCell> getConsolesList() {
 		// TODO Auto-generated method stub
-		return null;
+		return consoles;
 	}
+	/*
+	public ObservableList<PostCell> getPostsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 
+	/**
+	 * 
+	 * @param idItem
+	 */
 	public void deleteConsole(String idItem) {
 		// TODO Auto-generated method stub
 
 	}
 
-
+	    
+	/**
+	 * Method to delete a game
+	 * @param game : The game to delete
+	 */
 	public void deleteGame(Game game) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		GameDAO gameDAO = daoFactory.getGameDAO();
 		gameDAO.delete(game);
 	}
+	
+	
 
+	/**
+	 * Allow to know the type of the user
+	 * @return Boolean : bool
+	 */
 	public boolean isBuyer() {
 		String userType = this.getActorType((Actor)ApplicationFacade.getConnectedUser());
 		return  userType == "Buyer";
@@ -567,5 +629,19 @@ public class ApplicationFacade {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO =  daoFactory.getEditorDAO();
 		editorDAO.validateEditor(editor);
+	}
+
+	public void updateBuyer(String username, String email, String password, String phoneNumber, String zipCode) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		UserDAO userDAO = daoFactory.getUserDAO();
+		userDAO.updateUser(((Actor) connectedUser).getIdActor(),username, email, password, zipCode,
+				phoneNumber);
+	}
+	
+	public void updateGame(String idItem, String title, String description, String category, String consoleType) {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		GameDAO gameDAO = daoFactory.getGameDAO();
+		Game newGame = new Game(title, description, category, consoleType);
+		gameDAO.update(idItem,newGame);
 	}
 }
