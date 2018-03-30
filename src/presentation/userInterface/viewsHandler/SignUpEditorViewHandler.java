@@ -24,19 +24,7 @@ public class SignUpEditorViewHandler {
 	
 	@FXML
 	private void handlecancelsignupAction(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
-    		AnchorPane view;
-    		view = (AnchorPane) loader.load();
-    		Scene scene = new Scene(view);
-    		MainStage.getPrimaryStage().setTitle("Login");
-    		MainStage.getPrimaryStage().setScene(scene);
-    		MainStage.getPrimaryStage().show();
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		MainStage.showView();
 	}
 	
 	@FXML
@@ -50,21 +38,7 @@ public class SignUpEditorViewHandler {
 		String cpassword = passwordTF.getText();
 		if (password.equals(cpassword)) {
 			ApplicationFacade.getInstance().SignUpEditor(username, email, password, zipCode, phoneNumber,representativeName);
-			try {
-				FXMLLoader loader = new FXMLLoader();
-	    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
-	    		AnchorPane view;
-	    		view = (AnchorPane) loader.load();
-	    		Scene scene = new Scene(view);
-	    		MainStage.getPrimaryStage().setTitle("Login");
-	    		MainStage.getPrimaryStage().setScene(scene);
-	    		MainStage.getPrimaryStage().show();
-			}catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else{
-		
+			MainStage.showView();
 		}
 	}
 }

@@ -4,23 +4,23 @@ public abstract class Item {
 	private String idItem;
 	private String name;
 	private int rating;
-	private User user;
-	private ConsoleType consoleType;
+	private String user;
+	private String consoleType;
 
 	/**
 	 * @param idItem
 	 * @param name
 	 * @param rating
-	 * @param user
-	 * @param consoleType
+	 * @param string
+	 * @param idConsoleType
 	 */
-	public Item(String idItem, String name, int rating, User user, ConsoleType consoleType) {
+	public Item(String idItem, String name, int rating, String string, String idConsoleType) {
 		super();
 		this.setIdItem(idItem);
 		this.name = name;
 		this.rating = rating;
-		this.setUser(user);
-		this.setConsoleType(consoleType);
+		this.setUser(string);
+		this.setConsoleType(idConsoleType);
 	}
 	
 	public Item(String name) {
@@ -73,28 +73,28 @@ public abstract class Item {
 	/**
 	 * @return
 	 */
-	public User getUser() {
+	public String getUser() {
 		return user;
 	}
 
 	/**
-	 * @param user
+	 * @param string
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(String string) {
+		this.user = string;
 	}
 
 	/**
 	 * @return
 	 */
-	public ConsoleType getConsoleType() {
+	public String getConsoleType() {
 		return consoleType;
 	}
 
 	/**
-	 * @param consoleType
+	 * @param idConsoleType
 	 */
-	public void setConsoleType(ConsoleType consoleType) {
-		this.consoleType = consoleType;
+	public void setConsoleType(String idConsoleType) {
+		this.consoleType = idConsoleType;
 	}
 }

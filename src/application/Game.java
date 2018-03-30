@@ -15,9 +15,9 @@ public class Game extends Item {
 	 * @param description
 	 * @param category
 	 */
-	public Game(String idItem, String name, int rating, User user, ConsoleType consoleType, String idGame,
+	public Game(String idItem, String name, int rating, String idUser, String consoleType, String idGame,
 			String description, Category category) {
-		super(idItem, name, rating, user, consoleType);
+		super(idItem, name, rating, idUser, consoleType);
 		this.idGame = idGame;
 		this.description = description;
 		this.category = category;

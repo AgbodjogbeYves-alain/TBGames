@@ -57,4 +57,6 @@ public abstract class AbstractDAOFactory {
 	 */
 	public abstract CategoryDAO getCategoryDAO();
 
+	public abstract ConsoleDAO getConsoleDAO();
+
 }

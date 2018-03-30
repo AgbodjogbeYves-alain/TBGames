@@ -37,9 +37,12 @@ public class LoginViewHandler{
 	@FXML
 	private void handlelogAction(ActionEvent event) {
 		//Faire les tests editor, buyer,administrator ici. Pour chaque if faire la redirection ad�quate
+		
+
 		if (ApplicationFacade.getInstance().login(usernameTF.getText(),passwordTF.getText())) {
 			FXMLLoader loader = new FXMLLoader();
     		AnchorPane view;
+    		
     		String userType = ApplicationFacade.getInstance().getActorType(((Actor)ApplicationFacade.getInstance().getConnectedUser()));
     		switch (userType) {
 			case "Administrator" : 
@@ -61,9 +64,7 @@ public class LoginViewHandler{
 				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewAdministrators.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the force be with you " + userType );
 				break;
-		}
-    		System.out.println("Accepted");
-    		
+		}    		
     		
 			try {
 				view = (AnchorPane) loader.load();
@@ -76,8 +77,7 @@ public class LoginViewHandler{
 			}
 			
     		
-    	}
-    	else {
+    	}else {
 			AlertBox.showAlert("Votre mot de passe ou login est invalide", "", "Echec de la connexion");
     	}
 		
@@ -91,7 +91,6 @@ public class LoginViewHandler{
 	 */
 	@FXML
 	private void handlesignupAction(ActionEvent event) throws ClassNotFoundException {
-		//showView("Enregistrez-vous!","managePostView.fxml");
 		try {
 			FXMLLoader loader = new FXMLLoader();
     		loader.setLocation(MainStage.class.getResource("userInterface/fxml/SignUpView.fxml"));
@@ -105,6 +104,16 @@ public class LoginViewHandler{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	@FXML
+	private void handleLogout(ActionEvent event){
+		ApplicationFacade.getInstance().logOff();
+		MainStage.showView();
 	}
 }
 

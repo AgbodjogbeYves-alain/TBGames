@@ -8,8 +8,6 @@ import javafx.collections.ObservableList;
 import presentation.userInterface.tableCells.EditorCell;
 
 public abstract class EditorDAO {
-	ObservableList<Editor> editorData = FXCollections.observableArrayList();
-
 	public abstract String getEditorId(String username, String pwd);
 
 	public abstract Editor createById(String id);

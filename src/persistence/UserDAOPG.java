@@ -83,4 +83,31 @@ public class UserDAOPG extends UserDAO {
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
 	}
 
+	@Override
+	public User getUserById(String id) {
+		String query = "SELECT  * FROM SimpleUser WHERE idActor = '" + id + "';" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		try {
+			if (queryResult.next()) {
+				String id1 = queryResult.getString("idActor");
+				String username1 = queryResult.getString("username");
+				String email = queryResult.getString("email");
+				String password = queryResult.getString("password");
+				String zipCode = queryResult.getString("zipCode");
+				String phoneNumber = queryResult.getString("phoneNumber");
+				boolean isAdmin = queryResult.getBoolean("isAdministrator");
+				boolean isEd = queryResult.getBoolean("isEditor");
+				boolean isSA = queryResult.getBoolean("isSuperAdmin");
+				boolean isB = queryResult.getBoolean("isBuyer");
+				
+				User e = new User(id1,username1, email, password, zipCode, phoneNumber,isAdmin, isSA, isEd, isB);
+				return e;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

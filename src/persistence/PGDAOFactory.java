@@ -68,6 +68,13 @@ public class PGDAOFactory extends AbstractDAOFactory {
 		return new CategoryDAOPG();
 	}
 
+	@Override
+	public ConsoleDAO getConsoleDAO() {
+		return new ConsoleDAOPG();
+	}
+	
+	
+
 	
     
 }

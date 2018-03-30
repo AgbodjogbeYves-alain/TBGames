@@ -11,6 +11,7 @@ import persistence.AbstractDAOFactory;
 import presentation.MainStage;
 
 import presentation.userInterface.helper.AlertBox;
+import presentation.userInterface.tableCells.ConsoleCell;
 import presentation.userInterface.tableCells.EditorCell;
 import persistence.* ;
 
@@ -30,6 +31,8 @@ public class ApplicationFacade {
 	}
 
 	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
+	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
+
     
 	/**
      * Default constructor
@@ -58,29 +61,38 @@ public class ApplicationFacade {
     	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
     	Object user = actorDAO.getActorById(username, pwd) ;
     	String userType = this.getActorType((Actor)user);
-    	switch (userType) {
-		case "Administrator" : 
-			//AdminDAO actorDAO =  daoFactory.getActorDAO() ;
-			break;
-			
-		case "Editor" : 
-			EditorDAO editorDAO = daoFactory.getEditorDAO() ;
-			Editor editor = editorDAO.getEditorById(((Actor) user).getIdActor()) ;
-			connectedUser = editor;
-			break;
-			
-		case "Buyer" : 
-			
-			break;
-			
-		case "SuperAdministrator":
-			
-			break;
+    	if(userType!=null) {
+    		switch (userType) {
+    		case "Administrator" : 
+    			AdministratorDAO adminDAO =  daoFactory.getAdministratorDAO();
+    			Administrator admin = adminDAO.getById(((Actor) user).getIdActor());
+    			connectedUser = admin;
+    			break;
+    			
+    		case "Editor" : 
+    			EditorDAO editorDAO = daoFactory.getEditorDAO() ;
+    			Editor editor = editorDAO.getEditorById(((Actor) user).getIdActor()) ;
+    			connectedUser = editor;
+    			break;
+    			
+    		case "Buyer" : 
+    			UserDAO buyerDAO =  daoFactory.getUserDAO();
+    			User buyer = buyerDAO.getUserById(((Actor) user).getIdActor());
+    			connectedUser = buyer;
+    			break;
+    			
+    		case "SuperAdministrator":
+    			
+    			break;
+    		
+    			
+        	}
+    			
+            if(connectedUser != null && (userType.equals("Editor") || userType.equals("Buyer"))) {
+            	this.setEditorsList();
+            }
     	}
-			
-        if(connectedUser != null) {
-        	this.setEditorsList();
-        }
+    	
         return connectedUser != null;
     }
     
@@ -104,6 +116,26 @@ public class ApplicationFacade {
     		boolean validation = ed.get(i).getValidation();
     		EditorCell cellEd = new EditorCell(idActor,idSimpleUser,idEditor,username, email,zipcode,phoneNumber,representativeName, validation);
     		editors.add(cellEd);
+    	}
+    }
+    
+    /**
+     * 
+     */
+    public void setConsolesList(){
+    	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+    	ConsoleDAO consoleDAO =  daoFactory.getConsoleDAO() ;
+    	ArrayList<Console> cs = consoleDAO.getAllConsoles(((Actor) connectedUser).getIdActor());
+
+    	for(int i=0;i<cs.size();i++) {
+    		String idItem = cs.get(i).getIdItem();
+    		String idConsole = cs.get(i).getIdConsole();
+    		String consoleType = cs.get(i).getConsoleType();
+    		String nameGame = cs.get(i).getName();
+    		String idUser = cs.get(i).getUser();
+    		int rating = cs.get(i).getRating();
+    		ConsoleCell cellCS = new ConsoleCell(idItem,nameGame, rating,idUser, consoleType, idConsole);
+    		consoles.add(cellCS);
     	}
     }
     
@@ -149,7 +181,7 @@ public class ApplicationFacade {
     /**
      * 
      */
-    public void LogOff(){
+    public void logOff(){
     	connectedUser = null;
     }
 
@@ -177,7 +209,6 @@ public class ApplicationFacade {
 	public void deleteActor(String id) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	ActorDAO actorDAO =  daoFactory.getActorDAO() ;
-    	
     	actorDAO.deleteActor(id);
     	
 		
@@ -231,17 +262,21 @@ public class ApplicationFacade {
 		String type = null;
 		try {
 
-			if (actor.getIsAdministrator()) {
-				type = "Administrator";
-			}
-			else if (actor.getIsBuyer()) {
-				type = "Buyer";
-			}
-			else if (actor.getIsEditor()) {
-				type = "Editor";
-			}
-			else if (actor.getIsSuperAdmin()) {
-				type = "SuperAdmin";
+			if(actor!=null) {
+				if (actor.getIsAdministrator()) {
+					type = "Administrator";
+				}
+				else if (actor.getIsBuyer()) {
+					type = "Buyer";
+				}
+				else if (actor.getIsEditor()) {
+					type = "Editor";
+				}
+				else if (actor.getIsSuperAdmin()) {
+					type = "SuperAdmin";
+				}else {
+					type = null;
+				}
 			}
 		}catch (Error e){
 			AlertBox.showAlert("No type found for this user","No type found","Erreur");
@@ -354,6 +389,11 @@ public class ApplicationFacade {
 		CategoryDAO.delete(category);
 	}
 	
+	/**
+	 * 
+	 * @param oldCategory
+	 * @param nameCategory
+	 */
 	public void updateCategory(Category oldCategory, String nameCategory) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		CategoryDAO CategoryDAO = daoFactory.getCategoryDAO();
@@ -362,6 +402,11 @@ public class ApplicationFacade {
 
 	}
 
+	/**
+	 * 
+	 * @param title
+	 * @param descr
+	 */
 	 public void CreateGame(String title, String descr) {
 	    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 	    	GameDAO gameDAO = DAOFactory.getGameDAO();
@@ -369,5 +414,19 @@ public class ApplicationFacade {
 	    	Game gameToSave = new Game(title,descr);
 	    	gameDAO.save(gameToSave);
 	    }
+
+	/**
+	 * 
+	 * @return
+	 */
+	public ObservableList<ConsoleCell> getConsolesList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteConsole(String idItem) {
+		// TODO Auto-generated method stub
+		
+	}
 	    
 }
