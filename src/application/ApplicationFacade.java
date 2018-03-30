@@ -26,28 +26,38 @@ public class ApplicationFacade {
 
 	private static ApplicationFacade afInstance = null ;
 	private static Object connectedUser = null ;
+	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
+	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
+	private ObservableList<AdministratorCell> administrators = FXCollections.observableArrayList();
+	private ObservableList<GameCell> games = FXCollections.observableArrayList();
+	
+	/**
+	 * Get the current user of the application
+	 * @return Object : which will represent Editor, Administrator and so on
+	 */
 	public static Object getConnectedUser() {
 		return connectedUser;
 	}
 
+	/**
+	 * Modify the connected user and keep the current user for treatment
+	 * @param connectedUser
+	 */
 	public void setConnectedUser(Object connectedUser) {
 		this.connectedUser = connectedUser;
 	}
-
-	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
-	private ObservableList<ConsoleCell> consoles = FXCollections.observableArrayList();
-	private ObservableList<AdministratorCell> administrators = FXCollections.observableArrayList();
-	private ObservableList<AdministratorCell> admins = FXCollections.observableArrayList();
-	private ObservableList<GameCell> games = FXCollections.observableArrayList();
-
+	
+	
 	/**
-     * Default constructor
+     * Default constructor of the application façade
      */
     private ApplicationFacade() {
     }
     
+    
+    
     /**
-     * 
+     * Get the application façade instance
      * @return
      */
     public static ApplicationFacade getInstance(){
@@ -56,11 +66,14 @@ public class ApplicationFacade {
     	}
     	return afInstance ;
     }
+    
+    
 
     /**
-     * @param name 
-     * @param pwd 
-     * @return
+     * Allows the user to login
+     * @param name : Username
+     * @param pwd : Password of the user
+     * @return True : If the user exist in database and username and password match and False : if a problem occur with the database
      */
     public Boolean login(String username, String pwd) {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -90,21 +103,23 @@ public class ApplicationFacade {
     		case "SuperAdministrator":
     			
     			break;
+        	}
     		
     			
-        	}
-    			
-            if(connectedUser != null && (userType.equals("Editor") || userType.equals("Buyer"))) {
+            if(connectedUser != null && (userType.equals("Administrator") || userType.equals("SuperAdministrator"))){
             	this.setEditorsList();
             }
+            this.setConsolesList();
     	}
     	
         return connectedUser != null;
     }
     
-/**
- * 
- */
+    
+    
+	/**
+	 * Allows the administrator to get the Editors in the app
+	 */
     public void setEditorsList(){
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
     	EditorDAO editorDAO =  daoFactory.getEditorDAO() ;
@@ -125,8 +140,11 @@ public class ApplicationFacade {
     	}
     }
     
+    
+    
+    
     /**
-     * 
+     * Allows the user to get all console in database
      */
     public void setConsolesList(){
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -161,8 +179,8 @@ public class ApplicationFacade {
     }
 
     /**
-     * 
-     * @return
+     * Allows Administrator to use the list of editors in the app façade
+     * @return Observable<EditorCell> editors : all editors of the app
      */
     public ObservableList<EditorCell> getEditorsList(){
     	return this.editors;
@@ -184,16 +202,17 @@ public class ApplicationFacade {
     	editorDAO.saveEditor(editorToSave);
     }
     
+    
     /**
-     * 
+     * Allows the user to logoff
      */
     public void logOff(){
     	connectedUser = null;
     }
 
     /**
-     * 
-     * @return
+     * Allows the SuperAdmin have administrator  list
+     * @return All admins of the app
      */
 	public static ObservableList<Administrator> loadAdministratorsList() {
 		ObservableList<Administrator> admins = FXCollections.observableArrayList() ;
@@ -209,8 +228,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
-	 * @param id
+	 * Allows the administrators to delete actors or Actor to delete his account
+	 * @param id : the Id of the user to delete
 	 */
 	public void deleteActor(String id) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -224,12 +243,11 @@ public class ApplicationFacade {
 
 	/**
 	 * Create a post demand with title description price and item, item as a String for the moment
-	 * @param title
-	 * @param descr
-	 * @param price
-	 * @param posttype
+	 * @param title : title of the post
+	 * @param descr : description of the post
+	 * @param price : price of the item
+	 * @param posttype : type of post : Demand or Offer or Trial
 	 */
-
 	public void CreatePostDemand(String title, String descr, int price, String posttype, Optional<String> result) {
 		AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		PostDAO postDAO = DAOFactory.getPostDAO();
@@ -240,9 +258,10 @@ public class ApplicationFacade {
 		postDAO.savePost(postToSave);
 	}
 
+	
 	/**
 	 * Delete a post
-	 * @param post
+	 * @param post : Teh post to delete
 	 */
 	public void DeletePostDemand(Post post) {
 		AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -282,6 +301,8 @@ public class ApplicationFacade {
 		return type;
 	}
 
+	
+	
 	/**
 	 * Methods to get the Buyer corresponding to the id
 	 * @param idActor
@@ -294,6 +315,8 @@ public class ApplicationFacade {
 		User user = buyerDAO.createById(idActor); //To check
 		return (user);
 	}
+	
+	
 
 	/**
 	 * Methods to get the Editor corresponding to the id
@@ -306,9 +329,11 @@ public class ApplicationFacade {
 		Editor editor = editorDAO.getEditorById(idActor);
 		return (editor);
 	}
+	
+	
 
 	/**
-	 * 
+	 * Method to set the administrator list in application façade for the super Administrator
 	 */
 	public void setAdminsList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -320,9 +345,12 @@ public class ApplicationFacade {
 			this.administrators.add(cellAdmin);
 		}
 	}
+	
+	
 
 	/**
-	 * @return
+	 * Return the administrator list which is registered in Application façade 
+	 * @return Administrators
 	 */
 	public ObservableList<AdministratorCell> getAdministratorsList(){
 		if (this.administrators.size() == 0) {
@@ -346,7 +374,15 @@ public class ApplicationFacade {
 
 
 
-
+	/**
+	 * Method to update the editors informations
+	 * @param userNameEditor : Editor username
+	 * @param emailEditor : Editor email
+	 * @param passwordEditor : Editor password
+	 * @param zipCodeEditor : Editor zipCode
+	 * @param phoneNumberEditor : Editor phone number
+	 * @param representativeNameEditor : Editor representative name
+	 */
 	public void updateEditor(String userNameEditor, String emailEditor, String passwordEditor, String zipCodeEditor,
 			String phoneNumberEditor, String representativeNameEditor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -360,10 +396,12 @@ public class ApplicationFacade {
 		((Editor) connectedUser).setZipCode(zipCodeEditor);
 		((Editor) connectedUser).setRepresentativeName(representativeNameEditor);
 	}
+	
 	/**
-	 * @param email
-	 * @param username
-	 * @param pwd
+	 * Method to add an administrator on the platform
+	 * @param email : New admin email
+	 * @param username : New admin username
+	 * @param pwd : New admin password
 	 */
 	public void addAdministrator(String email, String username, String pwd) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -373,7 +411,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * @param admin
+	 * Method to delete an administrator
+	 * @param admin : Administrator to delete
 	 */
 	public void deleteAdministrator(Administrator admin) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -382,7 +421,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * @param oldAdmin
+	 * Method to modify admministrator information
+	 * @param oldAdmin 
 	 * @param newAdmin
 	 */
 	public void updateAdministrator(Administrator oldAdmin, String email, String username, String pwd) {
@@ -393,6 +433,7 @@ public class ApplicationFacade {
 	}
 
 	/**
+	 * Add a new category on the platform
 	 * @param nameCategory
 	 */
 	public void addCategory(String nameCategory) {
@@ -403,6 +444,7 @@ public class ApplicationFacade {
 	}
 
 	/**
+	 * Method to delete a category on the platform
 	 * @param category
 	 */
 	public void deleteCategory(Category category) {
@@ -412,7 +454,7 @@ public class ApplicationFacade {
 	}
 	
 	/**
-	 * 
+	 * Method to modfy a category
 	 * @param oldCategory
 	 * @param nameCategory
 	 */
@@ -424,6 +466,9 @@ public class ApplicationFacade {
 
 	}
 	
+	/**
+	 * Set the game list for the application façade
+	 */
 	public void setGamesList() {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		GameDAO gameDAO =  daoFactory.getGameDAO();
@@ -450,7 +495,8 @@ public class ApplicationFacade {
 	}
 	
 	/**
-	 * @return
+	 * Method to get the gamelist from the application façade
+	 * @return game list
 	 */
 	public ObservableList<GameCell> getGamesList(){
 		if (this.games.size() == 0) {
@@ -462,9 +508,9 @@ public class ApplicationFacade {
 
 
 	/**
-	 * 
-	 * @param title
-	 * @param descr
+	 * Method to  add a new game in the platform
+	 * @param title : title of the game
+	 * @param descr : descritption of the gameS
 	 */
 	 public void CreateGame(String title, String descr) {
 	    	AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -483,18 +529,31 @@ public class ApplicationFacade {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param idItem
+	 */
 	public void deleteConsole(String idItem) {
 		// TODO Auto-generated method stub
 		
 	}
 	    
-
+	/**
+	 * Method to delete a game
+	 * @param game : The game to delete
+	 */
 	public void deleteGame(Game game) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		GameDAO gameDAO = daoFactory.getGameDAO();
 		gameDAO.delete(game);
 	}
+	
+	
 
+	/**
+	 * Allow to know the type of the user
+	 * @return Boolean : bool
+	 */
 	public boolean isBuyer() {
 		String userType = this.getActorType((Actor)ApplicationFacade.getConnectedUser());
 		return  userType == "Buyer";
