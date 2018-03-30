@@ -4,6 +4,8 @@ package application;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,6 +15,7 @@ import presentation.MainStage;
 import presentation.userInterface.helper.AlertBox;
 import presentation.userInterface.tableCells.AdministratorCell;
 import presentation.userInterface.tableCells.EditorCell;
+import presentation.userInterface.tableCells.GameCell;
 import persistence.* ;
 
 /**
@@ -32,7 +35,8 @@ public class ApplicationFacade {
 
 	private ObservableList<EditorCell> editors = FXCollections.observableArrayList();
 	private ObservableList<AdministratorCell> admins = FXCollections.observableArrayList();
-
+	private ObservableList<GameCell> games = FXCollections.observableArrayList();
+	
 	/**
 	 * Default constructor
 	 */
@@ -378,6 +382,38 @@ public class ApplicationFacade {
 		CategoryDAO.update(oldCategory,newCategory);
 
 	}
+	
+	public void setGamesList() {
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		GameDAO gameDAO =  daoFactory.getGameDAO();
+		ArrayList<Game> games = gameDAO.getAll();
+		
+		String name ;
+		int rating ;
+		String consoleType ;
+		String description ;
+		String category ;
+
+		for(int i=0;i<games.size();i++) {
+			name = games.get(i).getName() ;
+			consoleType = games.get(i).getConsoleType().getBrand() ;
+			description = games.get(i).getDescription() ;
+			category = games.get(i).getCategory().getNameCategory() ;
+			GameCell gameCell = new GameCell(name, rating, consoleType, description, category);
+			this.games.add(gameCell);
+		}
+	}
+	
+	/**
+	 * @return
+	 */
+	public ObservableList<GameCell> getGamesList(){
+		if (this.games.size() == 0) {
+			setGamesList() ;
+		}
+		return this.games;
+	}
+
 
 	public void CreateGame(String title, String descr) {
 		AbstractDAOFactory DAOFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
