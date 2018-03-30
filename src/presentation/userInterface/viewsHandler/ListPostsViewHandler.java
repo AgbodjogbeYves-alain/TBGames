@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import presentation.userInterface.helper.AlertBox;
+import presentation.userInterface.tableCells.ConsoleCell;
 import presentation.userInterface.tableCells.PostCell;
 
 public class ListPostsViewHandler {
@@ -24,6 +25,7 @@ public class ListPostsViewHandler {
 
 
 
+
 	 
 	 /**
 	     * Initializes the controller class. This method is automatically called
@@ -31,23 +33,16 @@ public class ListPostsViewHandler {
 	     */
 	    @FXML public void initialize() {
 	        // Initialize the person table with the two columns.
-	    	gameTitleColumn.setCellValueFactory(cellData -> cellData.getValue().idPostProperty);
-	    	consoleTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getConsoleType());
-	    	postTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getPostType());
-	    	offerordemandColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusPost());
+	    	gameTitleColumn.setCellValueFactory(cellData -> cellData.getValue().idPostProperty());
+	    	consoleTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getConsoleTypeProperty());
+	    	postTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getPostTypeProperty());
+	    	offerordemandColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusPostProperty());
 	    	dateColumn.setCellValueFactory(cellData -> cellData.getValue().DatePostProperty());
 	    	
 			
 			tableViewPosts.setItems(ApplicationFacade.getInstance().getPostsList());
 			
 	    }
-
-	    /**
-	     * Fills all text fields to show details about the console.
-	     * If the specified console is null, all text fields are cleared.
-	     *
-	     * @param Console the console or null
-	     */
 
 	    
 	    
