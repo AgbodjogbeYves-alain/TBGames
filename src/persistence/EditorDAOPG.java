@@ -108,7 +108,7 @@ public class EditorDAOPG extends EditorDAO {
 		String phoneNumber = editor.getPhoneNumber();
 		String representativeName = editor.getRepresentativeName();
 		String query = "INSERT INTO EDITOR(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber, representativeName) "
-				+ "VALUES ('" + name + "','" + email + "','" + password + "'," + true + "," + false + "," + false + "," + false 
+				+ "VALUES ('" + name + "','" + email + "','" + password + "'," + false + "," + false + "," + false + "," + true 
 				+ ",'" + zipCode + "','" + phoneNumber + "','" + representativeName +"')";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
@@ -117,6 +117,6 @@ public class EditorDAOPG extends EditorDAO {
 	public void updateEditor(String idActor, String usernameEditor, String emailEditor, String passwordEditor,
 		String zipCodeEditor, String phoneNumberEditor, String representativeNameEditor) {
 		String query = "UPDATE Editor SET (username, email, password,zipcode,phonenumber,representativename) = ('"+usernameEditor+"', '"+emailEditor+"', '"+passwordEditor+"','"+zipCodeEditor+"','"+phoneNumberEditor+"','"+representativeNameEditor+"') WHERE idActor = '"+idActor+"';" ;
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query) ;
 	}
 }

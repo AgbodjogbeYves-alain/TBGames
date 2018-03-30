@@ -80,7 +80,7 @@ public class UserDAOPG extends UserDAO {
 		String query = "INSERT INTO BUYER(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, zipcode, phonenumber) "
 				+ "VALUES (" + name + "," + email + "," + password + "," + true + "," + false + "," + false + "," + false 
 				+ "," + zipCode + "," + phoneNumber + ")";
-		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query);
+		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
 }

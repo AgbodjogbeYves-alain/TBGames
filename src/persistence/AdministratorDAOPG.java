@@ -15,7 +15,7 @@ public class AdministratorDAOPG extends AdministratorDAO{
 		String email = admin.getEmail() ; 
 		String password = admin.getPassword() ;
 		String query = "INSERT INTO Administrator(username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor) VALUES (" + username + "," + email + "," + password + "," + false + "," + false + "," + true + "," + false + ")";
-    	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+    	int queryResult = PGDAOFactory.getConnector().executeUpdate(query) ;
 	}
 	
     /**
