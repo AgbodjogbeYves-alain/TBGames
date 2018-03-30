@@ -41,6 +41,11 @@ public abstract class AbstractDAOFactory {
 	public abstract AdministratorDAO getAdministratorDAO() ;
 	
 	/**
+	 * @return SuperAdministratorDAO
+	 */
+	public abstract SuperAdministratorDAO getSuperAdministratorDAO() ;
+	
+	/**
 	 * @return PostDAO
 	 */
 	public abstract PostDAO getPostDAO();

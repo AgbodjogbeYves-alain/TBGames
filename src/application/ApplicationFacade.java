@@ -90,8 +90,11 @@ public class ApplicationFacade {
 				connectedUser = buyer;
 				break;
 
-			case "SuperAdministrator":
-
+			case "SuperAdmin":
+				System.out.println("YEAH");
+				SuperAdministratorDAO superAdminDAO =  daoFactory.getSuperAdministratorDAO();
+				SuperAdministrator sAdmin = superAdminDAO.getById(((Actor) user).getIdActor());
+				connectedUser = sAdmin;
 				break;
 
 
