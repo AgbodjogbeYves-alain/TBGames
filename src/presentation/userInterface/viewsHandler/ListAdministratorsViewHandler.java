@@ -2,13 +2,12 @@ package presentation.userInterface.viewsHandler;
 
 
 import application.ApplicationFacade;
-import application.Administrator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import presentation.userInterface.helper.AlertBox;
 import presentation.userInterface.tableCells.AdministratorCell;
 
 public class ListAdministratorsViewHandler {
@@ -49,4 +48,23 @@ public class ListAdministratorsViewHandler {
         	adminEmail.setText("");
         }
 	}
+	
+	 /**
+     * Called when the user clicks on the delete button.
+     */
+    @FXML
+    private void handleDeleteAdministrator() {
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+        	
+        	String idAdmin = ApplicationFacade.getInstance().getAdministratorsList().get(selectedIndex).getId();
+        	ApplicationFacade.getInstance().getAdministratorsList().remove(selectedIndex);
+        	ApplicationFacade.getInstance().deleteActor(idAdmin);
+            tableView.getItems().remove(selectedIndex);
+            AlertBox.showAlert("Delete succeed", "", "Administratior deletion");
+            
+        } else {
+            AlertBox.showAlert("", "", "");
+        }
+    }
 }

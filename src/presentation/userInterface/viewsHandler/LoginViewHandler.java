@@ -56,7 +56,7 @@ public class LoginViewHandler{
 				break;
 
 			case "Buyer" : 
-				loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
+				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewBuyer.fxml"));
 				MainStage.getPrimaryStage().setTitle("Let's be brave "+ userType);
 				break;
 
