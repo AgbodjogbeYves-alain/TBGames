@@ -10,7 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import presentation.MainStage;
+import presentation.userInterface.helper.DialogBoxEditGame;
 
 public class AddGameViewHandler {
 	@FXML private TextField gameTitle;
@@ -19,42 +22,35 @@ public class AddGameViewHandler {
 	@FXML private Button browse;
 	@FXML private Button chooseImage;
 	
-	public void handlecancelAction(ActionEvent event) {
-		System.out.println("ok");
-		try {
-			FXMLLoader loader = new FXMLLoader();
-    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddGameView.fxml"));
-    		AnchorPane view;
-    		view = (AnchorPane) loader.load();
-    		Scene scene = new Scene(view);
-    		MainStage.getPrimaryStage().setTitle("Add game view");
-    		MainStage.getPrimaryStage().setScene(scene);
-    		MainStage.getPrimaryStage().show();
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void handlevalidateAction(ActionEvent event) {
-		String title = gameTitle.getText();
-		String description = descriptionGame.getText();
+	 @FXML
+	    private boolean handleAddGame() {
+	    	
+	    	try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddGameView.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
 
-			ApplicationFacade.getInstance().CreateGame(title, description);
-			try {
-				FXMLLoader loader = new FXMLLoader();
-	    		loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddGameView.fxml"));
-	    		AnchorPane view;
-	    		view = (AnchorPane) loader.load();
-	    		Scene scene = new Scene(view);
-	    		MainStage.getPrimaryStage().setTitle("Add game view");
-	    		MainStage.getPrimaryStage().setScene(scene);
-	    		MainStage.getPrimaryStage().show();
-			}catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setTitle("Add Game");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(MainStage.getPrimaryStage());
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            // Set the person into the controller.
+	            DialogBoxEditGame controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+//	            controller.setGame();
+
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+	            return controller.isOkClicked();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
 
 }
