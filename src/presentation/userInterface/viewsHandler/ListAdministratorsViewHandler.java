@@ -28,7 +28,7 @@ public class ListAdministratorsViewHandler {
 		
 		tableView.setItems(ApplicationFacade.getInstance().getAdministratorsList());
 		
-		 // Clear person details.
+		 // Clear admin details.
 	    showAdministratorDetails(null);
 
 	    // Listen for selection changes and show the person details when changed.
@@ -44,6 +44,7 @@ public class ListAdministratorsViewHandler {
 
         } else {
             // Administrator is null, remove all the text.
+        	System.out.print("HERE");
         	adminUsername.setText("");
         	adminEmail.setText("");
         }

@@ -50,7 +50,7 @@ public class SuperAdministratorDAOPG extends SuperAdministratorDAO{
      * @param id
      */
     public SuperAdministrator getById(String id) {
-		String query = "SELECT * FROM SuperAdmin WHERE idActor = '" + id + "';" ;
+		String query = "SELECT * FROM SuperAdmin WHERE idActor = '" + id + "' and isSuperAdmin = true;" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
 		try {
 			queryResult.next();

@@ -1,0 +1,1 @@
+INSERT INTO superadmin(username,email,password,isBuyer,isSuperAdmin,isAdministrator,isEditor) Values ('sadmin','sadmin@tbgames.com','sadmin',false,true,false,false);
