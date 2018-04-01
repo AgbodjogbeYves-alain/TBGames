@@ -27,6 +27,10 @@ public class AddPostViewHandler {
 	@FXML private CheckBox demandCB;
 	Optional<String> item = null;
 
+	/**
+	 * Handle action on cancel button : return to revious page
+     * @param event
+     */
 	public void handlecancelAction(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -43,6 +47,10 @@ public class AddPostViewHandler {
 		}
 	}
 
+	/**
+	 * Return a post from the DB by his idHandle action on validation button : If item null, add an item, if not, create the post.
+     * @param event
+     */
 	public void handlevalidateAction(ActionEvent event) {
 		String title = posttitleTF.getText();
 		String description = descriptionTF.getText();
@@ -89,8 +97,6 @@ public class AddPostViewHandler {
 				e.printStackTrace();
 			}
 		}
-
-
 	}
 
 }

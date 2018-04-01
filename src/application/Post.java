@@ -12,15 +12,23 @@ public class Post {
 	private String posttype ;
 	private String iduser ;
 	private Optional<String> item ;
-	
 
-    /**
-     * Default constructor
-     */
+
+	/**
+	 * Default constructor
+	 */
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Default constructor without item
+	 * @param title
+	 * @param description
+	 * @param price
+	 * @param posttype
+	 * @param iduser 
+	 */
 	public Post(String title, String description, int price, String posttype, String iduser) {
 		this.title = title;
 		this.description = description;
@@ -29,7 +37,16 @@ public class Post {
 		this.iduser = iduser;
 		this.item = null ;
 	}
-	
+
+	/**
+	 * Default constructor with item as an optional string
+	 * @param title
+	 * @param description
+	 * @param price
+	 * @param posttype
+	 * @param iduser 
+	 * @param result
+	 */
 	public Post(String title, String description, int price, String posttype, String iduser, Optional<String> result) {
 		this.title = title;
 		this.description = description;
@@ -39,6 +56,10 @@ public class Post {
 		this.item = result ;
 	}
 
+	/**
+	 * Default constructor with an array
+	 * @param r
+	 */
 	public Post(ArrayList<String> r) {
 		this.idpost = r.get(0);
 		this.title = r.get(1);
@@ -48,6 +69,8 @@ public class Post {
 		this.iduser = r.get(5);
 	}
 
+	// GETTERS AND SETTERS
+
 	public String getIdpost() {
 		return idpost;
 	}
@@ -55,7 +78,7 @@ public class Post {
 	public void setIdpost(String idpost) {
 		this.idpost = idpost;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -103,5 +126,5 @@ public class Post {
 	public void setItem(Optional<String> item) {
 		this.item = item;
 	}
-	
+
 }

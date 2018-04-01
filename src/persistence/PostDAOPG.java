@@ -14,9 +14,7 @@ public class PostDAOPG extends PostDAO{
 	public PostDAOPG() {
 	}
 
-	/**
-	 * 
-	 */
+	@Override
 	public Post createById(String id) {
 		String query = "SELECT * FROM Post WHERE Post = '" + id + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
@@ -63,9 +61,7 @@ public class PostDAOPG extends PostDAO{
 		return id ;
 	}
 
-	/**
-	 * Function to save a post in the DB
-	 */
+	@Override
 	public void savePost(Post post) {
 		String title1 = post.getTitle();
 		String description1 = post.getDescription();
@@ -77,6 +73,7 @@ public class PostDAOPG extends PostDAO{
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
+	@Override
 	public void deletePost(Post post) {
 		String title1 = post.getTitle();
 		String description1 = post.getDescription();

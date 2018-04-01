@@ -5,11 +5,19 @@ public class Rate {
 	private String rated;
 	private int rate;
 
+	/**
+	 * Default constructor
+	 * @param rater
+	 * @param rated
+	 * @param rate
+	 */
 	public Rate(String rater, String rated, int rate) {
 		this.rater=rater;
 		this.rated=rated;
 		this.rate=rate;
 	}
+	
+	// GETTERS AND SETTERS
 	
 	public String getRater() {
 		return rater;

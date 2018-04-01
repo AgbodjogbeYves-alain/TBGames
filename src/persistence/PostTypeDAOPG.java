@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import application.Post;
+import application.PostType;
 
 public class PostTypeDAOPG extends PostTypeDAO {
     /**
@@ -16,7 +17,7 @@ public class PostTypeDAOPG extends PostTypeDAO {
     /**
      * 
      */
-    public Post createById(String id) {
+    public PostType createById(String id) {
     	String query = "SELECT * FROM PostType WHERE idposttype = '" + id + "';" ;
     	ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
     	
@@ -29,9 +30,9 @@ public class PostTypeDAOPG extends PostTypeDAO {
 				r.add(queryResult.getString(i + 1));
 				i++;
 			}
-			Post u = null ;
+			PostType u = null ;
 	    	if (r != null) {
-	    		u = new Post(r) ;
+	    		u = new PostType() ;
 	    	}
 	        return u ;
 		} catch (SQLException e) {
