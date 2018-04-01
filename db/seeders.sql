@@ -35,6 +35,21 @@ insert into Editor (username, email, password, isBuyer, isSuperAdmin, isAdminist
 insert into Editor (username, email, password, isBuyer, isSuperAdmin, isAdministrator, isEditor, representativeName, validation)
     values ('Bolt', 'housekijava@yopmail.com', 'truc', false, false, false, true, 'Diamond Class', false);
 
+INSERT INTO administrator(username,email,password,isbuyer,issuperadmin,isadministrator,iseditor) VALUES
+('tbgames','tbgames','truc',false,false,true,false);
+
 INSERT INTO posttype(label) VALUES ('Demand');
 INSERT INTO posttype(label) VALUES ('Offer');
 INSERT INTO posttype(label) VALUES ('Trial');
+
+INSERT INTO consoletype(brand) VALUES ('PS2');
+
+INSERT INTO console(nameitem,iduser,consoletype) VALUES ('Play Station 2',4,1);
+
+INSERT INTO category(namecategory) VALUES ('Sport');
+
+INSERT INTO game(nameitem,iduser,consoletype,gamecategory) VALUES ('Fifa12',4,1,1);
+
+INSERT INTO itemrate(iditem,rate,idbuyer) VALUES (1,5,1);
+
+itemrate

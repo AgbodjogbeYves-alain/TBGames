@@ -51,7 +51,7 @@ public class LoginViewHandler{
 				break;
 
 			case "Editor" : 
-				loader.setLocation(MainStage.class.getResource("userInterface/fxml/HomeViewEditor.fxml"));
+				loader.setLocation(MainStage.class.getResource("userInterface/fxml/AddPostView.fxml"));
 				MainStage.getPrimaryStage().setTitle("May the odds be in your favor "+ userType);
 				break;
 
