@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import application.Console;
 import application.Post;
 
 public class PostDAOPG extends PostDAO{
@@ -14,7 +15,9 @@ public class PostDAOPG extends PostDAO{
 	public PostDAOPG() {
 	}
 
-	@Override
+	/**
+	 * 
+	 */
 	public Post createById(String id) {
 		String query = "SELECT * FROM Post WHERE Post = '" + id + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
@@ -61,7 +64,9 @@ public class PostDAOPG extends PostDAO{
 		return id ;
 	}
 
-	@Override
+	/**
+	 * Function to save a post in the DB
+	 */
 	public void savePost(Post post) {
 		String title1 = post.getTitle();
 		String description1 = post.getDescription();
@@ -73,12 +78,30 @@ public class PostDAOPG extends PostDAO{
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
-	@Override
 	public void deletePost(Post post) {
 		String title1 = post.getTitle();
 		String description1 = post.getDescription();
 		String query = "DELETE FROM Post WHERE title='" + title1 + "' AND descriptionpost='"
 				+ description1 + "';";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
+	}
+
+	@Override
+	public ArrayList<Post> getAllPosts() {
+		String query = "SELECT * FROM POST;" ;
+		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
+		ArrayList<Post> ps = new ArrayList<Post>();
+		
+		try {
+				while (queryResult.next()) {
+					Post ps1  = new Post(queryResult.getString("idPost"), queryResult.getString("title"),queryResult.getString("posttype"), queryResult.getString("status"),queryResult.getDate("date"));
+					ps.add(ps1);
+				}
+				
+			}catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return ps;
 	}
 }

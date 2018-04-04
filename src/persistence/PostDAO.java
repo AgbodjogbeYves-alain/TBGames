@@ -1,5 +1,7 @@
 package persistence;
 
+import java.util.ArrayList;
+
 import application.*;
 
 public abstract class PostDAO {
@@ -16,6 +18,8 @@ public abstract class PostDAO {
 	 * @param id
 	 */
 	public abstract Post createById(String id);
+	
+	public abstract ArrayList<Post> getAllPosts();
 
 	/**
 	 * Save a post into the data base
