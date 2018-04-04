@@ -38,5 +38,10 @@ public abstract class GameDAO {
 	 * @return
 	 */
 	public abstract ArrayList<Game> getByName(String gameName);
-
+	
+	/**
+	 * @param userId
+	 * @return
+	 */
+	public abstract ArrayList<Game> getByUserId(String userId); 
 }

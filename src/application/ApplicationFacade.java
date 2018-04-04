@@ -431,7 +431,28 @@ public class ApplicationFacade {
 	}
 
 
+	/**
+	 * 
+	 */
+	public void setUserGamesList(){
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		GameDAO gameDAO =  daoFactory.getGameDAO();
+		ArrayList<Game> games = gameDAO.getByUserId(((User)ApplicationFacade.connectedUser).getIdActor()) ;
 
+		for(int i=0;i<games.size();i++) {
+			GameCell cellGame = new GameCell(games.get(i).getIdItem(), games.get(i).getName(), games.get(i).getRating(), games.get(i).getUser(),games.get(i).getConsoleType(), games.get(i).getDescription(), games.get(i).getCategory());
+			this.games.add(cellGame);
+		}
+	}
+	
+	public ObservableList<GameCell> getUserGamesList(){
+		if (this.games.size() == 0) {
+			setUserGamesList() ;
+		}
+		return this.games;
+	}
+	
+	
 
 	/**
 	 * Method to update the editors informations
