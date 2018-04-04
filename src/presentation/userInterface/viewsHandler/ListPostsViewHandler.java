@@ -15,7 +15,6 @@ public class ListPostsViewHandler {
 
 	@FXML private TableView<PostCell> tableViewPosts;
 	 @FXML private TableColumn<PostCell,String> gameTitleColumn ;
-	 @FXML private TableColumn<PostCell,String> consoleTypeColumn ;
 	 @FXML private TableColumn<PostCell,String> postTypeColumn ;
 	 @FXML private TableColumn<PostCell,String> offerordemandColumn ;
 	 @FXML private TableColumn<PostCell,String> dateColumn ;
@@ -34,7 +33,6 @@ public class ListPostsViewHandler {
 	    @FXML public void initialize() {
 	        // Initialize the person table with the two columns.
 	    	gameTitleColumn.setCellValueFactory(cellData -> cellData.getValue().idPostProperty());
-	    	consoleTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getConsoleTypeProperty());
 	    	postTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getPostTypeProperty());
 	    	offerordemandColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusPostProperty());
 	    	dateColumn.setCellValueFactory(cellData -> cellData.getValue().DatePostProperty());

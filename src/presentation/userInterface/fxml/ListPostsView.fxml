@@ -8,8 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="presentation.userInterface.viewsHandler.ListPostsViewHandler">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userInterface.viewsHandler.ListPostsViewHandler">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="492.0" prefWidth="634.0">
          <children>
@@ -28,7 +27,6 @@
             <TableView layoutY="133.0" prefHeight="319.0" prefWidth="622.0">
                <columns>
                   <TableColumn prefWidth="122.39998817443848" text="Title" />
-                  <TableColumn prefWidth="114.4000244140625" text="Console Type" />
                   <TableColumn prefWidth="127.20001220703125" text="Post Type" />
                   <TableColumn prefWidth="135.99993896484375" text="Offer/Demand" />
                   <TableColumn minWidth="0.0" prefWidth="121.60000610351562" text="Date" />

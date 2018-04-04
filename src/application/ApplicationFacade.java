@@ -2,6 +2,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 import javafx.beans.property.IntegerProperty;
@@ -18,7 +19,7 @@ import presentation.userInterface.tableCells.AdministratorCell;
 import presentation.userInterface.tableCells.BuyerCell;
 import presentation.userInterface.tableCells.EditorCell;
 import presentation.userInterface.tableCells.GameCell;
-//import presentation.userInterface.tableCells.PostCell;
+import presentation.userInterface.tableCells.PostCell;
 import persistence.* ;
 
 /**
@@ -34,6 +35,7 @@ public class ApplicationFacade {
 	private ObservableList<GameCell> games = FXCollections.observableArrayList();
 	private ObservableList<EditorCell> editorsToValid = FXCollections.observableArrayList();
 	private ObservableList<BuyerCell> buyers = FXCollections.observableArrayList();
+	private ObservableList<PostCell> posts = FXCollections.observableArrayList();
 	/**
 	 * Get the current user of the application
 	 * @return Object : which will represent Editor, Administrator and so on
@@ -199,6 +201,23 @@ public class ApplicationFacade {
 			int rating = cs.get(i).getRating();
 			ConsoleCell cellCS = new ConsoleCell(idItem,nameGame, rating,idUser, consoleType, idConsole);
 			consoles.add(cellCS);
+		}
+	}
+	
+	public void setPostssList(){
+		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
+		PostDAO postDAO =  daoFactory.getPostDAO() ;
+		ArrayList<Post> ps = postDAO.getAllPosts();
+		System.out.print(ps);
+		for(int i=0;i<ps.size();i++) {
+			String idPost = ps.get(i).getIdpost();
+			String type = ps.get(i).getTitle();
+			String title = ps.get(i).getPosttype();
+			String status = ps.get(i).getStatus();
+			Date date = ps.get(i).getDate();
+			
+			PostCell cellPS = new PostCell(idPost,title, type, status, date);
+			posts.add(cellPS);
 		}
 	}
 
@@ -588,11 +607,11 @@ public class ApplicationFacade {
 		// TODO Auto-generated method stub
 		return consoles;
 	}
-	/*
+	
 	public ObservableList<PostCell> getPostsList() {
 		// TODO Auto-generated method stub
 		return null;
-	}*/
+	}
 
 	/**
 	 * 

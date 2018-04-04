@@ -29,6 +29,7 @@ create table Demand
 create table Offer
 (
   idOffer serial primary KEY
+  idItem serial REFERENCES AbstractItem
 ) INHERITS(Post);
 
 create table Trial

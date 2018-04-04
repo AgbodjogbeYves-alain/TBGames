@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 public class Post {
@@ -12,6 +13,8 @@ public class Post {
 	private String posttype ;
 	private String iduser ;
 	private Optional<String> item ;
+	private String status;
+	private Date date;
 
 
 	/**
@@ -55,6 +58,23 @@ public class Post {
 		this.iduser = iduser;
 		this.item = result ;
 	}
+	
+	public Post(String title, String posttype, String status, Date date) {
+		this.title = title;
+		this.posttype = posttype;
+		this.status = status;
+		this.date = date ;
+	}
+	
+	public Post(String idpost, String title, String posttype, String status, Date date) {
+		this.idpost = idpost;
+		this.title = title;
+		this.posttype = posttype;
+		this.status = status;
+		this.date = date ;
+	}
+
+
 
 	/**
 	 * Default constructor with an array
@@ -125,6 +145,22 @@ public class Post {
 
 	public void setItem(Optional<String> item) {
 		this.item = item;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }
