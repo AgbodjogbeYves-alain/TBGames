@@ -31,7 +31,7 @@ public class ListPostsViewHandler {
 	     * after the fxml file has been loaded.
 	     */
 	    @FXML public void initialize() {
-	        // Initialize the person table with the two columns.
+	        // Initialize the post table with 4 columns.
 	    	gameTitleColumn.setCellValueFactory(cellData -> cellData.getValue().idPostProperty());
 	    	postTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getPostTypeProperty());
 	    	offerordemandColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusPostProperty());

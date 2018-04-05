@@ -10,7 +10,6 @@ public class ConsoleDAOPG extends ConsoleDAO {
 
 	@Override
 	public Console createById(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -27,7 +26,6 @@ public class ConsoleDAOPG extends ConsoleDAO {
 				}
 				
 			}catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return cs;
@@ -35,13 +33,11 @@ public class ConsoleDAOPG extends ConsoleDAO {
 
 	@Override
 	public void saveConsole(Console console) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Console getConsoleById(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

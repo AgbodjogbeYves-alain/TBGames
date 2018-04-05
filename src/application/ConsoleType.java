@@ -15,7 +15,7 @@ public class ConsoleType {
 	}
 
 	/**
-	 * @return
+	 * @return idConsoleType
 	 */
 	public String getIdConsoleType() {
 		return idConsoleType;
@@ -29,7 +29,7 @@ public class ConsoleType {
 	}
 
 	/**
-	 * @return
+	 * @return brand
 	 */
 	public String getBrand() {
 		return brand;

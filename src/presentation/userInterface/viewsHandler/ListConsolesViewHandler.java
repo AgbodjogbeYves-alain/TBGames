@@ -26,16 +26,16 @@ public class ListConsolesViewHandler {
 	     * after the fxml file has been loaded.
 	     */
 	    @FXML public void initialize() {
-	        // Initialize the person table with the two columns.
+	        // Initialize the consoles table with the two columns.
 	    	nameConsoleColumn.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
 	    	categoryConsoleColumn.setCellValueFactory(cellData -> cellData.getValue().consoleTypeProperty());
 			
 			tableViewConsole.setItems(ApplicationFacade.getInstance().getConsolesList());
 			
-			 // Clear person details.
+			 // Clear console details.
 		    showConsoleDetails(null);
 
-		    // Listen for selection changes and show the person details when changed.
+		    // Listen for selection changes and show the console details when changed.
 		    tableViewConsole.getSelectionModel().selectedItemProperty().addListener(
 		            (observable, oldValue, newValue) -> showConsoleDetails(newValue));
 	    }
@@ -48,13 +48,13 @@ public class ListConsolesViewHandler {
 	     */
 	    private void showConsoleDetails(ConsoleCell console) {
 	        if (console != null) {
-	            // Fill the labels with info from the person object.
+	            // Fill the labels with info from the console object.
 	        	consoleNameLabel.setText(console.getName());
 	        	consoleTypeLabel.setText(console.getConsoleType());
 	        	ratingLabel.setText(String.valueOf(console.getRate()));
 	            
 	        } else {
-	            // Person is null, remove all the text.
+	            // console is null, remove all the text.
 	        	consoleNameLabel.setText("");
 	        	consoleTypeLabel.setText("");
 	        	ratingLabel.setText("");

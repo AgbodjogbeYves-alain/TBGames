@@ -35,7 +35,7 @@ public class Game extends Item {
 	}
 
 	/**
-	 * @return
+	 * @return idGame
 	 */
 	public String getIdGame() {
 		return idGame;
@@ -49,7 +49,7 @@ public class Game extends Item {
 	}
 
 	/**
-	 * @return
+	 * @return description
 	 */
 	public String getDescription() {
 		return description;
@@ -63,7 +63,7 @@ public class Game extends Item {
 	}
 
 	/**
-	 * @return
+	 * @return category
 	 */
 	public String getCategory() {
 		return category;

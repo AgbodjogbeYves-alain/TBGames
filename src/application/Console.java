@@ -28,7 +28,7 @@ public class Console extends Item{
 	
 	/**
 	 * 
-	 * @return
+	 * @return idConsole
 	 */
 	public String getIdConsole() {
 		return idConsole;
