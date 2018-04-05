@@ -60,7 +60,7 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
+	 * Method to get the current instance of this façade
 	 * @return
 	 */
 	public static ApplicationFacade getInstance(){
@@ -71,9 +71,10 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * @param name 
-	 * @param pwd 
-	 * @return
+	 * Methodto login the user and get the save this user for the navigation on the platform
+	 * @param name : username entered by the user
+	 * @param pwd : password entered by the user
+	 * @return a boolean True for success and false for a failed
 	 */
 	public Boolean login(String username, String pwd) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -118,7 +119,7 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
+	 * Method to create the editor list on the platform
 	 */
 	public void setEditorsList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -141,7 +142,7 @@ public class ApplicationFacade {
 	}
 	
 	/**
-	 * 
+	 * Method to create the list of buyer on the platform
 	 */
 	public void setBuyerList() {
     	AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -162,7 +163,7 @@ public class ApplicationFacade {
     }
 	
 	/**
-	 * 
+	 * Method to get the list of editors for who the validate attribute is set to false
 	 */
 	public void setEditorNotValidate(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -185,7 +186,7 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
+	 * Method to set the list of console on the platform
 	 */
 	public void setConsolesList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -204,7 +205,10 @@ public class ApplicationFacade {
 		}
 	}
 	
-	public void setPostssList(){
+	/**
+	 * Method to show on the platform the list of post
+	 */
+	public void setPostsList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		PostDAO postDAO =  daoFactory.getPostDAO() ;
 		ArrayList<Post> ps = postDAO.getAllPosts();
@@ -237,20 +241,24 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Method to get all the editor from the application façade
+	 * @return ObservableList<EditorCell> where an editorCell represent an Editor
 	 */
 	public ObservableList<EditorCell> getEditorsList(){
 		return this.editors;
 	}
 	
+	/**
+	 * Method to get all the buyer from the application façade
+	 * @return ObservableList<BuyerCell> where an buyerCell represent an Editor
+	 */
 	public ObservableList<BuyerCell> getBuyersList(){
 		return this.buyers;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Method to get all the editor from the application façade which are not validate
+	 * @return ObservableList<EditorCell> where an editorCell represent an Editor not validate
 	 */
 	public ObservableList<EditorCell> getEditorsToValidList(){
 		return this.editorsToValid;
@@ -273,7 +281,7 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
+	 * Method to logOff
 	 */
 	public void logOff(){
 		connectedUser = null;
@@ -286,8 +294,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Method to get all the administrators list for the superAdmin
+	 * @return ObservableList<Administrator> : where AdministratorCell represent an administrator
 	 */
 	public static ObservableList<Administrator> loadAdministratorsList() {
 		ObservableList<Administrator> admins = FXCollections.observableArrayList() ;
@@ -451,7 +459,7 @@ public class ApplicationFacade {
 
 
 	/**
-	 * 
+	 * Method to create the list of game of the connectedUser
 	 */
 	public void setUserGamesList(){
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
@@ -665,12 +673,24 @@ public class ApplicationFacade {
 		return  userType == "Buyer";
 	}
 
+	/**
+	 * Method to pass the editor to non validate to validate in the database
+	 * @param editor :  The editor who we want to validate
+	 */
 	public void validateEditor(String editor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO =  daoFactory.getEditorDAO();
 		editorDAO.validateEditor(editor);
 	}
 
+	/**
+	 * Method to update buyer informations
+	 * @param username : The username entered by the user
+	 * @param email : The email entered by the user
+	 * @param password : The password entered by the user
+	 * @param phoneNumber :The phoneNumber entered by the user
+	 * @param zipCode : The zipCode entered by the user
+	 */
 	public void updateBuyer(String username, String email, String password, String phoneNumber, String zipCode) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		UserDAO userDAO = daoFactory.getUserDAO();
@@ -678,6 +698,14 @@ public class ApplicationFacade {
 				phoneNumber);
 	}
 	
+	/**
+	 * Method to update game informations
+	 * @param idItem : the id of the game we want to update
+	 * @param title : the title of the game entered by the user
+	 * @param description : the description of the game entered by the user
+	 * @param category : the category of the game entered by the user
+	 * @param consoleType : the consoleType of the game entered by the user
+	 */
 	public void updateGame(String idItem, String title, String description, String category, String consoleType) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		GameDAO gameDAO = daoFactory.getGameDAO();

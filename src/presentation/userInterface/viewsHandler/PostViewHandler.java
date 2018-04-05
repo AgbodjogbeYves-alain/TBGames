@@ -30,6 +30,10 @@ public class PostViewHandler {
 	@FXML private CheckBox offerCB;
 	@FXML private CheckBox demandCB;
 
+	/**
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
+	 */
 	@FXML
 	public void initialize() {
 		labelPost.setText(post.getTitle());;
@@ -39,7 +43,10 @@ public class PostViewHandler {
 		labelPrice.setText(Integer.toString(post.getPrice()));
 	}
 
-	public void handlecancelAction(ActionEvent event) {
+	/**
+	 * When the user fill the form on the dialogBox for the administrator, if he clicks on cancel the dialogBox close
+	 */
+	public void handlecancelAction() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));
@@ -55,7 +62,10 @@ public class PostViewHandler {
 		}
 	}
 
-	public void handledeleteAction(ActionEvent event) {
+	/**
+     * Called when the user clicks on the delete button.
+     */
+	public void handledeleteAction() {
 		ApplicationFacade.getInstance().DeletePostDemand(post);
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -72,9 +82,21 @@ public class PostViewHandler {
 		}
 	}
 
-	public void handleupdateAction(ActionEvent event) {
+	/**
+	 * When the user click on validate on the dialogBox for the edit
+	 * 
+	 */
+	public void handleupdateAction() {
 	}
 
+	/**
+	 * 
+	 * @param title
+	 * @param description
+	 * @param price
+	 * @param typePost
+	 * @param item
+	 */
 	static void setPost(String title, String description, int price, String typePost,Optional<String> item) {
 		String user = ((Actor) ApplicationFacade.getConnectedUser()).getIdActor();
 		post = new Post(title,description,price,typePost,user,item);

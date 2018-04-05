@@ -60,10 +60,10 @@ public class ListEditorsViewHandler {
 	    }
 
 	    /**
-	     * Fills all text fields to show details about the person.
-	     * If the specified person is null, all text fields are cleared.
+	     * Fills all text fields to show details about the Editor.
+	     * If the specified Editor is null, all text fields are cleared.
 	     *
-	     * @param person the person or null
+	     * @param Editor the Editor or null
 	     */
 	    private void showEditorDetails(EditorCell editor) {
 	        if (editor != null) {

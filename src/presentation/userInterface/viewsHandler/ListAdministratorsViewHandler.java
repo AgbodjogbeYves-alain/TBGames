@@ -20,6 +20,10 @@ public class ListAdministratorsViewHandler {
 	@FXML private Button deleteBTN;
 	@FXML private Button EditBTN;
 
+	
+	/**
+	 * Method to initialize the view when the pane is showed
+	 */
 	@FXML
 	protected void initialize(){
         // Initialize the person table with the two columns.
@@ -36,6 +40,10 @@ public class ListAdministratorsViewHandler {
 	            (observable, oldValue, newValue) -> showAdministratorDetails(newValue));
 	}
 	
+	/**
+	 * Method to see the different information of the administrators
+	 * @param administrator : that we want show details
+	 */
 	public void showAdministratorDetails(AdministratorCell administrator) {
 		if (administrator != null) {
             // Fill the labels with info from the administrator object.

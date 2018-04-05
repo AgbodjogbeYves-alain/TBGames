@@ -18,24 +18,16 @@ import javafx.scene.layout.AnchorPane;
 
 public class LoginViewHandler{
 
-	/**
-	 * 
-	 */
+	
 	@FXML private TextField usernameTF;
-
-
-	/**
-	 * 
-	 */
 	@FXML private PasswordField passwordTF;
 	public Label msg = new Label();
 
 	/**
-	 * 
-	 * @param event
+	 * Occur when the user click on login.
 	 */
 	@FXML
-	private void handlelogAction(ActionEvent event) {
+	private void handlelogAction() {
 		//Faire les tests editor, buyer,administrator ici. Pour chaque if faire la redirection ad�quate
 		
 
@@ -84,12 +76,11 @@ public class LoginViewHandler{
 	}
 
 	/**
-	 * 
-	 * @param event
-	 * @throws ClassNotFoundException
+	 * Occur when the user click on signUp
+	 * @throws ClassNotFoundException  : If the editor or the buyer is not found
 	 */
 	@FXML
-	private void handlesignupAction(ActionEvent event) throws ClassNotFoundException {
+	private void handlesignupAction() throws ClassNotFoundException {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainStage.class.getResource("userInterface/fxml/SignUpView.fxml"));
@@ -106,11 +97,10 @@ public class LoginViewHandler{
 	}
 	
 	/**
-	 * 
-	 * @param event
+	 * When the user click on logout everywhere on the platform
 	 */
 	@FXML
-	private void handleLogout(ActionEvent event){
+	private void handleLogout(){
 		ApplicationFacade.getInstance().logOff();
 		MainStage.showView();
 	}

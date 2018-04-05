@@ -50,8 +50,8 @@ public class ManageInfosEditorViewHandler {
 	    
 	    
 	    /**
-	     * Called when the user clicks on the edit button.
-	     * @return 
+	     * Called when the Editor clicks on the edit button.
+	     * @return boolean : True if the user is correctly modify otherwise false 
 	     */
 	    @FXML
 	    private boolean handleEditEditor() {
@@ -91,7 +91,7 @@ public class ManageInfosEditorViewHandler {
 	  
 	
 	    /**
-	     * Called when the user clicks on the delete button.
+	     * Called when the Editor clicks on the delete button.
 	     */
 	    @FXML
 	    private void handleDeleteEditor() {

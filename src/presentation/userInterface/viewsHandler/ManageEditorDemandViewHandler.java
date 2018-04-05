@@ -55,10 +55,10 @@ public class ManageEditorDemandViewHandler {
 	}
 
 	/**
-	 * Fills all text fields to show details about the person.
+	 * Fills all text fields to show details about the Editor.
 	 * If the specified person is null, all text fields are cleared.
 	 *
-	 * @param person the person or null
+	 * @param editor the editor or null
 	 */
 	private void showEditorDetails(EditorCell editor) {
 		if (editor != null) {

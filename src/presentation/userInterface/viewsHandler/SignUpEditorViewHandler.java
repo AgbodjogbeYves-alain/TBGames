@@ -22,13 +22,19 @@ public class SignUpEditorViewHandler {
 	@FXML private PasswordField passwordTF;
 	@FXML private PasswordField confirmpasswordTF;
 	
+	/**
+	 * When the user click on the cancel button on the panel
+	 */
 	@FXML
-	private void handlecancelsignupAction(ActionEvent event) {
+	private void handlecancelsignupAction() {
 		MainStage.showView();
 	}
 	
+	/**
+	 * When the user click on the cancel button on the panel
+	 */
 	@FXML
-	private void handleconfirmsignupAction(ActionEvent event) {
+	private void handleconfirmsignupAction() {
 		String username = usernameTF.getText();
 		String email = emailTF.getText();
 		String representativeName = representativeNameTF.getText();

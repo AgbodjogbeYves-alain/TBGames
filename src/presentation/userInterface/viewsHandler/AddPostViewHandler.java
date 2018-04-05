@@ -28,10 +28,9 @@ public class AddPostViewHandler {
 	Optional<String> item = null;
 
 	/**
-	 * Handle action on cancel button : return to revious page
-     * @param event
+	 * Handle action on cancel button : return to previous page
      */
-	public void handlecancelAction(ActionEvent event) {
+	public void handlecancelAction() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainStage.class.getResource("userInterface/fxml/LoginUserView.fxml"));

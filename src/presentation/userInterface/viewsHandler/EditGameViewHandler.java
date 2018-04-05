@@ -26,7 +26,7 @@ public class EditGameViewHandler {
 	
 	/**
      * Called when the user clicks on the edit button.
-     * @return 
+     * @return boolean True if the game is correctly edit otherwise false
      */
     @FXML
     private boolean handleEditGame() {

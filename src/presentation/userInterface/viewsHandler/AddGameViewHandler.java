@@ -22,6 +22,10 @@ public class AddGameViewHandler {
 	@FXML private Button browse;
 	@FXML private Button chooseImage;
 	
+	/**
+	 * Method to add a game in the list of game in the platform
+	 * @return boolean True if the game is correctly added otherwise false
+	 */
 	 @FXML
 	    private boolean handleAddGame() {
 	    	

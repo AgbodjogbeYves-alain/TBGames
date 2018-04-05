@@ -20,7 +20,10 @@ public class DeleteGameViewHandler {
 	@FXML private Button cancelDelete;
 	@FXML private Button confirmDelete;
 
-	public void handlecancelAction(ActionEvent event) {
+	/**
+	 * Method to cancel a delete action on games.
+	 */
+	public void handlecancelAction() {
 		System.out.println("ok");
 		try {
 			FXMLLoader loader = new FXMLLoader();
