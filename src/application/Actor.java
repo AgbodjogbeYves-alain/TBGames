@@ -5,10 +5,6 @@ package application;
 
 import java.util.ArrayList;
 
-/**
- * @author
- *
- */
 public class Actor {
 	
 	private String id ;
@@ -39,17 +35,7 @@ public class Actor {
 		this.password = password;
 	}
 	
-	/**
-	 * 
-	 * @param id
-	 * @param username
-	 * @param email
-	 * @param password
-	 * @param isAdmin
-	 * @param isSA
-	 * @param isEd
-	 * @param isB
-	 */
+	
 	public Actor(String id, String username, String email, String password, boolean isAdmin, boolean isSA, boolean isEd, boolean isB) {
 		super();
 		this.id = id;

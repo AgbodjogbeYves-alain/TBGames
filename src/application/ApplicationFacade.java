@@ -22,9 +22,7 @@ import presentation.userInterface.tableCells.GameCell;
 import presentation.userInterface.tableCells.PostCell;
 import persistence.* ;
 
-/**
- * 
- */
+
 public class ApplicationFacade {
 
 	private static ApplicationFacade afInstance = null ;
@@ -71,8 +69,8 @@ public class ApplicationFacade {
 	}
 
 	/**
-	 * Methodto login the user and get the save this user for the navigation on the platform
-	 * @param name : username entered by the user
+	 * Method to login the user and get the save this user for the navigation on the platform
+	 * @param username : username entered by the user
 	 * @param pwd : password entered by the user
 	 * @return a boolean True for success and false for a failed
 	 */
@@ -242,7 +240,7 @@ public class ApplicationFacade {
 
 	/**
 	 * Method to get all the editor from the application façade
-	 * @return ObservableList<EditorCell> where an editorCell represent an Editor
+	 * @return ObservableList where an editorCell represent an Editor
 	 */
 	public ObservableList<EditorCell> getEditorsList(){
 		return this.editors;
@@ -250,7 +248,7 @@ public class ApplicationFacade {
 	
 	/**
 	 * Method to get all the buyer from the application façade
-	 * @return ObservableList<BuyerCell> where an buyerCell represent an Editor
+	 * @return ObservableList where an buyerCell represent an Editor
 	 */
 	public ObservableList<BuyerCell> getBuyersList(){
 		return this.buyers;
@@ -258,7 +256,7 @@ public class ApplicationFacade {
 	
 	/**
 	 * Method to get all the editor from the application façade which are not validate
-	 * @return ObservableList<EditorCell> where an editorCell represent an Editor not validate
+	 * @return ObservableList where an editorCell represent an Editor not validate
 	 */
 	public ObservableList<EditorCell> getEditorsToValidList(){
 		return this.editorsToValid;
@@ -295,7 +293,7 @@ public class ApplicationFacade {
 
 	/**
 	 * Method to get all the administrators list for the superAdmin
-	 * @return ObservableList<Administrator> : where AdministratorCell represent an administrator
+	 * @return ObservableList : where AdministratorCell represent an administrator
 	 */
 	public static ObservableList<Administrator> loadAdministratorsList() {
 		ObservableList<Administrator> admins = FXCollections.observableArrayList() ;
@@ -353,11 +351,7 @@ public class ApplicationFacade {
 	}
 
 
-	/**
-	 * Methods to get the type of the actor
-	 * @param actor
-	 * @return: a string corresponding to the actor's type
-	 */
+
 	public String getActorType(Actor actor) {
 		String type = null;
 		try {
@@ -389,11 +383,6 @@ public class ApplicationFacade {
 
 	
 	
-	/**
-	 * Methods to get the Buyer corresponding to the id
-	 * @param idActor
-	 * @return: return the Buyer who has idActor as id
-	 */
 	public User getBuyer(String idActor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql", "tbgames", "localhost", "5432",
 				"postgres", "admin");
@@ -404,11 +393,7 @@ public class ApplicationFacade {
 	
 	
 
-	/**
-	 * Methods to get the Editor corresponding to the id
-	 * @param idActor
-	 * @return: return the Editor who has idActor as id
-	 */
+	
 	public Editor getEditor(String idActor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		EditorDAO editorDAO = daoFactory.getEditorDAO();
@@ -434,10 +419,7 @@ public class ApplicationFacade {
 	
 	
 
-	/**
-	 * Return the administrator list which is registered in Application façade 
-	 * @return Administrators
-	 */
+
 	public ObservableList<AdministratorCell> getAdministratorsList(){
 		if (this.administrators.size() == 0) {
 			setAdminsList() ;
@@ -445,11 +427,7 @@ public class ApplicationFacade {
 		return this.administrators;
 	}
 
-	/**
-	 * Methods to get the Administrator corresponding to the id
-	 * @param idActor
-	 * @return: return the Administrator who has idActor as id
-	 */
+	
 	public Administrator getAdministrator(String idActor) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;
 		AdministratorDAO AdministratorDAO = daoFactory.getAdministratorDAO();
@@ -527,10 +505,13 @@ public class ApplicationFacade {
 		AdministratorDAO.delete(admin);
 	}
 
+	
 	/**
 	 * Method to modify admministrator information
-	 * @param oldAdmin 
-	 * @param newAdmin
+	 * @param oldAdmin
+	 * @param email
+	 * @param username
+	 * @param pwd
 	 */
 	public void updateAdministrator(Administrator oldAdmin, String email, String username, String pwd) {
 		AbstractDAOFactory daoFactory = AbstractDAOFactory.getFactory("postgresql","tbgames","localhost","5432","postgres","admin") ;

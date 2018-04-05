@@ -9,7 +9,7 @@ public class Game extends Item {
 	 * @param idItem
 	 * @param name
 	 * @param rating
-	 * @param user
+	 * @param idUser
 	 * @param consoleType
 	 * @param idGame
 	 * @param description

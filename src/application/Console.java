@@ -10,7 +10,7 @@ public class Console extends Item{
 	 * @param name
 	 * @param rating
 	 * @param string
-	 * @param consoleType
+	 * @param idConsoleType
 	 * @param idConsole
 	 */
 	public Console(String idItem, String name, int rating, String string, String idConsoleType, String idConsole) {

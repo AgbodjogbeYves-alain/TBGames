@@ -39,39 +39,39 @@ public class EditorCell extends SimpleUserCell{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the id of the editor
+	 * @return String
 	 */
 	public String getIdEd(){
 		return idEditor.get();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the representative name of the editor
+	 * @return representative name
 	 */
 	public String getRN(){
 		return representativeName.get();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the status of the editor
+	 * @return Boolean
 	 */
 	public boolean getValidation(){
 		return validation.get();
 	}
 	
 	/**
-	 * 
-	 * @param idEditor
+	 * Set the id of the editor in the cell
+	 * @param idEditor : id of the editor
 	 */
 	public void setIdEd(String idEditor) {
 		this.idEditor.set(idEditor);
 	}
 	
 	/**
-	 * 
+	 * Set the representative name to the cell
 	 * @param rn
 	 */
 	public void setRN(String rn){
@@ -79,7 +79,7 @@ public class EditorCell extends SimpleUserCell{
 	}
 	
 	/**
-	 * 
+	 * Set the status of the editor in the cell
 	 * @param validation
 	 */
 	public void setValidation(boolean validation){

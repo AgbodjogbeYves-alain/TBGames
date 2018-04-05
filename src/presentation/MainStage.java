@@ -27,11 +27,7 @@ public class MainStage extends Application {
 	
     
     /**
-     * Shows the person overview inside the root layout.
-     * @param string 
-     * @param title 
-     * @throws IOException 
-     * @throws ClassNotFoundException 
+     * Shows the person overview inside the root layout. 
      */
     public static void showView() {
     		mainStage.setTitle("Welcome on TBGames!!");
@@ -61,9 +57,8 @@ public class MainStage extends Application {
         return mainStage;
     }
     
-    public void closeMainStage() {
-    	mainStage.close();
-    }
+    
+   
 
     public static void launcher(String[] args) {
     	launch(args);

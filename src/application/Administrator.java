@@ -15,13 +15,6 @@ public class Administrator extends Actor {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 * @param id
-	 * @param userName
-	 * @param email
-	 * @param password
-	 */
 	public Administrator(String id, String userName, String email, String password) {
 		super(id,userName,email,password);
 	}

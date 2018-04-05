@@ -9,6 +9,12 @@ import presentation.MainStage;
 
 public class AlertBox{
 
+	/**
+	 * Method to show an alert box according to parameters
+	 * @param msg : the message to display
+	 * @param header
+	 * @param title : the title of the alertBox
+	 */
 	public static void showAlert(String msg, String header,String title) {
 		Alert alert = new Alert(AlertType.WARNING);
 	    alert.initOwner(MainStage.getPrimaryStage());
@@ -18,6 +24,13 @@ public class AlertBox{
 	    alert.showAndWait();
 	}
     
+	/**
+	 * Permit to show an alert box with 2 buttons yes and no
+	 * @param msg : the message to display
+	 * @param header
+	 * @param title : the title of the alertBox
+	 * @return yes if yes is clicked else no
+	 */
 	public static String showAlertYesNo(String msg, String header,String title) {
 		String result = null;
 		Alert alert = new Alert(AlertType.CONFIRMATION);

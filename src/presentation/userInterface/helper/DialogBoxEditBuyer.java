@@ -44,7 +44,7 @@ public class DialogBoxEditBuyer {
      * clicks OK, the changes are saved into the provided person object and true
      * is returned.
      *
-     * @param person the person object to be edited
+     * @param actor the person object to be edited
      */
     public void showEditDialog(Object actor) {
         try {
@@ -151,7 +151,7 @@ public class DialogBoxEditBuyer {
     /**
      * Returns true if the user clicked OK, false otherwise.
      *
-     * @return
+     * @return a boolean true for is clicked and false otherwise
      */
     public boolean isOkClicked() {
         return okClicked;

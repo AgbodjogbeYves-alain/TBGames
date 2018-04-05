@@ -17,9 +17,7 @@ public class GameDAOPG extends GameDAO {
 
 	}
 
-	/**
-	 * @param game
-	 */
+	@Override
 	public void save(Game game) {
 		String name = game.getName();
 		int rating = game.getRating();
@@ -32,10 +30,7 @@ public class GameDAOPG extends GameDAO {
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
-	/**
-	 * @param oldGame
-	 * @param newGame
-	 */
+	@Override
 	public void update(String idItem, Game newGame) {
 		String name = newGame.getName();
 		int rating = newGame.getRating();
@@ -48,18 +43,14 @@ public class GameDAOPG extends GameDAO {
 				+ idItem + ";";
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
-
-	/**
-	 * @param game
-	 */
+	
+	@Override
 	public void delete(Game game) {
 		String query = "DELETE FROM game WHERE idGame = "+game.getIdGame() ;
 		int queryResult = PGDAOFactory.getConnector().executeUpdate(query);
 	}
 
-	/**
-	 * @return
-	 */
+	@Override
 	public ArrayList<Game> getAll() {
 		ArrayList<Game> gameList = new ArrayList<Game>() ;
 		//TODO Implementation
@@ -68,10 +59,7 @@ public class GameDAOPG extends GameDAO {
 		return gameList;
 	}
 
-	/**
-	 * @param gameId
-	 * @return
-	 */
+	@Override
 	public ArrayList<Game> getById(String gameId) {
 		//TODO
 		ArrayList<Game> gameList = new ArrayList<Game>() ;
@@ -80,10 +68,7 @@ public class GameDAOPG extends GameDAO {
 		return gameList ;
 	}
 
-	/**
-	 * @param gameName
-	 * @return
-	 */
+	@Override
 	public ArrayList<Game> getByName(String gameName) {
 		//TODO 
 		ArrayList<Game> gameList = new ArrayList<Game>() ;
@@ -92,10 +77,7 @@ public class GameDAOPG extends GameDAO {
 		return gameList;
 	}
 	
-	/**
-	 * @param gameName
-	 * @return
-	 */
+	@Override
 	public ArrayList<Game> getByUserId(String userId) {
 		//TODO 
 		ArrayList<Game> gameList = new ArrayList<Game>() ;

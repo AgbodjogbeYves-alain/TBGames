@@ -7,41 +7,48 @@ import application.*;
 public abstract class GameDAO {
 
 	/**
-	 * @param game
+	 * Save a game
+	 * @param game to save
 	 */
 	public abstract void save(Game game);
 
 	/**
-	 * @param oldGame
-	 * @param newGame
+	 * Update a game
+	 * @param idItem the game that we want to modify
+	 * @param newGame the new values of the game
 	 */
 	public abstract void update(String idItem, Game newGame);
 
 	/**
-	 * @param game
+	 * Method to delete a game
+	 * @param game to delete
 	 */
 	public abstract void delete(Game game);
 
 	/**
-	 * @return
+	 * Get all the game that are in the dataBase
+	 * @return ArrayList the games
 	 */
 	public abstract ArrayList<Game> getAll();
 
 	/**
-	 * @param gameId
-	 * @return
+	 * Get a game by his id
+	 * @param gameId : the id of the game
+	 * @return ArrayList list of games
 	 */
 	public abstract ArrayList<Game> getById(String gameId);
 
 	/**
-	 * @param gameName
-	 * @return
+	 * Get a game by his name
+	 * @param gameName : the name of the game
+	 * @return the game
 	 */
 	public abstract ArrayList<Game> getByName(String gameName);
 	
 	/**
-	 * @param userId
-	 * @return
+	 * Get all the users games
+	 * @param userId : id of the user
+	 * @return ArrayList of games
 	 */
 	public abstract ArrayList<Game> getByUserId(String userId); 
 }

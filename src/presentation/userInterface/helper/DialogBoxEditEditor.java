@@ -46,7 +46,7 @@ public class DialogBoxEditEditor {
      * clicks OK, the changes are saved into the provided person object and true
      * is returned.
      *
-     * @param person the person object to be edited
+     * @param actor the person object to be edited
      */
     public void showEditDialog(Object actor) {
         try {
@@ -77,8 +77,8 @@ public class DialogBoxEditEditor {
     }
     
     /**
-     * 
-     * @return
+     * Verify the textFields of the dialogBox
+     * @return true if all the text fields are filled else false
      */
     private boolean isInputValid() {
         String errorMessage = "";
@@ -158,7 +158,7 @@ public class DialogBoxEditEditor {
     /**
      * Returns true if the user clicked OK, false otherwise.
      *
-     * @return
+     * @return true if the ok button is clicker
      */
     public boolean isOkClicked() {
         return okClicked;

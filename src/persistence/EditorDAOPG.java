@@ -20,9 +20,6 @@ public class EditorDAOPG extends EditorDAO {
     }
 	
     @Override
-	/**
-	 * return : null if editor is not in the database
-	 */
 	public Editor getEditorById(String id) {
 		String query = "SELECT  * FROM Editor WHERE idActor = '" + id + "';" ;
 		ResultSet queryResult = PGDAOFactory.getConnector().executeQuery(query) ;
@@ -128,10 +125,7 @@ public class EditorDAOPG extends EditorDAO {
 		return null;
 	}
 	
-	/**
-	 * Method to save a editor into DB
-	 * @param editor : the editor to save in the database
-	 */
+	@Override
 	public void saveEditor(Editor editor) {
 		String name = editor.getUsername();
 		String zipCode = editor.getZipCode();

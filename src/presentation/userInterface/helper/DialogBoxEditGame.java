@@ -47,7 +47,7 @@ public class DialogBoxEditGame {
      * clicks OK, the changes are saved into the provided person object and true
      * is returned.
      *
-     * @param person the person object to be edited
+     * @param game the person object to be edited
      */
     public void showEditDialog(Game game) {
         try {
